@@ -1,0 +1,9 @@
+file_category;file_name;file_url;file_disk
+geojson;aree_geojson;/aree/geojson/dpc-covid19-ita-aree.geojson;\data_geo\geojson\dpc-covid19-ita-aree.geojson
+shapefile;aree_dbf;/aree/shp/dpc-covid19-ita-aree.dbf;\data_geo\shp\dpc-covid19-ita-aree.dbf
+shapefile;aree_prj;/aree/shp/dpc-covid19-ita-aree.prj;\data_geo\shp\dpc-covid19-ita-aree.prj
+shapefile;aree_shp;/aree/shp/dpc-covid19-ita-aree.shp;\data_geo\shp\dpc-covid19-ita-aree.shp
+shapefile;aree_shx;/aree/shp/dpc-covid19-ita-aree.shx;\data_geo\shp\dpc-covid19-ita-aree.shx
+dati_regioni;dati_regioni;/dati-regioni/dpc-covid19-ita-regioni.csv;\data_raw\csv\dpc-covid19-ita-regioni.csv
+dati_province;dati_province;/dati-province/dpc-covid19-ita-province.csv;\data_raw\csv\dpc-covid19-ita-province.csv
+dati_andamento_nazionale;dati_andamento_nazionale;/dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale.csv;\data_raw\csv\dpc-covid19-ita-andamento_nazionale.csv
