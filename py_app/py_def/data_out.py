@@ -15,10 +15,10 @@ def build_linechart_dates(x_pds_dt, x_freq, y_first_dict, y_sec_dict = {}):
 
 	labels[i] = ''
 
-    # create dictionary with chart data
+	# create dictionary with chart data
 	if(len(y_sec_dict) > 0):
 		data_out = {
-                'labels': labels.tolist()
+				'labels': labels.tolist()
 				,'data_first': y_first_dict['data']
 				,'label_first': y_first_dict['label']
 				,'data_sec': y_sec_dict['data']
@@ -30,39 +30,44 @@ def build_linechart_dates(x_pds_dt, x_freq, y_first_dict, y_sec_dict = {}):
 				,'data_first': y_first_dict['data']
 				,'label_first': y_first_dict['label']
 			}
-    
+	
 	return(data_out)
-        
-    
-    
-# build a dictionary with charts data    
+		
+	
+	
+# build a dictionary with charts data	
 def build_charts_naz(df):
-    
-    # build charts
+	
+	# add new columns
+	df = df.sort_values(by = ['data', 'stato'])
+	df['nuovi_deceduti'] = df['deceduti'] - df['deceduti'].shift(+1)
+	df['nuovi_dimessi_guariti'] = df['dimessi_guariti'] - df['dimessi_guariti'].shift(+1)	  
+	df['nuovi_tamponi'] = df['tamponi'] - df['tamponi'].shift(+1)
+	
+	# build charts
 	chart_a = build_linechart_dates(x_pds_dt = df['data']
 									,x_freq = 2
 									,y_first_dict = {'data': df['nuovi_attualmente_positivi'].tolist(), 'label': 'Nuovi Positivi'}
+									,y_sec_dict = {'data': df['nuovi_tamponi'].tolist(), 'label': 'Nuovi Tamponi'}
 									)
 
 	chart_b = build_linechart_dates(x_pds_dt = df['data']
 									,x_freq = 2
-									,y_first_dict = {'data': df['totale_attualmente_positivi'].tolist(), 'label': 'Attualmente Positivi'}
-									,y_sec_dict = {'data': df['terapia_intensiva'].tolist(), 'label': 'Terapia Intensiva'}
+									,y_first_dict = {'data': df['totale_attualmente_positivi'].tolist(), 'label': 'Attualmente Positivi'}									
 									)
 
 	chart_c = build_linechart_dates(x_pds_dt = df['data']
 									,x_freq = 2
-									,y_first_dict = {'data': df['tamponi'].tolist(), 'label': 'Tot Tamponi'}
-									,y_sec_dict = {'data': df['totale_casi'].tolist(), 'label': 'Tot Positivi'}
+									,y_first_dict = {'data': df['terapia_intensiva'].tolist(), 'label': 'Terapia Intensiva'}
 									)
 
 	chart_d = build_linechart_dates(x_pds_dt = df['data']
 									,x_freq = 2
-									,y_first_dict = {'data': df['deceduti'].tolist(), 'label': 'Tot Deceduti'}
-									,y_sec_dict = {'data': df['dimessi_guariti'].tolist(), 'label': 'Tot Dimessi Guariti'}
+									,y_first_dict = {'data': df['nuovi_deceduti'].tolist(), 'label': 'Deceduti'}
+									,y_sec_dict = {'data': df['nuovi_dimessi_guariti'].tolist(), 'label': 'Dimessi Guariti'}
 									)
-    
-    # dictionary with all charts
+	
+	# dictionary with all charts
 	charts_dict = {
 				 'chart_a': chart_a
 				,'chart_b': chart_b
@@ -71,18 +76,18 @@ def build_charts_naz(df):
 				}
 
 	return(charts_dict)
-    
-    
-    
+	
+	
+	
 # write dictionary to json file
 def write_charts_data(charts_dict, pathfilename):
 
-    # dependecies
-    import json
-    
-    # write json
-    with open(file = pathfilename, mode = 'w') as file_towrite:    
-        
-        json.dump(obj = charts_dict, fp = file_towrite)    
+	# dependecies
+	import json
+	
+	# write json
+	with open(file = pathfilename, mode = 'w') as file_towrite:	
+		
+		json.dump(obj = charts_dict, fp = file_towrite)	
 
-    
+	
