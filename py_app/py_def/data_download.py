@@ -5,7 +5,7 @@ def get_config(dir_home, sep, header):
 	import csv
 
 	# url master
-	with open(file = dir_home + r'\data_cfg\repo_master.csv') as file_toread:
+	with open(file = dir_home + r'\data_cfg\repo_master.csv', mode = 'r') as file_toread:
 		
 		file_reader = csv.reader(file_toread, delimiter = sep)
 		file_header = header
@@ -18,7 +18,7 @@ def get_config(dir_home, sep, header):
 			url_home = row[0]      
 
 	# url files
-	with open(file = dir_home + r'\data_cfg\repo_master_files.csv') as file_toread:
+	with open(file = dir_home + r'\data_cfg\repo_master_files.csv', mode = 'r') as file_toread:
 		
 		file_reader = csv.reader(file_toread, delimiter = sep)
 		file_header = header
