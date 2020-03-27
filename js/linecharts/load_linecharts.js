@@ -1,8 +1,8 @@
 
-$.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/data_out/andamento_nazionale.json", "", function(dati_json){
+$.getJSON("https://raw.githubusercontent.com/matteo-stat/test/master/andamento_nazionale.json", "", function(dati_json){
 
-    //console.log(dati_json['chart_a'].labels)
-
+    console.log(dati_json['chart_a'].labels)
+/*
     // chart_a
     var ctxL = document.getElementById("chart_a").getContext('2d');
     var chart_a = new Chart(ctxL, {
@@ -133,7 +133,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
     responsive: true
     }
     });    
-
+*/
 });
 
 
