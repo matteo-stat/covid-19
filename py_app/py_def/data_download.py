@@ -48,6 +48,8 @@ def get_data(diz_files):
     
         diz_file = diz_files[diz_key]            
         urllib.request.urlretrieve(url = diz_file['file_url'], filename = diz_file['file_disk'])
+        
+    
 
 
 

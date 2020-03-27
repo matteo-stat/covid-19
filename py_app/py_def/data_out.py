@@ -53,7 +53,8 @@ def build_charts_naz(df):
 
     chart_b = build_linechart_dates(x_pds_dt = df['data']
                                     ,x_freq = 1
-                                    ,y_first_dict = {'data': df['totale_attualmente_positivi'].tolist(), 'label': 'Attualmente Positivi'}                                    
+                                    ,y_first_dict = {'data': df['nuovi_deceduti'].tolist(), 'label': 'Deceduti'}
+                                    ,y_sec_dict = {'data': df['nuovi_dimessi_guariti'].tolist(), 'label': 'Dimessi Guariti'}
                                     )
 
     chart_c = build_linechart_dates(x_pds_dt = df['data']
@@ -63,8 +64,7 @@ def build_charts_naz(df):
 
     chart_d = build_linechart_dates(x_pds_dt = df['data']
                                     ,x_freq = 1
-                                    ,y_first_dict = {'data': df['nuovi_deceduti'].tolist(), 'label': 'Deceduti'}
-                                    ,y_sec_dict = {'data': df['nuovi_dimessi_guariti'].tolist(), 'label': 'Dimessi Guariti'}
+                                    ,y_first_dict = {'data': df['totale_attualmente_positivi'].tolist(), 'label': 'Attualmente Positivi'}                                    
                                     )
     
     # dictionary with all charts
@@ -76,7 +76,7 @@ def build_charts_naz(df):
                 }
 
     return(charts_dict)
-    
+     
     
     
 # write dictionary to json file
@@ -85,9 +85,28 @@ def write_charts_data(charts_dict, pathfilename):
     # dependecies
     import json
     
+    list_json_null = ['nan', 'NaN']
+    
     # write json
     with open(file = pathfilename, mode = 'w') as file_towrite:    
         
         json.dump(obj = charts_dict, fp = file_towrite)    
+        
+    # fix nan or NaN
+    with open(file = pathfilename, mode = 'r') as file_toread:
+        file_json = file_toread.read()        
+         
+    # replace with null
+    for list_item in list_json_null:
+        file_json = file_json.replace('NaN', 'null')
+        
+    # fix nan or NaN
+    with open(file = pathfilename, mode = 'w') as file_towrite:
+        file_towrite.write(file_json)
+        
+        
+        
+
+
 
     
