@@ -20,148 +20,188 @@
 </head>
 
 
-<body class="grey lighten-4">
+<body class="grey lighten-3">
 
   <!-- Start your project here-->  
   <!--Main Navigation-->
-<header>
+  <header>
 
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark primary-color-dark scrolling-navbar">
-    <a class="navbar-brand" href="#"><strong>COVID-19 Italia</strong></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Andamento Nazionale<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Andamento Regionale (WIP)</a>
-        </li>
-    </div>
-  </nav>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark primary-color-dark scrolling-navbar">
+      <a class="navbar-brand" href="#"><strong>COVID-19 Italia</strong></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Andamento Nazionale<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Andamento Regionale (WIP)</a>
+          </li>
+      </div>
+    </nav>
 
-</header>
-
+  </header>
 
   <!--Main layout-->
-  <main class="mt-3 pt-5">
-    <div class="container">      
+  <main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5">
 
-<h4 class="text-center py-4">Two different columns layout</h4>
+      <!--Grid row-->
+      <div class="row wow fadeIn">
 
+        <!--Grid column-->
+        <div class="col-md-4 mb-4">
 
+          <!--Card-->
+          <div class="card">
 
-<!-- Grid row -->
-<div class="row">
+            <!-- Card header -->
+            <div class="card-header text-center">
+              Map chart
+            </div>            
 
-  <!-- Grid column -->
-  <div class="col-md-6 col-lg-7 mb-4">
+            <!--Card content-->
+            <div class="card-body">
 
-    <!--Card-->
-    <div class="card">
+              <canvas id="chart_a"></canvas>
 
-      <canvas id="linechart_a"></canvas>
+            </div>
 
-    </div>
-    <!--/.Card-->
+          </div>
+          <!--/.Card-->
 
-  </div>
-  <!-- Grid column -->
+        </div>
+        <!--Grid column-->
 
-  <!-- Grid column -->
-  <div class="col-md-6 col-lg-5">
+        <!--Grid column-->
+        <div class="col-md-4 mb-4">
 
-    <!--Card-->
-    <div class="card">
+          <!--Card-->
+          <div class="card mb-4">
 
-      <canvas id="linechart_b"></canvas>
+            <!-- Card header -->
+            <div class="card-header text-center">
+              Totale Attualmente Positivi
+            </div>
 
+            <!--Card content-->
+            <div class="card-body">
 
-    </div>
-    <!--/.Card-->
+              <canvas id="chart_a"></canvas>
 
-  </div>
-  <!-- Grid column -->
+            </div>
 
-</div>
-<!-- Grid row -->
+          </div>
+          <!--/.Card-->
 
-<!-- Grid row -->
-<div class="row">
+          <!--Card-->
+          <div class="card mb-4">
 
-  <!-- Grid column -->
-  <div class="col-md-6 col-lg-7 mb-4">
+            <!--Card content-->
+            <div class="card-body">
 
-    <!--Card-->
-    <div class="card">
+              <!-- List group links -->
+              <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action waves-effect">Sales
+                  <span class="badge badge-success badge-pill pull-right">22%
+                    <i class="fas fa-arrow-up ml-1"></i>
+                  </span>
+                </a>
+                <a class="list-group-item list-group-item-action waves-effect">Traffic
+                  <span class="badge badge-danger badge-pill pull-right">5%
+                    <i class="fas fa-arrow-down ml-1"></i>
+                  </span>
+                </a>
+                <a class="list-group-item list-group-item-action waves-effect">Orders
+                  <span class="badge badge-primary badge-pill pull-right">14</span>
+                </a>
+                <a class="list-group-item list-group-item-action waves-effect">Issues
+                  <span class="badge badge-primary badge-pill pull-right">123</span>
+                </a>
+                <a class="list-group-item list-group-item-action waves-effect">Messages
+                  <span class="badge badge-primary badge-pill pull-right">8</span>
+                </a>
+              </div>
+              <!-- List group links -->
 
-      <!--Card image-->
-      <div class="view">
-        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(112).jpg" class="card-img-top" alt="photo">
-        <a href="#">
-          <div class="mask rgba-white-slight"></div>
-        </a>
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-4">
+
+          <!--Card-->
+          <div class="card mb-4">
+
+            <!-- Card header -->
+            <div class="card-header text-center">
+              Pie chart
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+              <canvas id="pieChart"></canvas>
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+          <!--Card-->
+          <div class="card mb-4">
+
+            <!--Card content-->
+            <div class="card-body">
+
+              <!-- List group links -->
+              <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action waves-effect">Sales
+                  <span class="badge badge-success badge-pill pull-right">22%
+                    <i class="fas fa-arrow-up ml-1"></i>
+                  </span>
+                </a>
+                <a class="list-group-item list-group-item-action waves-effect">Traffic
+                  <span class="badge badge-danger badge-pill pull-right">5%
+                    <i class="fas fa-arrow-down ml-1"></i>
+                  </span>
+                </a>
+                <a class="list-group-item list-group-item-action waves-effect">Orders
+                  <span class="badge badge-primary badge-pill pull-right">14</span>
+                </a>
+                <a class="list-group-item list-group-item-action waves-effect">Issues
+                  <span class="badge badge-primary badge-pill pull-right">123</span>
+                </a>
+                <a class="list-group-item list-group-item-action waves-effect">Messages
+                  <span class="badge badge-primary badge-pill pull-right">8</span>
+                </a>
+              </div>
+              <!-- List group links -->
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
       </div>
-
-      <!--Card content-->
-      <div class="card-body text-center">
-        <!--Title-->
-        <h4 class="card-title">Nature is beautiful!</h4>
-        <!--Text-->
-        <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-          doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-          architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p>
-        <a href="#" class="btn btn-dark-green">Read more</a>
-      </div>
-
-    </div>
-    <!--/.Card-->
-
-  </div>
-  <!-- Grid column -->
-
-  <!-- Grid column -->
-  <div class="col-md-6 col-lg-5">
-
-    <!--Card-->
-    <div class="card green darken-3">
-
-      <!--Card image-->
-      <div class="view">
-        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(131).jpg" class="card-img-top"
-          alt="photo">
-        <a href="#">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-
-      <!--Card content-->
-      <div class="card-body text-center">
-        <!--Title-->
-        <h4 class="card-title white-text">Read about polish plants</h4>
-        <!--Text-->
-        <p class="card-text white-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
-          quasi architecto vitae.</p>
-        <a href="#" class="btn btn-outline-white btn-md waves-effect">Read more</a>
-      </div>
-
-    </div>
-    <!--/.Card-->
-
-  </div>
-  <!-- Grid column -->
-
-</div>
-<!-- Grid row -->
-
-
-<!--Main Navigation-->
+      <!--Grid row-->  
     </div>
   </main>
+  <!--Main layout-->
+
+
+
   <!-- End your project here-->
 
   <!-- jQuery -->

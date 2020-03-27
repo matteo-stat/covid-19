@@ -36,9 +36,9 @@ def build_linechart_dates(x_pds_dt, x_freq, y_first_dict, y_sec_dict = {}):
     
     
 # build a dictionary with charts data    
-def build_linecharts_naz(df):
+def build_charts_naz(df):
     
-    # buil up charts
+    # build charts
 	chart_a = build_linechart_dates(x_pds_dt = df['data']
 									,x_freq = 2
 									,y_first_dict = {'data': df['nuovi_attualmente_positivi'].tolist(), 'label': 'Nuovi Positivi'}

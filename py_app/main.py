@@ -11,7 +11,7 @@ sys.path.append(dir_home + r'\py_def')
 from data_download import get_config
 from data_download import get_data
 from data_load import load_data
-from data_out import build_linecharts_naz
+from data_out import build_charts_naz
 from data_out import write_charts_data
 
 # project config
@@ -32,7 +32,7 @@ df_reg = load_data(proj_config['dati_regioni']['dati_regioni']['file_disk'])
 df_pro = load_data(proj_config['dati_province']['dati_province']['file_disk'])
 
 # build charts
-charts_naz = build_linecharts_naz(df_naz)
+charts_naz = build_charts_naz(df_naz)
 
 # write charts data
 write_charts_data(charts_naz, dir_home + r'\data_out\andamento_nazionale.json')
