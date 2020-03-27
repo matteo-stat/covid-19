@@ -14,7 +14,6 @@ from data_load import load_data
 from data_out import build_linecharts_naz
 from data_out import write_charts_data
 
-
 # project config
 proj_config = get_config(dir_home = dir_home
                         ,sep = ';'

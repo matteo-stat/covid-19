@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body class="grey lighten-4">
+
+  <!-- Start your project here-->  
+  <!--Main Navigation-->
+<header>
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark primary-color-dark scrolling-navbar">
+    <a class="navbar-brand" href="#"><strong>COVID-19 Italia</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Andamento Nazionale<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Andamento Regionale (WIP)</a>
+        </li>
+    </div>
+  </nav>
+
+</header>
+
+
+  <!--Main layout-->
+  <main class="mt-3 pt-5">
+    <div class="container">      
+
+<h4 class="text-center py-4">Two different columns layout</h4>
+
+
+
+<!-- Grid row -->
+<div class="row">
+
+  <!-- Grid column -->
+  <div class="col-md-6 col-lg-7 mb-4">
+
+    <!--Card-->
+    <div class="card">
+
+      <canvas id="linechart_a"></canvas>
+
+    </div>
+    <!--/.Card-->
+
+  </div>
+  <!-- Grid column -->
+
+  <!-- Grid column -->
+  <div class="col-md-6 col-lg-5">
+
+    <!--Card-->
+    <div class="card">
+
+      <canvas id="linechart_b"></canvas>
+
+
+    </div>
+    <!--/.Card-->
+
+  </div>
+  <!-- Grid column -->
+
+</div>
+<!-- Grid row -->
+
+<!-- Grid row -->
+<div class="row">
+
+  <!-- Grid column -->
+  <div class="col-md-6 col-lg-7 mb-4">
+
+    <!--Card-->
+    <div class="card">
+
+      <!--Card image-->
+      <div class="view">
+        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(112).jpg" class="card-img-top" alt="photo">
+        <a href="#">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!--Card content-->
+      <div class="card-body text-center">
+        <!--Title-->
+        <h4 class="card-title">Nature is beautiful!</h4>
+        <!--Text-->
+        <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+          doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+          architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p>
+        <a href="#" class="btn btn-dark-green">Read more</a>
+      </div>
+
+    </div>
+    <!--/.Card-->
+
+  </div>
+  <!-- Grid column -->
+
+  <!-- Grid column -->
+  <div class="col-md-6 col-lg-5">
+
+    <!--Card-->
+    <div class="card green darken-3">
+
+      <!--Card image-->
+      <div class="view">
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(131).jpg" class="card-img-top"
+          alt="photo">
+        <a href="#">
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!--Card content-->
+      <div class="card-body text-center">
+        <!--Title-->
+        <h4 class="card-title white-text">Read about polish plants</h4>
+        <!--Text-->
+        <p class="card-text white-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+          quasi architecto vitae.</p>
+        <a href="#" class="btn btn-outline-white btn-md waves-effect">Read more</a>
+      </div>
+
+    </div>
+    <!--/.Card-->
+
+  </div>
+  <!-- Grid column -->
+
+</div>
+<!-- Grid row -->
+
+
+<!--Main Navigation-->
+    </div>
+  </main>
+  <!-- End your project here-->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript" src="js/linecharts/load_linecharts.js"></script>
+
+</body>
+</html>
