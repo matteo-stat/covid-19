@@ -1,5 +1,5 @@
 
-$.getJSON("https://raw.githubusercontent.com/matteo-stat/test/master/andamento_nazionale.json", "", function(dati_json){
+$.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/data_out/andamento_nazionale.json", "", function(dati_json){
 
     //console.log(dati_json['chart_a'].labels)
 
@@ -17,6 +17,17 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/test/master/andamento_n
     ],
     borderColor: [
     'rgba(200, 99, 132, .7)',
+    ],
+    borderWidth: 2
+    },
+    {
+    label: dati_json.chart_a.label_sec,
+    data: dati_json.chart_a.data_sec,
+    backgroundColor: [
+    'rgba(0, 137, 132, .2)',
+    ],
+    borderColor: [
+    'rgba(0, 10, 130, .7)',
     ],
     borderWidth: 2
     }
@@ -41,17 +52,6 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/test/master/andamento_n
     ],
     borderColor: [
     'rgba(200, 99, 132, .7)',
-    ],
-    borderWidth: 2
-    },
-    {
-    label: dati_json.chart_b.label_sec,
-    data: dati_json.chart_b.data_sec,
-    backgroundColor: [
-    'rgba(0, 137, 132, .2)',
-    ],
-    borderColor: [
-    'rgba(0, 10, 130, .7)',
     ],
     borderWidth: 2
     }

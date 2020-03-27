@@ -46,23 +46,23 @@ def build_charts_naz(df):
 	
 	# build charts
 	chart_a = build_linechart_dates(x_pds_dt = df['data']
-									,x_freq = 2
+									,x_freq = 1
 									,y_first_dict = {'data': df['nuovi_attualmente_positivi'].tolist(), 'label': 'Nuovi Positivi'}
 									,y_sec_dict = {'data': df['nuovi_tamponi'].tolist(), 'label': 'Nuovi Tamponi'}
 									)
 
 	chart_b = build_linechart_dates(x_pds_dt = df['data']
-									,x_freq = 2
+									,x_freq = 1
 									,y_first_dict = {'data': df['totale_attualmente_positivi'].tolist(), 'label': 'Attualmente Positivi'}									
 									)
 
 	chart_c = build_linechart_dates(x_pds_dt = df['data']
-									,x_freq = 2
+									,x_freq = 1
 									,y_first_dict = {'data': df['terapia_intensiva'].tolist(), 'label': 'Terapia Intensiva'}
 									)
 
 	chart_d = build_linechart_dates(x_pds_dt = df['data']
-									,x_freq = 2
+									,x_freq = 1
 									,y_first_dict = {'data': df['nuovi_deceduti'].tolist(), 'label': 'Deceduti'}
 									,y_sec_dict = {'data': df['nuovi_dimessi_guariti'].tolist(), 'label': 'Dimessi Guariti'}
 									)
