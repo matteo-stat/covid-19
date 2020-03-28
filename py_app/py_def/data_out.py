@@ -142,7 +142,8 @@ def build_linechart_dates(x_pds_dt, x_freq, y_first_dict, y_sec_dict = {}):
 def build_charts_naz(df):
     
     # dependecies
-    from palettable.colorbrewer.sequential import Reds_9
+    from palettable.colorbrewer.sequential import YlOrRd_9
+    from palettable.colorbrewer.sequential import YlGn_9
     
     # add new columns
     df = df.sort_values(by = ['data', 'stato'])
@@ -157,7 +158,7 @@ def build_charts_naz(df):
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = Reds_9
+                    ,palettable_pal = YlOrRd_9
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
@@ -179,7 +180,7 @@ def build_charts_naz(df):
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = Reds_9
+                    ,palettable_pal = YlOrRd_9
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
@@ -201,7 +202,7 @@ def build_charts_naz(df):
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = Reds_9
+                    ,palettable_pal = YlOrRd_9
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
@@ -223,7 +224,7 @@ def build_charts_naz(df):
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = Reds_9
+                    ,palettable_pal = YlGn_9
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
