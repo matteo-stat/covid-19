@@ -4,10 +4,14 @@ def get_pds_scaled(pds, scale_logic):
     # dependecies
     import numpy as np
     
-    if(scale_logic == 'max perc'):
+    if scale_logic == 'max perc':
         
         pds = (pds / np.nanmax(pds))
         
+    elif scale_logic == 'log max perc':
+        pds = np.log(1 + pds)
+        pds = (pds / np.nanmax(pds))
+
     return pds
 
 # return a pandas dataframe with palettes as original series
@@ -313,7 +317,7 @@ def build_geomap_reg(df, dir_home, col_value, col_value_newlabel = ''):
     # get color palette
     df_col = get_colors(pds = gdf[col_value_scaled]
                         ,palettable_pal = palettable_pal
-                        ,scale_logic = 'max perc'                                     
+                        ,scale_logic = 'log max perc'                                     
                         )    
     
     # add hex colors

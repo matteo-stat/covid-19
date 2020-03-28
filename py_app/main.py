@@ -35,8 +35,8 @@ df_pro = load_data(proj_config['dati_province']['dati_province']['file_disk'])
 
 # build charts
 # national data start from 1st of march
-#i = df_naz['data'] > pd.to_datetime('2020-03-01')
-#df_naz = df_naz.loc[i, ]
+i = df_naz['data'] > pd.to_datetime('2020-03-01')
+df_naz = df_naz.loc[i, ]
 charts_naz = build_charts_naz(df_naz)
 map_reg = build_geomap_reg(df = df_reg
                            ,dir_home = dir_home
