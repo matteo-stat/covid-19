@@ -103,7 +103,8 @@ def build_linechart_dates(x_pds_dt, x_freq, y_first_dict, y_sec_dict = {}):
 
     i = ((pd.Series(list(range(0, len(labels)))) + 1) % x_freq) != 0
 
-    labels[i] = ''
+    if i.sum() > 0:
+        labels[i] = ''
     
     if 'bordercolor' not in y_first_dict:
         y_first_dict['bordercolor'] = y_first_dict['backgroundcolor']    
@@ -142,8 +143,8 @@ def build_linechart_dates(x_pds_dt, x_freq, y_first_dict, y_sec_dict = {}):
 def build_charts_naz(df):
     
     # dependecies
-    from palettable.colorbrewer.sequential import YlOrRd_9
-    from palettable.colorbrewer.sequential import YlGn_9
+    from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal_red
+    from palettable.colorbrewer.sequential import YlGn_9 as palettable_pal_green
     
     # add new columns
     df = df.sort_values(by = ['data', 'stato'])
@@ -158,7 +159,7 @@ def build_charts_naz(df):
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = YlOrRd_9
+                    ,palettable_pal = palettable_pal_red
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
@@ -180,7 +181,7 @@ def build_charts_naz(df):
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = YlOrRd_9
+                    ,palettable_pal = palettable_pal_red
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
@@ -202,7 +203,7 @@ def build_charts_naz(df):
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = YlOrRd_9
+                    ,palettable_pal = palettable_pal_red
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
@@ -224,7 +225,7 @@ def build_charts_naz(df):
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = YlGn_9
+                    ,palettable_pal = palettable_pal_green
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
@@ -250,9 +251,8 @@ def build_charts_naz(df):
                 }
 
     return(charts_dict)
-     
     
-    
+                
 # write dictionary to json file
 def write_charts_data(charts_dict, pathfilename):
 
@@ -278,7 +278,94 @@ def write_charts_data(charts_dict, pathfilename):
     with open(file = pathfilename, mode = 'w') as file_towrite:
         file_towrite.write(file_json)
         
+
+# return geo dataframe
+def build_geomap_reg(df, dir_home, col_value, col_value_newlabel = ''):
+
+    # dependecies
+    import geopandas as gpd
+    from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal
+    
+    # check newlabel
+    if col_value_newlabel == '':
+        col_value_newlabel = col_value
         
+    # value to represent with clorophlet
+    col_value_scaled = col_value + '_scaled'    
+    
+    # retrieve last available data from regions
+    i = df['data'] == df['data'].max()
+    df = df.loc[i, ].groupby(['codice_regione']).sum()
+    df['COD_REG'] = df.index
+    
+    # read geojson
+    gdf = gpd.read_file(dir_home + r'\data_geo\geojson_leaflet\ita_regions.geojson')
+    
+    # merge geojson and regions data
+    gdf = gdf.merge(right = df
+                    ,how = 'left'
+                    ,on = 'COD_REG'
+                    )
+    
+    # scale values
+    gdf[col_value_scaled] = get_pds_scaled(pds = gdf.loc[:, col_value], scale_logic = 'max perc')
+    
+    # get color palette
+    df_col = get_colors(pds = gdf[col_value_scaled]
+                        ,palettable_pal = palettable_pal
+                        ,scale_logic = 'max perc'                                     
+                        )    
+    
+    # add hex colors
+    gdf['hex_color'] = df_col['hex']
+       
+    # reorder and rename geo dataframe columns
+    col_names = [
+             'NOME_REG'
+            ,col_value
+            ,'hex_color'
+            ,'terapia_intensiva'
+            ,'deceduti'
+            ,'dimessi_guariti'
+            ,'geometry'
+        ]
+    
+    col_names_sort = [
+            'NOME_REG'
+            ,col_value
+            ,'hex_color'
+            ,'terapia_intensiva'
+            ,'deceduti'
+            ,'dimessi_guariti'
+            ,'geometry'
+        ]
+    
+    col_names_new = [
+             'Regione'
+            ,col_value_newlabel
+            ,'hex_color'
+            ,'Terapia_Intensiva'
+            ,'Deceduti'
+            ,'Guariti'
+            ,'geometry'
+        ]
+    
+    gdf = gdf[gdf.columns.intersection(col_names)]
+    gdf = gdf.loc[:, col_names_sort]
+    gdf.columns = col_names_new
+    
+    # return geo dataframe
+    return(gdf)
+    
+    
+# write geo dataframe    
+def write_geojson_data(gdf, pathfilename):
+    
+    # write geojson
+    gdf.to_file(pathfilename, driver="GeoJSON")
+    
+        
+           
         
 
 
