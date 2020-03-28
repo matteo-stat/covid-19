@@ -29,7 +29,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
             +'   Terapia Intensiva: ' + props.Terapia_Intensiva + '<br/>'
             +'            Deceduti: ' + props.Deceduti + '<br/>'
             +'             Guariti: ' + props.Guariti + '<br/>'
-			: 'Posiziona il mouse sopra una regione');
+			: 'Posizionati sopra una regione');
 	};
 
 	info.addTo(map);
