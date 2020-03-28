@@ -1,6 +1,5 @@
 # namespaces
 import pandas as pd
-import geopandas as gpd
 import sys
 
 # change this directory for local work
@@ -15,7 +14,7 @@ from data_out import build_charts_naz
 from data_out import build_geomap_reg
 from data_out import write_charts_data
 from data_out import write_geojson_data
-from data_out import get_colors
+
 # project config
 proj_config = get_config(dir_home = dir_home
                         ,sep = ';'
