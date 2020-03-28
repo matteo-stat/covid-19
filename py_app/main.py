@@ -13,7 +13,7 @@ from data_download import get_data
 from data_load import load_data
 from data_out import build_charts_naz
 from data_out import write_charts_data
-
+from data_out import get_colors
 # project config
 proj_config = get_config(dir_home = dir_home
                         ,sep = ';'
@@ -32,6 +32,9 @@ df_reg = load_data(proj_config['dati_regioni']['dati_regioni']['file_disk'])
 df_pro = load_data(proj_config['dati_province']['dati_province']['file_disk'])
 
 # build charts
+# national data start from 1st of march
+#i = df_naz['data'] > pd.to_datetime('2020-03-01')
+#df_naz = df_naz.loc[i, ]
 charts_naz = build_charts_naz(df_naz)
 
 # write charts data
