@@ -45,39 +45,17 @@
 
   </header>
 
-  <!--Main layout-->
+  <!--Main layout start-->
   <main class="pt-5 mx-lg-5">
+    
+    <!--Container start-->
     <div class="container-fluid mt-5">
-
-      <!--Grid row-->
+      
+      <!--Grid row 1 start-->
       <div class="row wow fadeIn">
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-
-          <!--Card-->
-          <div class="card">
-
-            <!-- Card header -->
-            <div class="card-header text-center p-2">
-              Map chart
-            </div>            
-
-            <!--Card content-->
-            <div class="card-body p-2">
-
-              <canvas id="map"></canvas>
-
-            </div>
-
-          </div>
-          <!--/.Card-->
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
+        
+        <!--Grid column 1 start-->
+        <div class="col-md-6 mb-4">
 
           <!--Card-->
           <div class="card mb-4">
@@ -102,31 +80,7 @@
 
             <!-- Card header -->
             <div class="card-header text-center p-2">
-              Terapia Intensiva
-            </div>
-
-            <!--Card content-->
-            <div class="card-body p-2">
-
-              <canvas id="chart_c"></canvas>
-
-            </div>            
-
-          </div>
-          <!--/.Card-->
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-
-          <!--Card-->
-          <div class="card mb-4">
-
-            <!-- Card header -->
-            <div class="card-header text-center p-2">
-              Deceduti e Guariti
+              Attualmente Positivi
             </div>
 
             <!--Card content-->
@@ -134,17 +88,77 @@
 
               <canvas id="chart_b"></canvas>
 
+            </div>            
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column 1 end-->
+
+        <!--Grid column 2 start-->
+        <div class="col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header text-center p-2">
+              Attualmente Positivi - Situazione Regionale
+            </div>            
+
+            <!--Card content-->
+            <div class="card-body p-2">
+
+              <canvas id="map_reg"></canvas>
+
             </div>
 
           </div>
           <!--/.Card-->
+
+        </div>
+        <!--Grid column 2 end-->        
+        
+      </div>
+      <!--Grid row 1 end-->  
+
+      <!--Grid row 2 start-->
+      <div class="row wow fadeIn">
+        
+        <!--Grid column start-->
+        <div class="col-md-6 mb-4">
 
           <!--Card-->
           <div class="card mb-4">
 
             <!-- Card header -->
             <div class="card-header text-center p-2">
-              Attualmente Positivi
+              Decessi
+            </div>
+
+            <!--Card content-->
+            <div class="card-body p-2">
+
+              <canvas id="chart_c"></canvas>
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column end-->
+
+        <!--Grid column start-->
+        <div class="col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card mb-4">
+
+            <!-- Card header -->
+            <div class="card-header text-center p-2">
+              Guariti
             </div>
 
             <!--Card content-->
@@ -158,13 +172,16 @@
           <!--/.Card-->
 
         </div>
-        <!--Grid column-->
+        <!--Grid column end-->
 
       </div>
-      <!--Grid row-->  
+      <!--Grid row 2 end--> 
+
     </div>
+    <!--Container end-->
+  
   </main>
-  <!--Main layout-->
+  <!--Main layout end-->
 
 
 

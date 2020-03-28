@@ -24,6 +24,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
     },
     options: {
     responsive: true
+    ,legend: {display: false}
     }
     });
 
@@ -43,22 +44,12 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
     'rgba(200, 99, 132, .7)',
     ],
     borderWidth: 2
-    },
-    {
-    label: dati_json.chart_b.label_sec,
-    data: dati_json.chart_b.data_sec,
-    backgroundColor: [
-    'rgba(0, 137, 132, .2)',
-    ],
-    borderColor: [
-    'rgba(0, 10, 130, .7)',
-    ],
-    borderWidth: 2
     }
     ]
     },
     options: {
     responsive: true
+    ,legend: {display: false}
     }
     });
 
@@ -84,6 +75,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
     },
     options: {
     responsive: true
+    ,legend: {display: false}
     }
     });
         
@@ -109,6 +101,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
     },
     options: {
     responsive: true
+    ,legend: {display: false}
     }
     });    
 
