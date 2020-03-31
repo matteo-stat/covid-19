@@ -28,6 +28,7 @@ def get_colors(pds, palettable_pal, scale_logic = 'max perc', opacity = 1, opaci
                 ,'hex': []
                 ,'rgba': []
                 ,'rgba_border': []
+                ,'rgba_border_fixed': []
                 }    
    
     # scale pandas series
@@ -83,9 +84,10 @@ def get_colors(pds, palettable_pal, scale_logic = 'max perc', opacity = 1, opaci
             i = np.nanmax(df_palette.loc[i, 'index'])
             
         df_colors['rgb'].append(df_palette.loc[i, 'rgb'])
+        df_colors['hex'].append(df_palette.loc[i, 'hex'])
         df_colors['rgba'].append(df_palette.loc[i, 'rgba'])
         df_colors['rgba_border'].append(df_palette.loc[i, 'rgba_border'])
-        df_colors['hex'].append(df_palette.loc[i, 'hex'])
+        df_colors['rgba_border_fixed'].append(df_palette.loc[len(palettable_pal.colors)-1, 'rgba_border'])        
     
     # create output dataframe
     df_colors = pd.DataFrame(df_colors)
@@ -111,7 +113,7 @@ def build_linechart_dates(x_pds_dt, x_freq, y_first_dict, y_sec_dict = {}):
         labels[i] = ''
     
     if 'bordercolor' not in y_first_dict:
-        y_first_dict['bordercolor'] = y_first_dict['backgroundcolor']    
+        y_first_dict['bordercolor'] = y_first_dict['backgroundcolor']         
 
     # create dictionary with chart data
     if(len(y_sec_dict) > 0):
@@ -175,7 +177,7 @@ def build_charts_naz(df):
                                         ,y_first_dict = {'data': pds.tolist()
                                                         ,'label': 'Nuovi Positivi'
                                                         ,'backgroundcolor': df_col['rgba'].tolist()
-                                                        ,'bordercolor': df_col['rgba_border'].tolist()
+                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
                                                         }
                                     
                                     )
@@ -197,7 +199,7 @@ def build_charts_naz(df):
                                         ,y_first_dict = {'data': pds.tolist()
                                                         ,'label': 'Attualmente Positivi'
                                                         ,'backgroundcolor': df_col['rgba'].tolist()
-                                                        ,'bordercolor': df_col['rgba_border'].tolist()
+                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
                                                         }
                                     
                                     )
@@ -219,7 +221,7 @@ def build_charts_naz(df):
                                         ,y_first_dict = {'data': pds.tolist()
                                                         ,'label': 'Deceduti'
                                                         ,'backgroundcolor': df_col['rgba'].tolist()
-                                                        ,'bordercolor': df_col['rgba_border'].tolist()
+                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
                                                         }
                                     
                                     )
@@ -241,7 +243,7 @@ def build_charts_naz(df):
                                         ,y_first_dict = {'data': pds.tolist()
                                                         ,'label': 'Dimessi Guariti'
                                                         ,'backgroundcolor': df_col['rgba'].tolist()
-                                                        ,'bordercolor': df_col['rgba_border'].tolist()
+                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
                                                         }
                                     
                                     )

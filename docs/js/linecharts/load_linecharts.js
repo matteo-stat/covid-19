@@ -38,46 +38,11 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
             }
         }
     );
-
-// chart_nuovi_positivi
-    var ctxL = document.getElementById("chart_nuovi_positivi").getContext('2d');
-    var chart_nuovi_positivi = new Chart(ctxL, 
-        {
-            type: 'bar',
-                data: {
-                labels: dati_json.chart_nuovi_positivi.labels,
-                datasets: [
-                    {
-                    label: dati_json.chart_nuovi_positivi.label_first,
-                    data: dati_json.chart_nuovi_positivi.data_first,
-                    backgroundColor: dati_json.chart_nuovi_positivi.backgroundcolor_first,
-                    borderColor: dati_json.chart_nuovi_positivi.bordercolor_first,
-                    borderWidth: 1
-                    }
-                ]
-                },
-            options: {
-                responsive: true
-                ,legend: {
-                    display: false
-                }
-                ,scales: {
-                        yAxes: [
-                            {
-                            ticks: {
-                                beginAtZero: false
-                            }
-                        }
-                    ]
-                }
-            }
-        }
-    );
+   
     
-    
-    	// chart_tot_positivi
-        var ctxL = document.getElementById("chart_tot_positivi").getContext('2d');
-        var chart_tot_positivi = new Chart(ctxL, 
+	// chart_tot_positivi
+    var ctxL = document.getElementById("chart_tot_positivi").getContext('2d');
+    var chart_tot_positivi = new Chart(ctxL, 
             {
                 type: 'bar',
                     data: {
@@ -107,13 +72,13 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
                         ]
                     }
                 }
-            }
-        );
-        
-        
-        // chart_deceduti
-        var ctxL = document.getElementById("chart_deceduti").getContext('2d');
-        var chart_deceduti = new Chart(ctxL, 
+        }
+    );
+    
+    
+    // chart_deceduti
+    var ctxL = document.getElementById("chart_deceduti").getContext('2d');
+    var chart_deceduti = new Chart(ctxL, 
             {
                 type: 'bar',
                     data: {
@@ -143,13 +108,13 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
                         ]
                     }
                 }
-            }
-        );
-        
-        
-        // chart_guariti
-        var ctxL = document.getElementById("chart_guariti").getContext('2d');
-        var chart_guariti = new Chart(ctxL, 
+        }
+    );
+    
+    
+    // chart_guariti
+    var ctxL = document.getElementById("chart_guariti").getContext('2d');
+    var chart_guariti = new Chart(ctxL, 
             {
                 type: 'bar',
                     data: {
@@ -179,8 +144,8 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
                         ]
                     }
                 }
-            }
-        );
+        }
+    );
         
         
         
