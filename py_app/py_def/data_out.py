@@ -159,7 +159,7 @@ def build_charts_naz(df):
     # build charts
     
     # nuovi positivi
-    pds = df['nuovi_attualmente_positivi']
+    pds = df['nuovi_positivi']
     
     df_col = get_colors(
                      pds = pds
@@ -181,7 +181,7 @@ def build_charts_naz(df):
                                     )
 
     # nuovi positivi
-    pds = df['totale_attualmente_positivi']
+    pds = df['totale_positivi']
     
     df_col = get_colors(
                      pds = pds

@@ -39,7 +39,7 @@ df_naz = df_naz.loc[i, ]
 charts_naz = build_charts_naz(df_naz)
 map_reg = build_geomap_reg(df = df_reg
                            ,dir_home = dir_home
-                           ,col_value = 'totale_attualmente_positivi'
+                           ,col_value = 'totale_positivi'
                            ,col_value_newlabel = 'Attualmente_positivi')
 
 
