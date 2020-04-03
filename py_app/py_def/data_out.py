@@ -417,10 +417,10 @@ def build_charts_naz(df_naz, df_reg):
     
     # table summary
     i = df_naz['data'] == df_naz['data'].max()    
-    table_summary = {'attuali_positivi': df_naz.loc[i, 'totale_positivi'].tolist()
-                    ,'totale_casi': df_naz.loc[i, 'totale_casi'].tolist()
-                    ,'totale_deceduti': df_naz.loc[i, 'deceduti'].tolist()
-                    ,'totale_dimessi': df_naz.loc[i, 'dimessi_guariti'].tolist()
+    table_summary = {'att_positivi': df_naz.loc[i, 'totale_positivi'].tolist()
+                    ,'tot_casi': df_naz.loc[i, 'totale_casi'].tolist()
+                    ,'tot_deceduti': df_naz.loc[i, 'deceduti'].tolist()
+                    ,'tot_dimessi': df_naz.loc[i, 'dimessi_guariti'].tolist()
                     }
 
     # dictionary with all charts

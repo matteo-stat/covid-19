@@ -2,7 +2,17 @@
 $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/data_out/andamento_nazionale.json", "", function(dati_json){
 
 
-    //console.log(dati_json.chart_nuovi_positivi)
+    console.log(dati_json.table_summary)
+
+    updateTableSummary("table_att_positivi", dati_json.table_summary.att_positivi);
+
+    function updateTableSummary(id_div, label) {
+        var tag = document.createElement("p");
+        var text = document.createTextNode(label);
+        tag.appendChild(text);
+        var element = document.getElementById(id_div);
+        element.appendChild(tag);
+    };
 
     var chart_nuovi_positivi = new Chart(
         document.getElementById("chart_nuovi_positivi").getContext('2d'), 
