@@ -121,13 +121,13 @@
 
             <!-- Card header -->
             <div class="card-header text-center p-2">
-              Attualmente Positivi
+              Nuovi Tamponi
             </div>
 
             <!--Card content-->
             <div class="card-body p-2">
 
-              <canvas id="chart_tot_positivi"></canvas>
+              <canvas id="chart_nuovi_tamponi"></canvas>
 
             </div>            
 
@@ -136,17 +136,89 @@
 
         </div>
         <!--Grid column 1 end-->
-
+        
         <!--Grid column 2 start-->
         <div class="col-md-6 mb-4">
 
           <!--Card-->
-          <div class="card">
+          <div class="card mb-4">
+
+            <!-- Card header -->
+            <div class="card-header text-center p-2">
+              Attualmente Positivi
+            </div>
+
+            <!--Card content-->
+            <div class="card-body p-2">
+
+              <canvas id="chart_att_positivi"></canvas>
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+          <!--Card-->
+          <div class="card mb-4">
+
+            <!-- Card header -->
+            <div class="card-header text-center p-2">
+              Variazione Attualmente Positivi
+            </div>
+
+            <!--Card content-->
+            <div class="card-body p-2">
+
+              <canvas id="chart_var_att_positivi"></canvas>
+
+            </div>            
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column 2 end-->
+        
+      </div>
+      <!--Grid row 1 end-->  
+
+      <!--Grid row 2 start-->
+      <div class="row wow fadeIn">
+        
+        <!--Grid column 1 start-->
+        <div class="col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card mb-4">
 
             <!-- Card header -->
             <div class="card-header text-center p-2">
               Attualmente Positivi - Situazione Regionale
-            </div>            
+            </div>
+
+            <!--Card content-->
+            <div class="card-body p-2">
+
+              <canvas id="chart_reg_att_positivi"></canvas>
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column 1 end-->
+        
+        <!--Grid column 2 start-->
+        <div class="col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card mb-4">
+
+            <!-- Card header -->
+            <div class="card-header text-center p-2">
+              Situazione Regionale
+            </div>
 
             <!--Card content-->
             <div class="card-body p-2">
@@ -159,15 +231,15 @@
           <!--/.Card-->
 
         </div>
-        <!--Grid column 2 end-->        
+        <!--Grid column 2 end-->
         
       </div>
-      <!--Grid row 1 end-->  
+      <!--Grid row 2 end-->
 
-      <!--Grid row 2 start-->
+      <!--Grid row 3 start-->
       <div class="row wow fadeIn">
         
-        <!--Grid column start-->
+        <!--Grid column 1 start-->
         <div class="col-md-6 mb-4">
 
           <!--Card-->
@@ -188,10 +260,28 @@
           </div>
           <!--/.Card-->
 
-        </div>
-        <!--Grid column end-->
+          <!--Card-->
+          <div class="card mb-4">
 
-        <!--Grid column start-->
+            <!-- Card header -->
+            <div class="card-header text-center p-2">
+              Dimessi Guariti
+            </div>
+
+            <!--Card content-->
+            <div class="card-body p-2">
+
+              <canvas id="chart_dimessi"></canvas>
+
+            </div>            
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column 1 end-->
+        
+        <!--Grid column 2 start-->
         <div class="col-md-6 mb-4">
 
           <!--Card-->
@@ -199,24 +289,42 @@
 
             <!-- Card header -->
             <div class="card-header text-center p-2">
-              Guariti
+              Terapia Intensiva
             </div>
 
             <!--Card content-->
             <div class="card-body p-2">
 
-              <canvas id="chart_guariti"></canvas>
+              <canvas id="chart_ter_intensiva"></canvas>
 
             </div>
 
           </div>
           <!--/.Card-->
 
-        </div>
-        <!--Grid column end-->
+          <!--Card-->
+          <div class="card mb-4">
 
+            <!-- Card header -->
+            <div class="card-header text-center p-2">
+              Ospedalizzati
+            </div>
+
+            <!--Card content-->
+            <div class="card-body p-2">
+
+              <canvas id="chart_ospedalizzati"></canvas>
+
+            </div>            
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column 2 end-->
+        
       </div>
-      <!--Grid row 2 end--> 
+      <!--Grid row 3 end-->      
 
     </div>
     <!--Container end-->
@@ -237,7 +345,7 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Your custom scripts (optional) -->
-  <script type="text/javascript" src="js/linecharts/load_linecharts.js"></script>
+  <script type="text/javascript" src="js/charts/load_charts.js"></script>
   <script type="text/javascript" src="js/leaflet_map/load_leafletmap.js"></script>
 
 </body>

@@ -23,31 +23,34 @@ def get_pds_scaled(pds, scale_logic):
 def get_pds_scaled_zero(pds, scale_logic):
     
     # dependecies
+    import pandas as pd
     import numpy as np
+        
+    df = pd.DataFrame({'pds': pds})
     
-    i = pds < 0
-    j = pds >= 0
+    i = df['pds'] < 0
+    j = df['pds'] >= 0
     
     if scale_logic == 'max perc':
         
         if i.sum() > 0:
-            pds.loc[i] = -(abs(pds.loc[i]) / abs(np.nanmin(pds.loc[i])))
+            df.loc[i, 'pds'] = -(abs(df.loc[i, 'pds']) / abs(np.nanmin(df.loc[i, 'pds'])))
             
         if j.sum() > 0:
             
-            pds.loc[j] = (pds.loc[j] / np.nanmax(pds.loc[j]))
+            df.loc[j, 'pds'] = (df.loc[j, 'pds'] / np.nanmax(df.loc[j, 'pds']))
         
     elif scale_logic == 'log max perc':
         
         if i.sum() > 0:
-            pds.loc[i] = np.log(1 + abs(pds.loc[i]))
-            pds.loc[i] = -(pds.loc[i] / np.nanmax(pds.loc[i]))
+            df.loc[i, 'pds'] = np.log(1 + abs(df.loc[i, 'pds']))
+            df.loc[i, 'pds'] = -(df.loc[i, 'pds'] / np.nanmax(df.loc[i, 'pds']))
         
         if j.sum() > 0:
-            pds.loc[j] = np.log(1 + pds.loc[j])
-            pds.loc[j] = (pds.loc[j] / np.nanmax(pds.loc[j]))
+            df.loc[j, 'pds'] = np.log(1 + df.loc[j, 'pds'])
+            df.loc[j, 'pds'] = (df.loc[j, 'pds'] / np.nanmax(df.loc[j, 'pds']))
 
-    return pds
+    return df['pds']
 
 # return a pandas dataframe with palettes as original series
 def get_colors(pds, palettable_pal, scale_logic = 'max perc', opacity = 1, opacity_border = 1):
