@@ -4,13 +4,48 @@ def get_pds_scaled(pds, scale_logic):
     # dependecies
     import numpy as np
     
+    if np.nanmin(pds) < 0:
+        
+        pds = pds + abs(np.nanmin(pds))
+    
     if scale_logic == 'max perc':
         
         pds = (pds / np.nanmax(pds))
         
     elif scale_logic == 'log max perc':
+        
         pds = np.log(1 + pds)
         pds = (pds / np.nanmax(pds))
+
+    return pds
+
+# return a scaled pandas series but scale logic reset at zero
+def get_pds_scaled_zero(pds, scale_logic):
+    
+    # dependecies
+    import numpy as np
+    
+    i = pds < 0
+    j = pds >= 0
+    
+    if scale_logic == 'max perc':
+        
+        if i.sum() > 0:
+            pds.loc[i] = -(abs(pds.loc[i]) / abs(np.nanmin(pds.loc[i])))
+            
+        if j.sum() > 0:
+            
+            pds.loc[j] = (pds.loc[j] / np.nanmax(pds.loc[j]))
+        
+    elif scale_logic == 'log max perc':
+        
+        if i.sum() > 0:
+            pds.loc[i] = np.log(1 + abs(pds.loc[i]))
+            pds.loc[i] = -(pds.loc[i] / np.nanmax(pds.loc[i]))
+        
+        if j.sum() > 0:
+            pds.loc[j] = np.log(1 + pds.loc[j])
+            pds.loc[j] = (pds.loc[j] / np.nanmax(pds.loc[j]))
 
     return pds
 
@@ -32,48 +67,79 @@ def get_colors(pds, palettable_pal, scale_logic = 'max perc', opacity = 1, opaci
                 }    
    
     # scale pandas series
-    pds_scaled = get_pds_scaled(pds = pds, scale_logic = scale_logic).tolist()
-    
-    # initialize rgba colors list
-    rgba_colors = []
-    rgba_colors_border = []
-
-    # build up rgba colors
-    for rgb_color in palettable_pal.colors:
+    if len(palettable_pal)>1:
         
-        # rgba
-        rgba_colors.append(
-                'rgba('
-                + str(rgb_color[0]) + ', '
-                + str(rgb_color[1]) + ', '
-                + str(rgb_color[2]) + ', '
-                + str(opacity) + ')'
-        )
-                
-        # rgba border
-        rgba_colors_border.append(
-                'rgba('
-                + str(rgb_color[0]) + ', '
-                + str(rgb_color[1]) + ', '
-                + str(rgb_color[2]) + ', '
-                + str(opacity_border) + ')'
-        )
-                
+        pds_scaled = get_pds_scaled_zero(pds = pds, scale_logic = scale_logic).tolist()
+        
+    else:
+    
+        pds_scaled = get_pds_scaled(pds = pds, scale_logic = scale_logic).tolist()
+    
+    # initialize rgba colors dict
+    rgba_colors = {}
+    rgba_colors_border = {}
+
+    for pal_key in palettable_pal:
+        
+        # initialize rgba colors list
+        if pal_key not in rgba_colors:
+            
+            rgba_colors[pal_key] = []
+            
+        if pal_key not in rgba_colors_border:
+            
+            rgba_colors_border[pal_key] = []        
+            
+        # build up rgba colors
+        for rgb_color in palettable_pal[pal_key].colors:
+            
+            # rgba
+            rgba_colors[pal_key].append(
+                    'rgba('
+                    + str(rgb_color[0]) + ', '
+                    + str(rgb_color[1]) + ', '
+                    + str(rgb_color[2]) + ', '
+                    + str(opacity) + ')'
+            )
+                    
+            # rgba border
+            rgba_colors_border[pal_key].append(
+                    'rgba('
+                    + str(rgb_color[0]) + ', '
+                    + str(rgb_color[1]) + ', '
+                    + str(rgb_color[2]) + ', '
+                    + str(opacity_border) + ')'
+            )
+
     # create a palette dataframe
     df_palette = pd.DataFrame(
-                            {'index': np.arange(0, len(palettable_pal.colors), 1)
-                            ,'value': np.linspace(0,1,len(palettable_pal.colors))
-                            ,'rgb': palettable_pal.colors
-                            ,'rgba': rgba_colors
-                            ,'rgba_border': rgba_colors_border
-                            ,'hex': palettable_pal.hex_colors                        
+                            {'index': np.arange(0, len(palettable_pal['main'].colors), 1)
+                            ,'value': np.linspace(0,1,len(palettable_pal['main'].colors))
+                            ,'rgb_main': palettable_pal['main'].colors
+                            ,'rgba_main': rgba_colors['main']
+                            ,'rgba_border_main': rgba_colors_border['main']
+                            ,'hex_main': palettable_pal['main'].hex_colors                                
                             }
                         )
+                
+    if len(palettable_pal)>1:
+        df_palette['rgb_opt'] = palettable_pal['opt'].colors
+        df_palette['rgba_opt'] = rgba_colors['opt']
+        df_palette['rgba_border_opt'] = rgba_colors_border['opt']
+        df_palette['hex_opt'] = palettable_pal['opt'].hex_colors
     
     # find an appropriate color for every value of pandas series
     for value in pds_scaled:
         
-        i = df_palette['value'] < value
+        if value < 0:
+            
+            value_key = 'opt'
+            
+        else:
+            
+            value_key = 'main'
+        
+        i = df_palette['value'] < abs(value)
         
         if pd.isna(value) or i.sum() == 0:
             
@@ -83,11 +149,11 @@ def get_colors(pds, palettable_pal, scale_logic = 'max perc', opacity = 1, opaci
                                     
             i = np.nanmax(df_palette.loc[i, 'index'])
             
-        df_colors['rgb'].append(df_palette.loc[i, 'rgb'])
-        df_colors['hex'].append(df_palette.loc[i, 'hex'])
-        df_colors['rgba'].append(df_palette.loc[i, 'rgba'])
-        df_colors['rgba_border'].append(df_palette.loc[i, 'rgba_border'])
-        df_colors['rgba_border_fixed'].append(df_palette.loc[len(palettable_pal.colors)-1, 'rgba_border'])        
+        df_colors['rgb'].append(df_palette.loc[i, 'rgb_' + value_key])
+        df_colors['hex'].append(df_palette.loc[i, 'hex_' + value_key])
+        df_colors['rgba'].append(df_palette.loc[i, 'rgba_' + value_key])
+        df_colors['rgba_border'].append(df_palette.loc[i, 'rgba_border_' + value_key])
+        df_colors['rgba_border_fixed'].append(df_palette.loc[len(palettable_pal[value_key].colors)-1, 'rgba_border_' + value_key])
     
     # create output dataframe
     df_colors = pd.DataFrame(df_colors)
@@ -95,165 +161,276 @@ def get_colors(pds, palettable_pal, scale_logic = 'max perc', opacity = 1, opaci
     return(df_colors)
 
 # return dictionary with chart data
-def build_linechart_dates(x_pds_dt, x_freq, y_first_dict, y_sec_dict = {}):
+def build_chart_dates(labels_pds, labels_freq, data_first_dict, data_sec_dict = {}):
     
     # dependecies
     import pandas as pd
+    import numpy as np
+    
+    if len(pd.DataFrame(labels_pds).select_dtypes(include=[np.datetime64]).columns) > 0:
+    
+        # create labels at specified frequency
+        labels = (
+                (100 + labels_pds.dt.day).astype(str).str[1:3]
+                + ' '
+                + labels_pds.dt.month_name(locale = 'it').str[:3].str.lower()
+            )
 
-    # create labels at specified frequency
-    labels = (
-            (100 + x_pds_dt.dt.day).astype(str).str[1:3]
-            + ' '
-            + x_pds_dt.dt.month_name(locale = 'it').str[:3].str.lower()
-        )
-
-    i = ((pd.Series(list(range(0, len(labels)))) + 1) % x_freq) != 0
+    i = ((pd.Series(list(range(0, len(labels)))) + 1) % labels_freq) != 0
 
     if i.sum() > 0:
         labels[i] = ''
     
-    if 'bordercolor' not in y_first_dict:
-        y_first_dict['bordercolor'] = y_first_dict['backgroundcolor']         
+    if 'bordercolor' not in data_first_dict:
+        data_first_dict['bordercolor'] = data_first_dict['backgroundcolor']         
 
     # create dictionary with chart data
-    if(len(y_sec_dict) > 0):
+    if(len(data_sec_dict) > 0):
                 
-        if 'bordercolor' not in y_sec_dict:
-            y_sec_dict['bordercolor'] = y_sec_dict['backgroundcolor']
+        if 'bordercolor' not in data_sec_dict:
+            data_sec_dict['bordercolor'] = data_sec_dict['backgroundcolor']
         
         data_out = {
                 'labels': labels.tolist()
-                ,'data_first': y_first_dict['data']
-                ,'backgroundcolor_first': y_first_dict['backgroundcolor']
-                ,'bordercolor_first': y_first_dict['bordercolor']
-                ,'label_first': y_first_dict['label']
-                ,'data_sec': y_sec_dict['data']
-                ,'label_sec': y_sec_dict['label']
-                ,'backgroundcolor_sec': y_sec_dict['backgroundcolor']
-                ,'bordercolor_sec': y_sec_dict['bordercolor']                
+                ,'data_first': data_first_dict['data']
+                ,'backgroundcolor_first': data_first_dict['backgroundcolor']
+                ,'bordercolor_first': data_first_dict['bordercolor']
+                ,'label_first': data_first_dict['label']
+                ,'data_sec': data_sec_dict['data']
+                ,'label_sec': data_sec_dict['label']
+                ,'backgroundcolor_sec': data_sec_dict['backgroundcolor']
+                ,'bordercolor_sec': data_sec_dict['bordercolor']                
             }
     else :
         data_out = {
                 'labels': labels.tolist()
-                ,'data_first': y_first_dict['data']
-                ,'backgroundcolor_first': y_first_dict['backgroundcolor']
-                ,'bordercolor_first': y_first_dict['bordercolor']
-                ,'label_first': y_first_dict['label']
+                ,'data_first': data_first_dict['data']
+                ,'backgroundcolor_first': data_first_dict['backgroundcolor']
+                ,'bordercolor_first': data_first_dict['bordercolor']
+                ,'label_first': data_first_dict['label']
             }
     
-    return(data_out)
-        
+    return(data_out)       
     
     
 # build a dictionary with charts data    
-def build_charts_naz(df):
+def build_charts_naz(df_naz, df_reg):
     
     # dependecies
-    from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal_red
-    from palettable.colorbrewer.sequential import YlGn_9 as palettable_pal_green
+    import pandas as pd
+    from palettable.colorbrewer.sequential import Reds_9 as palettable_pal_red
+    from palettable.colorbrewer.sequential import Greens_9 as palettable_pal_green
+    from palettable.colorbrewer.sequential import Blues_9 as palettable_pal_blue
+    from palettable.colorbrewer.sequential import RdPu_9 as palettable_pal_purple
+    
     
     # add new columns
-    df = df.sort_values(by = ['data', 'stato'])
-    df['nuovi_deceduti'] = df['deceduti'] - df['deceduti'].shift(+1)
-    df['nuovi_dimessi_guariti'] = df['dimessi_guariti'] - df['dimessi_guariti'].shift(+1)
-    df['nuovi_tamponi'] = df['tamponi'] - df['tamponi'].shift(+1)
+    df_naz = df_naz.sort_values(by = ['data', 'stato'])
+    df_naz['nuovi_deceduti'] = df_naz['deceduti'] - df_naz['deceduti'].shift(+1)
+    df_naz['nuovi_dimessi_guariti'] = df_naz['dimessi_guariti'] - df_naz['dimessi_guariti'].shift(+1)
+    df_naz['nuovi_tamponi'] = df_naz['tamponi'] - df_naz['tamponi'].shift(+1)
+    
+    
+    i = df_naz['data'] > pd.to_datetime('2020-03-01')
+    df_naz = df_naz.loc[i, ]
     
     # build charts
     
     # nuovi positivi
-    pds = df['nuovi_positivi']
+    pds = df_naz['nuovi_positivi']
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = palettable_pal_red
+                    ,palettable_pal = {'main': palettable_pal_red}
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
                     )
     
-    chart_nuovi_positivi = build_linechart_dates(
-                                         x_pds_dt = df['data']
-                                        ,x_freq = 1
-                                        ,y_first_dict = {'data': pds.tolist()
-                                                        ,'label': 'Nuovi Positivi'
-                                                        ,'backgroundcolor': df_col['rgba'].tolist()
-                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
-                                                        }
+    chart_nuovi_positivi = build_chart_dates(
+                                    labels_pds = df_naz['data']
+                                    ,labels_freq = 1
+                                    ,data_first_dict = {'data': pds.tolist()
+                                                    ,'label': 'Nuovi Positivi'
+                                                    ,'backgroundcolor': df_col['rgba'].tolist()
+                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                    }
                                     
-                                    )
+                                )
 
-    # nuovi positivi
-    pds = df['totale_positivi']
+    # nuovi tamponi
+    pds = df_naz['nuovi_tamponi']
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = palettable_pal_red
+                    ,palettable_pal = {'main': palettable_pal_blue}
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
                     )
     
-    chart_tot_positivi = build_linechart_dates(
-                                         x_pds_dt = df['data']
-                                        ,x_freq = 1
-                                        ,y_first_dict = {'data': pds.tolist()
-                                                        ,'label': 'Attualmente Positivi'
-                                                        ,'backgroundcolor': df_col['rgba'].tolist()
-                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
-                                                        }
+    chart_nuovi_tamponi = build_chart_dates(
+                                    labels_pds = df_naz['data']
+                                    ,labels_freq = 1
+                                    ,data_first_dict = {'data': pds.tolist()
+                                                    ,'label': 'Nuovi Tamponi'
+                                                    ,'backgroundcolor': df_col['rgba'].tolist()
+                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                    }
                                     
-                                    )
+                                )
     
-    # deceduti
-    pds = df['nuovi_deceduti']
+    # attualmente positivi
+    pds = df_naz['totale_positivi']
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = palettable_pal_red
+                    ,palettable_pal = {'main': palettable_pal_red}
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
                     )
     
-    chart_deceduti = build_linechart_dates(
-                                         x_pds_dt = df['data']
-                                        ,x_freq = 1
-                                        ,y_first_dict = {'data': pds.tolist()
-                                                        ,'label': 'Deceduti'
-                                                        ,'backgroundcolor': df_col['rgba'].tolist()
-                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
-                                                        }
+    chart_att_positivi = build_chart_dates(
+                                    labels_pds = df_naz['data']
+                                    ,labels_freq = 1
+                                    ,data_first_dict = {'data': pds.tolist()
+                                                    ,'label': 'Attualmente Positivi'
+                                                    ,'backgroundcolor': df_col['rgba'].tolist()
+                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                    }
                                     
-                                    )
-
-    # decessi
-    pds = df['nuovi_dimessi_guariti']
+                                )
+    
+    # variazione attualmente positivi
+    pds = df_naz['variazione_totale_positivi']
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = palettable_pal_green
+                    ,palettable_pal = {'main': palettable_pal_red, 'opt': palettable_pal_green}
                     ,scale_logic = 'max perc'
                     ,opacity = 0.7
                     ,opacity_border = 1
                     )
     
-    chart_guariti = build_linechart_dates(
-                                         x_pds_dt = df['data']
-                                        ,x_freq = 1
-                                        ,y_first_dict = {'data': pds.tolist()
-                                                        ,'label': 'Dimessi Guariti'
-                                                        ,'backgroundcolor': df_col['rgba'].tolist()
-                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
-                                                        }
+    chart_var_att_positivi = build_chart_dates(
+                                    labels_pds = df_naz['data']
+                                    ,labels_freq = 1
+                                    ,data_first_dict = {'data': pds.tolist()
+                                                    ,'label': 'Variazione Att. Positivi'
+                                                    ,'backgroundcolor': df_col['rgba'].tolist()
+                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                    }
                                     
-                                    )
+                                )
+    
+    # nuovi deceduti
+    pds = df_naz['nuovi_deceduti']
+    
+    df_col = get_colors(
+                     pds = pds
+                    ,palettable_pal = {'main': palettable_pal_red}
+                    ,scale_logic = 'max perc'
+                    ,opacity = 0.7
+                    ,opacity_border = 1
+                    )
+    
+    chart_deceduti = build_chart_dates(
+                                    labels_pds = df_naz['data']
+                                    ,labels_freq = 1
+                                    ,data_first_dict = {'data': pds.tolist()
+                                                    ,'label': 'Deceduti'
+                                                    ,'backgroundcolor': df_col['rgba'].tolist()
+                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                    }
+                                    
+                                )
+    
+    # nuovi guariti
+    pds = df_naz['nuovi_dimessi_guariti']
+    
+    df_col = get_colors(
+                     pds = pds
+                    ,palettable_pal = {'main': palettable_pal_green}
+                    ,scale_logic = 'max perc'
+                    ,opacity = 0.7
+                    ,opacity_border = 1
+                    )
+    
+    chart_dimessi = build_chart_dates(
+                                    labels_pds = df_naz['data']
+                                    ,labels_freq = 1
+                                    ,data_first_dict = {'data': pds.tolist()
+                                                    ,'label': 'Dimessi Guariti'
+                                                    ,'backgroundcolor': df_col['rgba'].tolist()
+                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                    }
+                                    
+                                )
+    
+    # terapia intensiva
+    pds = df_naz['terapia_intensiva']
+    
+    df_col = get_colors(
+                     pds = pds
+                    ,palettable_pal = {'main': palettable_pal_purple}
+                    ,scale_logic = 'max perc'
+                    ,opacity = 0.7
+                    ,opacity_border = 1
+                    )
+    
+    chart_ter_intensiva = build_chart_dates(
+                                    labels_pds = df_naz['data']
+                                    ,labels_freq = 1
+                                    ,data_first_dict = {'data': pds.tolist()
+                                                    ,'label': 'Terapia Intensiva'
+                                                    ,'backgroundcolor': df_col['rgba'].tolist()
+                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                    }
+                                    
+                                )
+    
+    # totale ospedalizzati
+    pds = df_naz['totale_ospedalizzati']
+    
+    df_col = get_colors(
+                     pds = pds
+                    ,palettable_pal = {'main': palettable_pal_red}
+                    ,scale_logic = 'max perc'
+                    ,opacity = 0.7
+                    ,opacity_border = 1
+                    )
+    
+    chart_ospedalizzati = build_chart_dates(
+                                    labels_pds = df_naz['data']
+                                    ,labels_freq = 1
+                                    ,data_first_dict = {'data': pds.tolist()
+                                                    ,'label': 'Ospedalizzati'
+                                                    ,'backgroundcolor': df_col['rgba'].tolist()
+                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                    }
+                                    
+                                )   
+    
+    # table summary
+    i = df_naz['data'] == df_naz['data'].max()    
+    table_summary = {'attuali_positivi': df_naz.loc[i, 'totale_positivi'].tolist()
+                    ,'totale_casi': df_naz.loc[i, 'totale_casi'].tolist()
+                    ,'totale_deceduti': df_naz.loc[i, 'deceduti'].tolist()
+                    ,'totale_dimessi': df_naz.loc[i, 'dimessi_guariti'].tolist()
+                    }
 
     # dictionary with all charts
     charts_dict = {
                  'chart_nuovi_positivi': chart_nuovi_positivi
-                ,'chart_tot_positivi': chart_tot_positivi
+                ,'chart_nuovi_tamponi': chart_nuovi_tamponi
+                ,'chart_att_positivi': chart_att_positivi
+                ,'chart_var_att_positivi': chart_var_att_positivi
                 ,'chart_deceduti': chart_deceduti
-                ,'chart_guariti': chart_guariti
+                ,'chart_dimessi': chart_dimessi
+                ,'chart_ter_intensiva': chart_ter_intensiva
+                ,'chart_ospedalizzati': chart_ospedalizzati
+                ,'table_summary': table_summary
                 }
 
     return(charts_dict)
@@ -290,7 +467,7 @@ def build_geomap_reg(df, dir_home, col_value, col_value_newlabel = ''):
 
     # dependecies
     import geopandas as gpd
-    from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal
+    from palettable.colorbrewer.sequential import Reds_9 as palettable_pal
     
     # check newlabel
     if col_value_newlabel == '':
@@ -318,7 +495,7 @@ def build_geomap_reg(df, dir_home, col_value, col_value_newlabel = ''):
     
     # get color palette
     df_col = get_colors(pds = gdf[col_value_scaled]
-                        ,palettable_pal = palettable_pal
+                        ,palettable_pal = {'main': palettable_pal}
                         ,scale_logic = 'log max perc'                                     
                         )    
     

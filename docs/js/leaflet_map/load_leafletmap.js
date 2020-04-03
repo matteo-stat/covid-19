@@ -12,7 +12,6 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 		zoomOffset: -1
 	}).addTo(map);
 
-
 	// control that shows state info on hover
 	var info = L.control();
 
@@ -86,7 +85,6 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 		onEachFeature: onEachFeature
 	}).addTo(map);
 
-	//map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
 	
-    
+	
 });    

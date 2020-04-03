@@ -1,9 +1,11 @@
-# namespaces
-import pandas as pd
+# dependecies
 import sys
 
 # change this directory for local work
 dir_home = r'C:\Users\Matteo\Documents\GitHub\covid-19\py_app'
+
+# download data
+download_data = False
 
 # user custom library
 sys.path.append(dir_home + r'\py_def')
@@ -21,11 +23,12 @@ proj_config = get_config(dir_home = dir_home
                         ,header = True)
 
 # download data
-#get_data(proj_config['geojson'])
-#get_data(proj_config['shapefile'])
-get_data(proj_config['dati_andamento_nazionale'])
-get_data(proj_config['dati_regioni'])
-get_data(proj_config['dati_province'])
+if(download_data):
+    #get_data(proj_config['geojson'])
+    #get_data(proj_config['shapefile'])
+    get_data(proj_config['dati_andamento_nazionale'])
+    get_data(proj_config['dati_regioni'])
+    get_data(proj_config['dati_province'])
 
 # load data
 df_naz = load_data(proj_config['dati_andamento_nazionale']['dati_andamento_nazionale']['file_disk'])
@@ -34,9 +37,7 @@ df_pro = load_data(proj_config['dati_province']['dati_province']['file_disk'])
 
 # build charts
 # national data start from 1st of march
-i = df_naz['data'] > pd.to_datetime('2020-03-01')
-df_naz = df_naz.loc[i, ]
-charts_naz = build_charts_naz(df_naz)
+charts_naz = build_charts_naz(df_naz, df_reg)
 map_reg = build_geomap_reg(df = df_reg
                            ,dir_home = dir_home
                            ,col_value = 'totale_positivi'
