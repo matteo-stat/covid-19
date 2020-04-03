@@ -5,7 +5,7 @@ import sys
 dir_home = r'C:\Users\Matteo\Documents\GitHub\covid-19\py_app'
 
 # download data
-download_data = False
+download_data = True
 
 # user custom library
 sys.path.append(dir_home + r'\py_def')
