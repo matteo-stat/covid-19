@@ -24,14 +24,19 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>COVID-19 Dati Regionali</h4>' +  (props ?
             '<b>' + props.Regione + '</b><br/>'
-            +'Attualmente Positivi: ' + props.Attualmente_positivi + '<br/>'
-            +'   Terapia Intensiva: ' + props.Terapia_Intensiva + '<br/>'
-            +'            Deceduti: ' + props.Deceduti + '<br/>'
-            +'             Guariti: ' + props.Guariti + '<br/>'
+            +'Attualmente Positivi: ' + getNumberFormatted(props.Attualmente_positivi) + '<br/>'
+            +'   Terapia Intensiva: ' + getNumberFormatted(props.Terapia_Intensiva) + '<br/>'
+            +'            Deceduti: ' + getNumberFormatted(props.Deceduti) + '<br/>'
+            +'             Guariti: ' + getNumberFormatted(props.Guariti) + '<br/>'
 			: 'Posizionati sopra una regione');
 	};
 
 	info.addTo(map);
+
+	function getNumberFormatted(mynumber){
+
+		return Number(mynumber).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+	}
 
 	function style(feature) {
 		return {
