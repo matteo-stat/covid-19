@@ -2,12 +2,16 @@
 $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/data_out/andamento_nazionale.json", "", function(dati_json){
 
 
-    console.log(dati_json.table_summary)
+    //console.log(dati_json.table_summary)
 
     updateTableSummary("table_att_positivi", dati_json.table_summary.att_positivi);
+    updateTableSummary("table_tot_casi", dati_json.table_summary.tot_casi);
+    updateTableSummary("table_tot_deceduti", dati_json.table_summary.tot_deceduti);
+    updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi);
 
     function updateTableSummary(id_div, label) {
         var tag = document.createElement("p");
+        label = Number(label).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
         var text = document.createTextNode(label);
         tag.appendChild(text);
         var element = document.getElementById(id_div);
