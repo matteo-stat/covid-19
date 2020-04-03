@@ -243,7 +243,7 @@ def build_charts_naz(df_naz, df_reg):
                      pds = pds
                     ,palettable_pal = {'main': palettable_pal_red}
                     ,scale_logic = 'max perc'
-                    ,opacity = 0.7
+                    ,opacity = 0.8
                     ,opacity_border = 1
                     )
     
@@ -265,7 +265,7 @@ def build_charts_naz(df_naz, df_reg):
                      pds = pds
                     ,palettable_pal = {'main': palettable_pal_blue}
                     ,scale_logic = 'max perc'
-                    ,opacity = 0.7
+                    ,opacity = 0.8
                     ,opacity_border = 1
                     )
     
@@ -287,7 +287,7 @@ def build_charts_naz(df_naz, df_reg):
                      pds = pds
                     ,palettable_pal = {'main': palettable_pal_red}
                     ,scale_logic = 'max perc'
-                    ,opacity = 0.7
+                    ,opacity = 0.8
                     ,opacity_border = 1
                     )
     
@@ -309,7 +309,7 @@ def build_charts_naz(df_naz, df_reg):
                      pds = pds
                     ,palettable_pal = {'main': palettable_pal_red, 'opt': palettable_pal_green}
                     ,scale_logic = 'max perc'
-                    ,opacity = 0.7
+                    ,opacity = 0.8
                     ,opacity_border = 1
                     )
     
@@ -331,7 +331,7 @@ def build_charts_naz(df_naz, df_reg):
                      pds = pds
                     ,palettable_pal = {'main': palettable_pal_red}
                     ,scale_logic = 'max perc'
-                    ,opacity = 0.7
+                    ,opacity = 0.8
                     ,opacity_border = 1
                     )
     
@@ -353,7 +353,7 @@ def build_charts_naz(df_naz, df_reg):
                      pds = pds
                     ,palettable_pal = {'main': palettable_pal_green}
                     ,scale_logic = 'max perc'
-                    ,opacity = 0.7
+                    ,opacity = 0.8
                     ,opacity_border = 1
                     )
     
@@ -375,7 +375,7 @@ def build_charts_naz(df_naz, df_reg):
                      pds = pds
                     ,palettable_pal = {'main': palettable_pal_purple}
                     ,scale_logic = 'max perc'
-                    ,opacity = 0.7
+                    ,opacity = 0.8
                     ,opacity_border = 1
                     )
     
@@ -397,7 +397,7 @@ def build_charts_naz(df_naz, df_reg):
                      pds = pds
                     ,palettable_pal = {'main': palettable_pal_red}
                     ,scale_logic = 'max perc'
-                    ,opacity = 0.7
+                    ,opacity = 0.8
                     ,opacity_border = 1
                     )
     

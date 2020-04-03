@@ -28,7 +28,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
         tooltips: {
             callbacks: {
                 label: function(tooltipItem) {
-                    return Number(tooltipItem.yLabel).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') + " and so worth it !";
+                    return Number(tooltipItem.yLabel).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
                 }
             }
         },
