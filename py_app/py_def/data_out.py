@@ -528,6 +528,8 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                                     ,'backgroundcolor': df_col2['rgba'].tolist()
                                                     ,'bordercolor': df_col2['rgba_border_fixed'].tolist()
                                                     }
+                                    ,sort = True
+                                    ,sort_ascending = False
                                 ) 
 
     # dictionary with all charts
