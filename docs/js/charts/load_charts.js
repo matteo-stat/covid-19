@@ -102,64 +102,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 
         return(options)
     }
-    
-    // return options for chart
-    function getChartHorizOptions(chart_json, perc = false) {
-
-        var options = {
-            responsive: true,
-            legend: {
-                display: false
-            },
-            tooltips: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                                
-                        if(perc) {
-                            value = getNumberRoundedFormatted(tooltipItem.xLabel, 2);
-                        }
-                        
-                        else {
-                            value = getNumberFormatted(tooltipItem.xLabel)
-                        }
-
-                        return  value;
-                    }
-                }
-            },
-            scales: {
-                    xAxes: [
-                        {
-                        ticks: {
-                            //beginAtZero: false,                            
-                            callback: function(value, index, values) {
-                                
-                                if(perc) {
-                                    value = value
-                                }
-                                
-                                else {
-                                    value = getNumberFormatted(value)
-                                }
-
-                                return  value;
-                            }
-                        }
-                    }
-                ]
-            },
-            /*
-            title: {
-                display: true,
-                text: 'my title',
-                position: 'top'
-            }
-            */
-        } 
-
-        return(options)
-    }
-        
+           
     // create charts
     var chart_nuovi_positivi = new Chart(
         document.getElementById("chart_nuovi_positivi").getContext('2d'), 
@@ -196,16 +139,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
             options: getChartOptions(dati_json.chart_var_att_positivi)
         }
     );
-    
-    var chart_reg_att_positivi = new Chart(
-        document.getElementById("chart_att_positivi_reg").getContext('2d'), 
-        {
-            type: 'horizontalBar',
-            data: getChartData(dati_json.chart_att_positivi_reg),
-            options: getChartHorizOptions(dati_json.chart_att_positivi_reg, true)
-        }
-    );
-        
+           
     var chart_deceduti = new Chart(
         document.getElementById("chart_deceduti").getContext('2d'), 
         {
@@ -241,6 +175,75 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
             options: getChartOptions(dati_json.chart_ospedalizzati)
         }
     );
+
+    var chart_att_positivi_reg = new Chart(
+        document.getElementById("chart_att_positivi_reg").getContext('2d'), 
+        {
+            type: 'horizontalBar',
+            data: getChartData(dati_json.chart_att_positivi_reg),
+            options: {
+                legend: {
+                   display: false
+                },
+                maintainAspectRatio: false,
+                responsive: true,
+                tooltips: {
+                   callbacks: {
+                      label: function(tooltipItem) {
+                         return getNumberFormatted(tooltipItem.xLabel);
+                      }
+                   }
+                },
+                scales: {
+                    xAxes: [
+                        {
+                        ticks: {
+                            //beginAtZero: false,                            
+                            callback: function(value) {                                    
+                                value = getNumberFormatted(value)
+                                return  value;
+                            }
+                        }
+                    }
+                    ]
+                }
+             }
+             //options object ends
+            /*
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            //value = getNumberRoundedFormatted(tooltipItem.xLabel, 2);
+                            value = getNumberFormatted(tooltipItem.yLabel)                    
+                        }
+                    }
+                },
+                scales: {
+                        xAxes: [
+                            {
+                            ticks: {
+                                //beginAtZero: false,                            
+                                callback: function(value, index, values) {                                    
+                                    value = getNumberFormatted(value)
+                                    return  value;
+                                }
+                            }
+                        }
+                    ]
+                }
+            }                
+            */
+        }
+        
+    );    
+    chart_att_positivi_reg.canvas.parentNode.style.height = '650px';
+
 
 });
 

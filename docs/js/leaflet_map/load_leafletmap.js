@@ -25,12 +25,12 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 		this._div.innerHTML = '<h4>COVID-19 Dati Regionali</h4>' +  (props ?
 			'<br/><b>' + props.regione + '</b><br/><br/>'
 			+'         Popolazione: ' + getNumberFormatted(props.popolazione) + '<br/>'
-            +'Attualmente Positivi: ' + getNumberFormatted(props.totale_positivi) + '<br/>'
+            +'Attualmente Positivi: ' + getNumberFormatted(props.totale_positivi) + ' (' + getNumberRoundedFormatted(props.totale_positivi_perc, 2) + '%)' + '<br/>'
             +'   Terapia Intensiva: ' + getNumberFormatted(props.terapia_intensiva) + '<br/>'
 			+'         Totale casi: ' + getNumberFormatted(props.totale_casi) + '<br/>'
 			+'             Tamponi: ' + getNumberFormatted(props.tamponi) + '<br/>'
-			+'            Deceduti: ' + getNumberFormatted(props.deceduti) + '<br/>'
-            +'             Guariti: ' + getNumberFormatted(props.dimessi_guariti) + '<br/>'
+			+'            Deceduti: ' + getNumberFormatted(props.deceduti) + ' (' + getNumberRoundedFormatted(props.deceduti/props.totale_casi*100.0, 2) + '%)' + '<br/>'
+            +'             Guariti: ' + getNumberFormatted(props.dimessi_guariti) + ' (' + getNumberRoundedFormatted(props.dimessi_guariti/props.totale_casi*100.0, 2) + '%)' + '<br/>'
 			: 'Posizionati sopra una regione');
 	};
 
@@ -39,6 +39,11 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 	function getNumberFormatted(mynumber){
 
 		return Number(mynumber).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+	}
+
+    // return formatted number
+	function getNumberRoundedFormatted(mynumber, decplaces = 2){
+		return Number(mynumber).toFixed(decplaces).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 	}
 
 	function style(feature) {
