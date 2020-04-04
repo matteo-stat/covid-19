@@ -540,7 +540,7 @@ def build_geomap_reg(df, dir_home, col_value):
     # dependecies
     import pandas as pd
     import geopandas as gpd
-    from palettable.colorbrewer.sequential import OrRd_9 as palettable_pal
+    from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal
       
     # retrieve last available data from regions
     i = df['data'] == df['data'].max()

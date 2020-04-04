@@ -7,8 +7,14 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
     function getNumberFormatted(mynumber){
 
 		return Number(mynumber).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-	}
+    }
+    
+    // return formatted number
+    function getNumberRoundedFormatted(mynumber, decplaces = 2){
 
+		return Number(mynumber).toFixed(decplaces).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    }
+    
     // function for update summary table
     function updateTableSummary(id_div, label, format_number=true) {
         var tag = document.createElement("p");
@@ -110,7 +116,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
                     label: function(tooltipItem) {
                                 
                         if(perc) {
-                            value = tooltipItem.xLabel;
+                            value = getNumberRoundedFormatted(tooltipItem.xLabel, 2);
                         }
                         
                         else {
