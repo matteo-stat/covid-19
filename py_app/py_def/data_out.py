@@ -164,7 +164,7 @@ def get_colors(pds, palettable_pal, scale_logic = 'max perc', opacity = 1, opaci
     return(df_colors)
 
 # return dictionary with chart data
-def build_chart(labels_pds, labels_freq, data_first_dict, data_sec_dict = {}, sort = False, sort_ascending = True):
+def build_chart(labels_pds, labels_freq, data_first_dict, data_sec_dict = {}):
     
     # dependecies
     import pandas as pd
@@ -189,48 +189,17 @@ def build_chart(labels_pds, labels_freq, data_first_dict, data_sec_dict = {}, so
         labels[i] = ''
     
     if 'bordercolor' not in data_first_dict:
-        data_first_dict['bordercolor'] = data_first_dict['backgroundcolor']         
-
-    # create dataframe from dictionary and sort data
-    data_first = pd.DataFrame(data_first_dict)
-    
-    if (sort):
         
-        data_first.sort_values(by = ['data']
-                              ,ascending = sort_ascending
-                              ,inplace = True)      
+        data_first_dict['bordercolor'] = data_first_dict['backgroundcolor']            
     
     # create dictionary with chart data
     if (len(data_sec_dict) > 0):
                 
         if 'bordercolor' not in data_sec_dict:
             
-            data_sec_dict['bordercolor'] = data_sec_dict['backgroundcolor']
-            
-        # create dataframe from dictionary and sort data
-        data_sec = pd.DataFrame(data_sec_dict)
-            
-        if (sort):
-                
-            data_sec.sort_values(by = ['data']
-                                ,ascending = sort_ascending
-                                ,inplace = True)    
-
-            data_out = {
-                    'labels': labels.tolist()
-                    ,'data_first': data_first['data'].tolist()
-                    ,'backgroundcolor_first': data_first['backgroundcolor'].tolist()
-                    ,'bordercolor_first': data_first['bordercolor'].tolist()
-                    ,'label_first': data_first_dict['label']
-                    ,'data_sec': data_sec['data'].tolist()
-                    ,'label_sec': data_sec_dict['label']
-                    ,'backgroundcolor_sec': data_sec['backgroundcolor'].tolist()
-                    ,'bordercolor_sec': data_sec['bordercolor'].tolist()
-                }                 
-            
-        else:
+            data_sec_dict['bordercolor'] = data_sec_dict['backgroundcolor']        
         
-            data_out = {
+        data_out = {
                     'labels': labels.tolist()
                     ,'data_first': data_first_dict['data']
                     ,'backgroundcolor_first': data_first_dict['backgroundcolor']
@@ -243,19 +212,7 @@ def build_chart(labels_pds, labels_freq, data_first_dict, data_sec_dict = {}, so
                 }
     else :
         
-        if (sort):
-                
-            data_out = {
-                    'labels': labels.tolist()
-                    ,'data_first': data_first['data'].tolist()
-                    ,'backgroundcolor_first': data_first['backgroundcolor'].tolist()
-                    ,'bordercolor_first': data_first['bordercolor'].tolist()
-                    ,'label_first': data_first_dict['label']
-                }                 
-            
-        else:
-        
-            data_out = {
+        data_out = {
                     'labels': labels.tolist()
                     ,'data_first': data_first_dict['data']
                     ,'backgroundcolor_first': data_first_dict['backgroundcolor']
@@ -494,6 +451,10 @@ def build_charts_index(df_naz, df_reg, dir_home):
         
     # calculated column
     df_reg['totale_positivi_perc'] = df_reg['totale_positivi'] / df_reg['popolazione']
+    
+    df_reg.sort_values(by = ['totale_positivi']
+                      ,ascending = False
+                      ,inplace = True)
 
     # attualmente positivi per regione
     pds = df_reg['totale_positivi']
@@ -528,8 +489,6 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                                     ,'backgroundcolor': df_col2['rgba'].tolist()
                                                     ,'bordercolor': df_col2['rgba_border_fixed'].tolist()
                                                     }
-                                    ,sort = True
-                                    ,sort_ascending = False
                                 ) 
 
     # dictionary with all charts
