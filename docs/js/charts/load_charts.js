@@ -10,9 +10,11 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 	}
 
     // function for update summary table
-    function updateTableSummary(id_div, label) {
+    function updateTableSummary(id_div, label, format_number=true) {
         var tag = document.createElement("p");
-        label = getNumberFormatted(label);
+        if(format_number){
+            label = getNumberFormatted(label);
+        }        
         var text = document.createTextNode(label);
         tag.appendChild(text);
         var element = document.getElementById(id_div);
@@ -22,8 +24,10 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
     // update summary table
     updateTableSummary("table_att_positivi", dati_json.table_summary.att_positivi);
     updateTableSummary("table_tot_casi", dati_json.table_summary.tot_casi);
+    updateTableSummary("table_tot_tamponi", dati_json.table_summary.tot_tamponi);
     updateTableSummary("table_tot_deceduti", dati_json.table_summary.tot_deceduti);
     updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi);
+    updateTableSummary("table_ult_aggiornamento", dati_json.table_summary.ult_aggiornamento, false);
 
     // return data for chart
     function getChartData(chart_json) {
