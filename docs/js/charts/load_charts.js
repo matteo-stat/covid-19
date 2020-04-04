@@ -1,23 +1,90 @@
 
 $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/data_out/andamento_nazionale.json", "", function(dati_json){
 
-
     //console.log(dati_json.table_summary)
 
-    updateTableSummary("table_att_positivi", dati_json.table_summary.att_positivi);
-    updateTableSummary("table_tot_casi", dati_json.table_summary.tot_casi);
-    updateTableSummary("table_tot_deceduti", dati_json.table_summary.tot_deceduti);
-    updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi);
+    // return formatted number
+    function getNumberFormatted(mynumber){
 
+		return Number(mynumber).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+	}
+
+    // function for update summary table
     function updateTableSummary(id_div, label) {
         var tag = document.createElement("p");
-        label = Number(label).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+        label = getNumberFormatted(label);
         var text = document.createTextNode(label);
         tag.appendChild(text);
         var element = document.getElementById(id_div);
         element.appendChild(tag);
     };
+    
+    // update summary table
+    updateTableSummary("table_att_positivi", dati_json.table_summary.att_positivi);
+    updateTableSummary("table_tot_casi", dati_json.table_summary.tot_casi);
+    updateTableSummary("table_tot_deceduti", dati_json.table_summary.tot_deceduti);
+    updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi);
 
+    // return data for chart
+    function getChartData(chart_json) {
+
+        var data = {
+            labels: chart_json.labels,
+            datasets: [
+                {
+                label: chart_json.label_first,
+                data: chart_json.data_first,
+                backgroundColor: chart_json.backgroundcolor_first,
+                borderColor: chart_json.bordercolor_first,
+                borderWidth: 1
+                }
+            ]
+            }
+
+        return(data)
+
+    }
+    
+    // return options for chart
+    function getChartOptions(chart_json) {
+
+        var options = {
+            responsive: true,
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return getNumberFormatted(tooltipItem.yLabel);
+                    }
+                }
+            },
+            scales: {
+                    yAxes: [
+                        {
+                        ticks: {
+                            //beginAtZero: false,                            
+                            callback: function(value, index, values) {
+                                return getNumberFormatted(value);
+                            }
+                        }
+                    }
+                ]
+            },
+            /*
+            title: {
+                display: true,
+                text: 'my title',
+                position: 'top'
+            }
+            */
+        } 
+
+        return(options)
+    }                
+        
+    // create charts
     var chart_nuovi_positivi = new Chart(
         document.getElementById("chart_nuovi_positivi").getContext('2d'), 
         {
@@ -99,66 +166,6 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
         }
     );
 
-    // return data for chart
-    function getChartData(chart_json) {
-
-        var data = {
-            labels: chart_json.labels,
-            datasets: [
-                {
-                label: chart_json.label_first,
-                data: chart_json.data_first,
-                backgroundColor: chart_json.backgroundcolor_first,
-                borderColor: chart_json.bordercolor_first,
-                borderWidth: 1
-                }
-            ]
-            }
-
-        return(data)
-
-    }
-    
-    // return options for chart
-    function getChartOptions(chart_json) {
-
-        var options = {
-            responsive: true,
-            legend: {
-                display: false
-            },
-            tooltips: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return Number(tooltipItem.yLabel).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-                    }
-                }
-            },
-            scales: {
-                    yAxes: [
-                        {
-                        ticks: {
-                            //beginAtZero: false,                            
-                            callback: function(value, index, values) {
-                                return Number(value).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-                            }
-                        }
-                    }
-                ]
-            },
-            /*
-            title: {
-                display: true,
-                text: 'my title',
-                position: 'top'
-            }
-            */
-        } 
-
-        return(options)
-    }                
-        
-    
 });
 
 

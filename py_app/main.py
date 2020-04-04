@@ -48,4 +48,3 @@ map_reg = build_geomap_reg(df = df_reg
 # write charts data
 write_charts_data(charts_naz, dir_home + r'\data_out\andamento_nazionale.json')
 write_geojson_data(map_reg, dir_home + '\data_out\ita_regions.geojson')
-
