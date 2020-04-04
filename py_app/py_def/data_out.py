@@ -496,8 +496,8 @@ def build_charts_index(df_naz, df_reg, dir_home):
     df_reg['totale_positivi_perc'] = df_reg['totale_positivi'] / df_reg['popolazione']
 
     # attualmente positivi per regione
-    pds = df_reg['totale_positivi_perc']
-    pds2 = df_reg['totale_positivi']
+    pds = df_reg['totale_positivi']
+    pds2 = df_reg['totale_positivi_perc']
     
     df_col = get_colors(
                      pds = pds
@@ -616,6 +616,7 @@ def build_geomap_reg(df, dir_home, col_value, col_value_newlabel = ''):
 
     # series to display with clorophlet map
     pds = gdf[col_value + '_perc']
+    pds = gdf[col_value]
     
     # get color palette
     df_col = get_colors(pds = pds
