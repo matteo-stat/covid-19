@@ -42,8 +42,7 @@ charts_index = build_charts_index(df_naz = df_naz
 
 map_reg = build_geomap_reg(df = df_reg
                            ,dir_home = dir_home
-                           ,col_value = 'totale_positivi'
-                           ,col_value_newlabel = 'Attualmente_positivi')
+                           ,col_value = 'totale_positivi')
 
 # write charts data
 write_charts_data(charts_index, dir_home + r'\data_out\andamento_nazionale.json')
