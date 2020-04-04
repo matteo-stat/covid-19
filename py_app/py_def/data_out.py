@@ -450,7 +450,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                           )    
         
     # calculated column
-    df_reg['totale_positivi_perc'] = df_reg['totale_positivi'] / df_reg['popolazione']
+    df_reg['totale_positivi_perc'] = (df_reg['totale_positivi'] / df_reg['popolazione'])*100.0
     
     df_reg.sort_values(by = ['totale_positivi']
                       ,ascending = False
@@ -535,17 +535,13 @@ def write_charts_data(charts_dict, pathfilename):
         
 
 # return geo dataframe
-def build_geomap_reg(df, dir_home, col_value, col_value_newlabel = ''):
+def build_geomap_reg(df, dir_home, col_value):
 
     # dependecies
     import pandas as pd
     import geopandas as gpd
     from palettable.colorbrewer.sequential import Reds_9 as palettable_pal
-    
-    # check newlabel
-    if col_value_newlabel == '':
-        col_value_newlabel = col_value
-         
+      
     # retrieve last available data from regions
     i = df['data'] == df['data'].max()
     df = df.loc[i, ].groupby(['codice_regione']).sum()
@@ -571,10 +567,9 @@ def build_geomap_reg(df, dir_home, col_value, col_value_newlabel = ''):
                     )    
         
     # calculated column
-    gdf[col_value + '_perc'] = (gdf[col_value] / gdf['popolazione'])
+    gdf[col_value + '_perc'] = (gdf[col_value] / gdf['popolazione']) * 100.0
 
     # series to display with clorophlet map
-    pds = gdf[col_value + '_perc']
     pds = gdf[col_value]
     
     # get color palette

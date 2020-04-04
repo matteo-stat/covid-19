@@ -23,11 +23,14 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>COVID-19 Dati Regionali</h4>' +  (props ?
-            '<b>' + props.Regione + '</b><br/>'
-            +'Attualmente Positivi: ' + getNumberFormatted(props.Attualmente_positivi) + '<br/>'
-            +'   Terapia Intensiva: ' + getNumberFormatted(props.Terapia_Intensiva) + '<br/>'
-            +'            Deceduti: ' + getNumberFormatted(props.Deceduti) + '<br/>'
-            +'             Guariti: ' + getNumberFormatted(props.Guariti) + '<br/>'
+			'<br/><b>' + props.regione + '</b><br/><br/>'
+			+'         Popolazione: ' + getNumberFormatted(props.popolazione) + '<br/>'
+            +'Attualmente Positivi: ' + getNumberFormatted(props.totale_positivi) + '<br/>'
+            +'   Terapia Intensiva: ' + getNumberFormatted(props.terapia_intensiva) + '<br/>'
+			+'         Totale casi: ' + getNumberFormatted(props.totale_casi) + '<br/>'
+			+'             Tamponi: ' + getNumberFormatted(props.tamponi) + '<br/>'
+			+'            Deceduti: ' + getNumberFormatted(props.deceduti) + '<br/>'
+            +'             Guariti: ' + getNumberFormatted(props.dimessi_guariti) + '<br/>'
 			: 'Posizionati sopra una regione');
 	};
 
