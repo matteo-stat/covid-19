@@ -575,7 +575,7 @@ def build_geomap_reg(df, dir_home, col_value):
     # get color palette
     df_col = get_colors(pds = pds
                         ,palettable_pal = {'main': palettable_pal}
-                        ,scale_logic = 'log max perc'                                     
+                        ,scale_logic = 'max perc'                                     
                         )    
     
     # add hex colors
