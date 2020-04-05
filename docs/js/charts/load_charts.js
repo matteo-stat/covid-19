@@ -2,6 +2,7 @@
 $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/data_out/andamento_nazionale.json", "", function(dati_json){
 
     //console.log(dati_json.table_summary)
+    console.log(testvarjava);
 
     // return formatted number
     function getNumberFormatted(mynumber){
@@ -30,9 +31,9 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
     // update summary table
     updateTableSummary("table_att_positivi", dati_json.table_summary.att_positivi);
     updateTableSummary("table_tot_casi", dati_json.table_summary.tot_casi);
-    updateTableSummary("table_tot_tamponi", dati_json.table_summary.tot_tamponi);
     updateTableSummary("table_tot_deceduti", dati_json.table_summary.tot_deceduti);
-    updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi);
+    updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi);   
+    updateTableSummary("table_popolazione", dati_json.table_summary.popolazione);
     updateTableSummary("table_ult_aggiornamento", dati_json.table_summary.ult_aggiornamento, false);
 
     // return data for chart

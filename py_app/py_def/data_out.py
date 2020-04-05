@@ -422,17 +422,6 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                     
                                 )   
     
-    # table summary
-    i = df_naz['data'] == df_naz['data'].max()    
-    df_naz['ult_aggiornamento'] = (100 + df_naz['data'].dt.day).astype(str).str.slice(1,3) + r'/' + (100 + df_naz['data'].dt.month).astype(str).str.slice(1,3) + r'/' + (df_naz['data'].dt.year).astype(str)    
-    table_summary = {'att_positivi': df_naz.loc[i, 'totale_positivi'].tolist()
-                    ,'tot_casi': df_naz.loc[i, 'totale_casi'].tolist()
-                    ,'tot_tamponi': df_naz.loc[i, 'tamponi'].tolist()
-                    ,'tot_deceduti': df_naz.loc[i, 'deceduti'].tolist()
-                    ,'tot_dimessi': df_naz.loc[i, 'dimessi_guariti'].tolist()
-                    ,'ult_aggiornamento': df_naz.loc[i, 'ult_aggiornamento'].tolist()
-                    }
-    
     # region chart
     # retrieve last available data from regions
     i = df_reg['data'] == df_reg['data'].max()
@@ -490,6 +479,18 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                                     ,'bordercolor': df_col2['rgba_border_fixed'].tolist()
                                                     }
                                 ) 
+    
+    # table summary
+    i = df_naz['data'] == df_naz['data'].max()    
+    df_naz['ult_aggiornamento'] = (100 + df_naz['data'].dt.day).astype(str).str.slice(1,3) + r'/' + (100 + df_naz['data'].dt.month).astype(str).str.slice(1,3) + r'/' + (df_naz['data'].dt.year).astype(str)    
+    table_summary = {'att_positivi': df_naz.loc[i, 'totale_positivi'].tolist()
+                    ,'tot_casi': df_naz.loc[i, 'totale_casi'].tolist()
+                    ,'tot_tamponi': df_naz.loc[i, 'tamponi'].tolist()
+                    ,'tot_deceduti': df_naz.loc[i, 'deceduti'].tolist()
+                    ,'tot_dimessi': df_naz.loc[i, 'dimessi_guariti'].tolist()
+                    ,'popolazione': pop['popolazione'].sum().tolist()
+                    ,'ult_aggiornamento': df_naz.loc[i, 'ult_aggiornamento'].tolist()
+                    }
 
     # dictionary with all charts
     charts_dict = {
@@ -540,7 +541,8 @@ def build_geomap_reg(df, dir_home, col_value):
     # dependecies
     import pandas as pd
     import geopandas as gpd
-    from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal
+    #from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal
+    from palettable.colorbrewer.sequential import Reds_9 as palettable_pal
       
     # retrieve last available data from regions
     i = df['data'] == df['data'].max()
@@ -570,7 +572,7 @@ def build_geomap_reg(df, dir_home, col_value):
     gdf[col_value + '_perc'] = (gdf[col_value] / gdf['popolazione']) * 100.0
 
     # series to display with clorophlet map
-    pds = gdf[col_value]
+    pds = gdf[col_value + '_perc']
     
     # get color palette
     df_col = get_colors(pds = pds
