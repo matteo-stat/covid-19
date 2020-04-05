@@ -66,22 +66,79 @@
   <!--Main Navigation-->
   <header>
 
+    <!--Navbar-->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark primary-color-dark scrolling-navbar">
+
+      <!-- Navbar brand -->
       <a class="navbar-brand" href="#"><strong>COVID-19 Italia</strong></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+      <!-- Collapse button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Andamento Nazionale<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Andamento Nazionale
+              <span class="sr-only">(current)</span>
+            </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Andamento Regionale (WIP)</a>
+
+          <!-- Dropdown -->          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Andamento Regionale (WIP) - Selezionare una regione dalla seguente lista</a>
+            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+              <div class="container">
+             
+                <div class="row">
+
+                    <div class="col-md-4">
+                      <a class="dropdown-item" href="#">Abruzzo</a>
+                      <a class="dropdown-item" href="#">Basilicata</a>
+                      <a class="dropdown-item" href="#">Calabria</a>
+                      <a class="dropdown-item" href="#">Campania</a>
+                      <a class="dropdown-item" href="#">Emilia-Romagna</a>
+                      <a class="dropdown-item" href="#">Friuli-Venezia Giulia</a>
+                      <a class="dropdown-item" href="#">Lazio</a>                     
+                    </div>
+
+                    <div class="col-md-4">                      
+                      <a class="dropdown-item" href="#">Liguria</a>
+                      <a class="dropdown-item" href="#">Lombardia</a>
+                      <a class="dropdown-item" href="#">Marche</a> 
+                      <a class="dropdown-item" href="#">Molise</a>
+                      <a class="dropdown-item" href="#">Piemonte</a>
+                      <a class="dropdown-item" href="#">Puglia</a>
+                      <a class="dropdown-item" href="#">Sardegna</a>
+                    </div>
+
+                    <div class="col-md-4">                     
+                      <a class="dropdown-item" href="#">Sicilia</a>
+                      <a class="dropdown-item" href="#">Toscana</a>
+                      <a class="dropdown-item" href="#">Trentino-Alto Adige</a>
+                      <a class="dropdown-item" href="#">Umbria</a>
+                      <a class="dropdown-item" href="#">Valle d'Aosta</a>
+                      <a class="dropdown-item" href="#">Veneto</a>
+                    </div>
+                </div>
+                       
+            </div>
           </li>
+
+        </ul>
+        <!-- Links -->
+
       </div>
+      <!-- Collapsible content -->
+
     </nav>
+    <!--/.Navbar-->
 
   </header>
 
