@@ -22,41 +22,40 @@
   <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<!-- <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /> -->
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>  
-
-    <style>
-      #map {
-        width: 100%;
-        height: 650px;
-        }
-      .info { 
-        padding: 6px 8px; 
-        font: 14px/16px Arial, Helvetica, sans-serif; 
-        background: white; 
-        background: rgba(255,255,255,0.8); 
-        box-shadow: 0 0 15px rgba(0,0,0,0.2); 
-        border-radius: 5px; 
-      } 
-      .info h4 { 
-        margin: 0 0 5px; 
-        color: #777; 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>  
+  <style>
+    #map {
+      width: 100%;
+      height: 650px;
       }
-      .legend { 
-        text-align: left; 
-        line-height: 18px; 
-        color: #555; 
-      } 
-      .legend i { 
-        width: 18px; 
-        height: 18px; 
-        float: left; 
-        margin-right: 8px; 
-        opacity: 0.7; 
-      }
-    </style>
+    .info { 
+      padding: 6px 8px; 
+      font: 14px/16px Arial, Helvetica, sans-serif; 
+      background: white; 
+      background: rgba(255,255,255,0.8); 
+      box-shadow: 0 0 15px rgba(0,0,0,0.2); 
+      border-radius: 5px; 
+    } 
+    .info h4 { 
+      margin: 0 0 5px; 
+      color: #777; 
+    }
+    .legend { 
+      text-align: left; 
+      line-height: 18px; 
+      color: #555; 
+    } 
+    .legend i { 
+      width: 18px; 
+      height: 18px; 
+      float: left; 
+      margin-right: 8px; 
+      opacity: 0.7; 
+    }
+  </style>
 <!-- leaflet style for map-->
 </head>
 
@@ -298,7 +297,7 @@
 
             <!-- Card header -->
             <div class="card-header text-center p-2">
-              Situazione Regionale
+              Attualmente Positivi (% Popolazione) - Situazione Regionale
             </div>
 
             <!--Card content-->
@@ -426,9 +425,6 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Your custom scripts (optional) -->
-  <script type="text/javascript">
-    var testvarjava = "ciao";
-  </script>
   <script type="text/javascript" src="js/charts/load_charts.js"></script>
   <script type="text/javascript" src="js/leaflet_map/load_leafletmap.js"></script>
 

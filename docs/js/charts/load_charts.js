@@ -2,7 +2,7 @@
 $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/data_out/andamento_nazionale.json", "", function(dati_json){
 
     //console.log(dati_json.table_summary)
-    console.log(testvarjava);
+    //console.log(testvarjava);
 
     // return formatted number
     function getNumberFormatted(mynumber){

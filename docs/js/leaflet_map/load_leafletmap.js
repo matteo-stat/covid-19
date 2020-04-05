@@ -24,13 +24,13 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>COVID-19 Dati Regionali</h4>' +  (props ?
 			'<br/><b>' + props.regione + '</b><br/><br/>'
-			+'         Popolazione: ' + getNumberFormatted(props.popolazione) + '<br/>'
-            +'Attualmente Positivi: ' + getNumberFormatted(props.totale_positivi) + ' (' + getNumberRoundedFormatted(props.totale_positivi_perc, 2) + '%)' + '<br/>'
-            +'   Terapia Intensiva: ' + getNumberFormatted(props.terapia_intensiva) + '<br/>'
-			+'         Totale casi: ' + getNumberFormatted(props.totale_casi) + '<br/>'
-			+'             Tamponi: ' + getNumberFormatted(props.tamponi) + '<br/>'
-			+'            Deceduti: ' + getNumberFormatted(props.deceduti) + ' (' + getNumberRoundedFormatted(props.deceduti/props.totale_casi*100.0, 2) + '%)' + '<br/>'
-            +'             Guariti: ' + getNumberFormatted(props.dimessi_guariti) + ' (' + getNumberRoundedFormatted(props.dimessi_guariti/props.totale_casi*100.0, 2) + '%)' + '<br/>'
+			+'	           Popolazione: ' + getNumberFormatted(props.popolazione) + '<br/>'
+			+'	  Attualmente Positivi: ' + getNumberFormatted(props.totale_positivi) + ' (' + getNumberRoundedFormatted(props.totale_positivi_perc, 2) + '%)' + '<br/>'
+			+'       Terapia Intensiva: ' + getNumberFormatted(props.terapia_intensiva) + '<br/><br/>'
+			+'                 Tamponi: ' + getNumberFormatted(props.tamponi) + '<br/>'
+			+'             Totale casi: ' + getNumberFormatted(props.totale_casi) + '<br/>'
+			+'                Deceduti: ' + getNumberFormatted(props.deceduti) + ' (' + getNumberRoundedFormatted(props.deceduti/props.totale_casi*100.0, 2) + '%)' + '<br/>'
+            +'                 Guariti: ' + getNumberFormatted(props.dimessi_guariti) + ' (' + getNumberRoundedFormatted(props.dimessi_guariti/props.totale_casi*100.0, 2) + '%)' + '<br/>'
 			: 'Posizionati sopra una regione');
 	};
 
@@ -82,7 +82,7 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 	}
 
 	function zoomToFeature(e) {
-		console.log(e.target.feature.properties.regione);
+		//console.log(e.target.feature.properties.regione);
 		map.fitBounds(e.target.getBounds());
 	}
 
