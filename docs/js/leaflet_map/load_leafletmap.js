@@ -82,8 +82,9 @@ $.getJSON("https://raw.githubusercontent.com/matteo-stat/covid-19/master/py_app/
 	}
 
 	function zoomToFeature(e) {
-		//console.log(e.target.feature.properties.regione);
-		map.fitBounds(e.target.getBounds());
+		var url = "index.html?cod_reg=" + encodeURIComponent(e.target.feature.properties.regione);
+        window.location.href = url;
+		//map.fitBounds(e.target.getBounds());
 	}
 
 	function onEachFeature(feature, layer) {
