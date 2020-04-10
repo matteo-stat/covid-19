@@ -7,6 +7,8 @@ $.getJSON(chart_json, "", function(dati_json){
     cardHeaderUpdate("card_nuovi_tamponi", dati_json.area.suffix, " - ");
     cardHeaderUpdate("card_att_positivi", dati_json.area.suffix, " - ");
     cardHeaderUpdate("card_var_att_positivi", dati_json.area.suffix, " - ");
+    cardHeaderUpdate("card_tot_casi_prov", dati_json.area.suffix, " ");
+    cardHeaderUpdate("card_map_tot_casi_prov", dati_json.area.suffix, " ");
     cardHeaderUpdate("card_decessi", dati_json.area.suffix, " - ");
     cardHeaderUpdate("card_dimessi", dati_json.area.suffix, " - ");
     cardHeaderUpdate("card_ter_intensiva", dati_json.area.suffix, " - ");
@@ -161,11 +163,11 @@ $.getJSON(chart_json, "", function(dati_json){
         }
     );
 
-    var chart_att_positivi_reg = new Chart(
-        document.getElementById("chart_att_positivi_reg").getContext('2d'), 
+    var chart_tot_casi_prov = new Chart(
+        document.getElementById("chart_tot_casi_prov").getContext('2d'), 
         {
             type: 'horizontalBar',
-            data: getChartData(dati_json.chart_att_positivi_reg),
+            data: getChartData(dati_json.chart_tot_casi_prov),
             options: {
                 legend: {
                    display: false
@@ -196,7 +198,7 @@ $.getJSON(chart_json, "", function(dati_json){
         }
         
     );    
-    chart_att_positivi_reg.canvas.parentNode.style.height = '665px';
+    chart_tot_casi_prov.canvas.parentNode.style.height = '665px';
 
 
 });

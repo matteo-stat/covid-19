@@ -83,13 +83,13 @@
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Andamento Nazionale</a>
+          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">Andamento Nazionale
+            <a class="nav-link" data-toggle="modal" href="#basicExampleModal">Andamento Regionale
               <span class="sr-only">(current)</span>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" href="#basicExampleModal">Andamento Regionale (WIP)</a>
           </li>
         </ul>
         <!-- Links -->
@@ -111,7 +111,7 @@
       <!-- Modal -->
       <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Seleziona una Regione</h5>
@@ -120,53 +120,143 @@
               </button>
             </div>
             <div class="modal-body">              
-              <div class="d-flex justify-content-center">                   
+              <div class="flex-grow-1 justify-content-center">                   
 
-                <!-- First row-->
+                <!-- Row 1-->
                 <div class="row">
                   
                   <!--Column 1-->
                   <div class="col-md-3 text-center">
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Abruzzo</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Basilicata</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Calabria</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Campania</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Emilia-Romagna</a>
-
+                    <a href="regioni.html?cod_reg=13" class="btn btn-primary" role="button">Abruzzo</a>                    
                   </div>
                   <!--Column 1-->
                   <!--Column 2-->
                   <div class="col-md-3 text-center">
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Friuli-Venezia Giulia</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Lazio</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Liguria</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Lombardia</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Marche</a>
-                    
+                    <a href="regioni.html?cod_reg=6" class="btn btn-primary" role="button">Friuli-Venezia Giulia</a>                                        
                   </div>
                   <!--Column 2-->
                   <!--Column 3-->
                   <div class="col-md-3 text-center">
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Molise</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Piemonte</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Puglia</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Sardegna</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Sicilia</a>
+                    <a href="regioni.html?cod_reg=14" class="btn btn-primary" role="button">Molise</a>
                     
                   </div>
                   <!--Column 3-->                    
                   <!--Column 4-->
                   <div class="col-md-3 text-center">
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Toscana</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Trentino-Alto Adige/Sudtirol</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Umbria</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Valle d'Aosta</a>
-                    <a href="regioni.html?cod_reg=" class="btn btn-primary" role="button">Veneto</a>
+                    <a href="regioni.html?cod_reg=9" class="btn btn-primary" role="button">Toscana</a>
                   </div>
                   <!--Column 4--> 
                 </div>
-                <!-- /.First row-->            
+                <!-- /.Row 1-->            
+
+                <!-- Row 2-->
+                <div class="row">
+                  
+                  <!--Column 1-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=17" class="btn btn-primary" role="button">Basilicata</a>
+                  </div>
+                  <!--Column 1-->
+                  <!--Column 2-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=12" class="btn btn-primary" role="button">Lazio</a>
+                  </div>
+                  <!--Column 2-->
+                  <!--Column 3-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=1" class="btn btn-primary" role="button">Piemonte</a>                    
+                  </div>
+                  <!--Column 3-->                    
+                  <!--Column 4-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=4" class="btn btn-primary" role="button">Trentino-Alto Adige</a>
+                  </div>
+                  <!--Column 4--> 
+                </div>
+                <!-- /.Row 2--> 
+
+                <!-- Row 3-->
+                <div class="row">
+                  
+                  <!--Column 1-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=18" class="btn btn-primary" role="button">Calabria</a>
+                  </div>
+                  <!--Column 1-->
+                  <!--Column 2-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=7" class="btn btn-primary" role="button">Liguria</a>
+                  </div>
+                  <!--Column 2-->
+                  <!--Column 3-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=16" class="btn btn-primary" role="button">Puglia</a>                    
+                  </div>
+                  <!--Column 3-->                    
+                  <!--Column 4-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=10" class="btn btn-primary" role="button">Umbria</a>
+                  </div>
+                  <!--Column 4--> 
+                </div>
+                <!-- /.Row 3-->
+
+                <!-- Row 4-->
+                <div class="row">
+                  
+                  <!--Column 1-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=15" class="btn btn-primary" role="button">Campania</a>
+                  </div>
+                  <!--Column 1-->
+                  <!--Column 2-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=3" class="btn btn-primary" role="button">Lombardia</a>
+                  </div>
+                  <!--Column 2-->
+                  <!--Column 3-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=20" class="btn btn-primary" role="button">Sardegna</a>
+                  </div>
+                  <!--Column 3-->                    
+                  <!--Column 4-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=2" class="btn btn-primary" role="button">Valle d'Aosta</a>
+                  </div>
+                  <!--Column 4--> 
+                </div>
+                <!-- /.Row 4-->                
+
+                <!-- Row 5-->
+                <div class="row">
+                  
+                  <!--Column 1-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=8" class="btn btn-primary" role="button">Emilia-Romagna</a>
+                  </div>
+                  <!--Column 1-->
+                  <!--Column 2-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=11" class="btn btn-primary" role="button">Marche</a>
+                  </div>
+                  <!--Column 2-->
+                  <!--Column 3-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=19" class="btn btn-primary" role="button">Sicilia</a>
+                  </div>
+                  <!--Column 3-->                    
+                  <!--Column 4-->
+                  <div class="col-md-3 text-center">
+                    <a href="regioni.html?cod_reg=5" class="btn btn-primary" role="button">Veneto</a>
+                  </div>
+                  <!--Column 4--> 
+                </div>
+                <!-- /.Row 5-->                 
+
               </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
             </div>
           </div>
         </div>
@@ -182,7 +272,7 @@
           <div class="card">            
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
+            <div class="card-header text-center p-2" id="card_table_summary">
               Quadro Generale
             </div>
 
@@ -210,8 +300,8 @@
 
                 <!--Column 3-->
                 <div class="col-md-2">
-                  <h6 class="text-center mb-3">Totale Deceduti</h6>                  
-                  <div class="text-center" id="table_tot_deceduti">                 
+                  <h6 class="text-center mb-3">Totale Decessi</h6>                  
+                  <div class="text-center" id="table_tot_decessi">                 
                   </div>
                 </div>
                 <!--Column 3-->
@@ -263,7 +353,7 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
+            <div class="card-header text-center p-2" id="card_nuovi_positivi">
               Nuovi Positivi
             </div>
 
@@ -281,7 +371,7 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
+            <div class="card-header text-center p-2" id="card_nuovi_tamponi">
               Nuovi Tamponi
             </div>
 
@@ -305,7 +395,7 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
+            <div class="card-header text-center p-2" id="card_att_positivi">
               Attualmente Positivi
             </div>
 
@@ -323,7 +413,7 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
+            <div class="card-header text-center p-2" id="card_var_att_positivi">
               Variazione Attualmente Positivi
             </div>
 
@@ -353,14 +443,14 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
-              Attualmente Positivi - Situazione Regionale
+            <div class="card-header text-center p-2" id="card_tot_casi_prov">
+              Totale Casi - Province
             </div>
 
             <!--Card content-->
             <div class="card-body p-2">
 
-              <canvas id="chart_att_positivi_reg"></canvas>
+              <canvas id="chart_tot_casi_prov"></canvas>
 
             </div>
 
@@ -377,8 +467,8 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
-              Attualmente Positivi (% Popolazione) - Situazione Regionale
+            <div class="card-header text-center p-2" id="card_map_tot_casi_prov">
+              Totale Casi (% Popolazione) - Province
             </div>
 
             <!--Card content-->
@@ -407,14 +497,14 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
-              Deceduti
+            <div class="card-header text-center p-2" id="card_decessi">
+              Decessi
             </div>
 
             <!--Card content-->
             <div class="card-body p-2">
 
-              <canvas id="chart_deceduti"></canvas>
+              <canvas id="chart_decessi"></canvas>
 
             </div>
 
@@ -425,7 +515,7 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
+            <div class="card-header text-center p-2" id="card_dimessi">
               Dimessi Guariti
             </div>
 
@@ -449,7 +539,7 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
+            <div class="card-header text-center p-2" id="card_ter_intensiva">
               Terapia Intensiva
             </div>
 
@@ -467,7 +557,7 @@
           <div class="card mb-4">
 
             <!-- Card header -->
-            <div class="card-header text-center p-2">
+            <div class="card-header text-center p-2" id="card_ospedalizzati">
               Ospedalizzati
             </div>
 
@@ -507,8 +597,10 @@
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Your custom scripts (optional) -->
   <script type="text/javascript" src="js/url_params/url_params.js"></script>
-  <script type="text/javascript" src="js/charts/load_charts.js"></script>
-  <script type="text/javascript" src="js/leaflet_map/load_leafletmap.js"></script>
+  <script type="text/javascript" src="js/div_update/div_update.js"></script>
+  <script type="text/javascript" src="js/format_numbers/format_numbers.js"></script>
+  <script type="text/javascript" src="js/charts/load_charts_reg.js"></script>
+  <script type="text/javascript" src="js/leaflet_map/load_leaflet_map_reg.js"></script>
 
 </body>
 </html>
