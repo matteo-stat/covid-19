@@ -222,32 +222,18 @@ def build_chart(labels_pds, labels_freq, data_first_dict, data_sec_dict = {}):
     
     return(data_out)       
     
-    
-# build a dictionary with charts data    
-def build_charts_index(df_naz, df_reg, dir_home):
+
+def build_charts_shared(df):
     
     # dependecies
-    import pandas as pd
     from palettable.colorbrewer.sequential import Reds_9 as palettable_pal_red
     from palettable.colorbrewer.sequential import Greens_9 as palettable_pal_green
     from palettable.colorbrewer.sequential import Blues_9 as palettable_pal_blue
-    from palettable.colorbrewer.sequential import RdPu_9 as palettable_pal_purple
-    
-    
-    # add new columns
-    df_naz = df_naz.sort_values(by = ['data', 'stato'])
-    df_naz['nuovi_deceduti'] = df_naz['deceduti'] - df_naz['deceduti'].shift(+1)
-    df_naz['nuovi_dimessi_guariti'] = df_naz['dimessi_guariti'] - df_naz['dimessi_guariti'].shift(+1)
-    df_naz['nuovi_tamponi'] = df_naz['tamponi'] - df_naz['tamponi'].shift(+1)
-    
-    
-    i = df_naz['data'] > pd.to_datetime('2020-03-01')
-    df_naz = df_naz.loc[i, ]
-    
-    # build charts
+    from palettable.colorbrewer.sequential import RdPu_9 as palettable_pal_redpurple
+    from palettable.colorbrewer.sequential import Purples_9 as palettable_pal_purple     
     
     # nuovi positivi
-    pds = df_naz['nuovi_positivi']
+    pds = df['nuovi_positivi']
     
     df_col = get_colors(
                      pds = pds
@@ -258,7 +244,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                     )
     
     chart_nuovi_positivi = build_chart(
-                                    labels_pds = df_naz['data']
+                                    labels_pds = df['data']
                                     ,labels_freq = 1
                                     ,data_first_dict = {'data': pds.tolist()
                                                     ,'label': 'Nuovi Positivi'
@@ -269,7 +255,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                 )
 
     # nuovi tamponi
-    pds = df_naz['nuovi_tamponi']
+    pds = df['nuovi_tamponi']
     
     df_col = get_colors(
                      pds = pds
@@ -280,7 +266,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                     )
     
     chart_nuovi_tamponi = build_chart(
-                                    labels_pds = df_naz['data']
+                                    labels_pds = df['data']
                                     ,labels_freq = 1
                                     ,data_first_dict = {'data': pds.tolist()
                                                     ,'label': 'Nuovi Tamponi'
@@ -291,7 +277,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                 )
     
     # attualmente positivi
-    pds = df_naz['totale_positivi']
+    pds = df['totale_positivi']
     
     df_col = get_colors(
                      pds = pds
@@ -302,7 +288,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                     )
     
     chart_att_positivi = build_chart(
-                                    labels_pds = df_naz['data']
+                                    labels_pds = df['data']
                                     ,labels_freq = 1
                                     ,data_first_dict = {'data': pds.tolist()
                                                     ,'label': 'Attualmente Positivi'
@@ -313,7 +299,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                 )
     
     # variazione attualmente positivi
-    pds = df_naz['variazione_totale_positivi']
+    pds = df['variazione_totale_positivi']
     
     df_col = get_colors(
                      pds = pds
@@ -324,7 +310,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                     )
     
     chart_var_att_positivi = build_chart(
-                                    labels_pds = df_naz['data']
+                                    labels_pds = df['data']
                                     ,labels_freq = 1
                                     ,data_first_dict = {'data': pds.tolist()
                                                     ,'label': 'Variazione Att. Positivi'
@@ -335,7 +321,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                 )
     
     # nuovi deceduti
-    pds = df_naz['nuovi_deceduti']
+    pds = df['nuovi_deceduti']
     
     df_col = get_colors(
                      pds = pds
@@ -345,11 +331,11 @@ def build_charts_index(df_naz, df_reg, dir_home):
                     ,opacity_border = 1
                     )
     
-    chart_deceduti = build_chart(
-                                    labels_pds = df_naz['data']
+    chart_decessi = build_chart(
+                                    labels_pds = df['data']
                                     ,labels_freq = 1
                                     ,data_first_dict = {'data': pds.tolist()
-                                                    ,'label': 'Deceduti'
+                                                    ,'label': 'Decessi'
                                                     ,'backgroundcolor': df_col['rgba'].tolist()
                                                     ,'bordercolor': df_col['rgba_border_fixed'].tolist()
                                                     }
@@ -357,7 +343,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                 )
     
     # nuovi guariti
-    pds = df_naz['nuovi_dimessi_guariti']
+    pds = df['nuovi_dimessi_guariti']
     
     df_col = get_colors(
                      pds = pds
@@ -368,7 +354,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
                     )
     
     chart_dimessi = build_chart(
-                                    labels_pds = df_naz['data']
+                                    labels_pds = df['data']
                                     ,labels_freq = 1
                                     ,data_first_dict = {'data': pds.tolist()
                                                     ,'label': 'Dimessi Guariti'
@@ -379,18 +365,18 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                 )
     
     # terapia intensiva
-    pds = df_naz['terapia_intensiva']
+    pds = df['terapia_intensiva']
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = {'main': palettable_pal_purple}
+                    ,palettable_pal = {'main': palettable_pal_redpurple}
                     ,scale_logic = 'max perc'
                     ,opacity = 0.8
                     ,opacity_border = 1
                     )
     
     chart_ter_intensiva = build_chart(
-                                    labels_pds = df_naz['data']
+                                    labels_pds = df['data']
                                     ,labels_freq = 1
                                     ,data_first_dict = {'data': pds.tolist()
                                                     ,'label': 'Terapia Intensiva'
@@ -401,18 +387,18 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                 )
     
     # totale ospedalizzati
-    pds = df_naz['totale_ospedalizzati']
+    pds = df['totale_ospedalizzati']
     
     df_col = get_colors(
                      pds = pds
-                    ,palettable_pal = {'main': palettable_pal_red}
+                    ,palettable_pal = {'main': palettable_pal_purple}
                     ,scale_logic = 'max perc'
                     ,opacity = 0.8
                     ,opacity_border = 1
                     )
     
     chart_ospedalizzati = build_chart(
-                                    labels_pds = df_naz['data']
+                                    labels_pds = df['data']
                                     ,labels_freq = 1
                                     ,data_first_dict = {'data': pds.tolist()
                                                     ,'label': 'Ospedalizzati'
@@ -420,30 +406,62 @@ def build_charts_index(df_naz, df_reg, dir_home):
                                                     ,'bordercolor': df_col['rgba_border_fixed'].tolist()
                                                     }
                                     
-                                )   
+                                )     
+
+    # dictionary with all shared charts
+    charts_dict = {
+                 'chart_nuovi_positivi': chart_nuovi_positivi
+                ,'chart_nuovi_tamponi': chart_nuovi_tamponi
+                ,'chart_att_positivi': chart_att_positivi
+                ,'chart_var_att_positivi': chart_var_att_positivi
+                ,'chart_decessi': chart_decessi
+                ,'chart_dimessi': chart_dimessi
+                ,'chart_ter_intensiva': chart_ter_intensiva
+                ,'chart_ospedalizzati': chart_ospedalizzati
+                }
+
+    return(charts_dict)    
+
+
+# build a dictionary with charts data    
+def build_charts_index(df_naz, df_reg, dir_home):
+       
+    # dependecies
+    import pandas as pd
+    from palettable.colorbrewer.sequential import Reds_9 as palettable_pal_red
     
-    # region chart
+    # add new columns
+    df_naz = df_naz.sort_values(by = ['data', 'stato'])
+    df_naz['nuovi_deceduti'] = df_naz['deceduti'] - df_naz['deceduti'].shift(+1)
+    df_naz['nuovi_dimessi_guariti'] = df_naz['dimessi_guariti'] - df_naz['dimessi_guariti'].shift(+1)
+    df_naz['nuovi_tamponi'] = df_naz['tamponi'] - df_naz['tamponi'].shift(+1)
+    
+    # filter dates
+    i = df_naz['data'] > pd.to_datetime('2020-03-01')
+    df_naz = df_naz.loc[i, :]
+    
+    # shared charts
+    charts_dict = build_charts_shared(df = df_naz)
+    
     # retrieve last available data from regions
     i = df_reg['data'] == df_reg['data'].max()
-    df_reg = df_reg.loc[i, ].groupby(['codice_regione']).sum()
-    df_reg['COD_REG'] = df_reg.index
+    df_reg = df_reg.loc[i, :].groupby(['codice_regione']).sum()
+    df_reg.reset_index(inplace = True)
     
     # read populations csv
     pop = pd.read_csv(filepath_or_buffer = dir_home + r'\data_raw\csv\popolazione_regioni_20190101_istat.csv'
-                      ,sep = ';'
+                      ,sep = ','
                       ,header = 0)
     
     df_reg = df_reg.merge(right = pop
                           ,how = 'left'
-                          ,on = 'COD_REG'
+                          ,on = 'codice_regione'
                           )    
         
     # calculated column
     df_reg['totale_positivi_perc'] = (df_reg['totale_positivi'] / df_reg['popolazione'])*100.0
     
-    df_reg.sort_values(by = ['totale_positivi']
-                      ,ascending = False
-                      ,inplace = True)
+    df_reg = df_reg.sort_values(by = ['totale_positivi'], ascending = False)
 
     # attualmente positivi per regione
     pds = df_reg['totale_positivi']
@@ -482,36 +500,331 @@ def build_charts_index(df_naz, df_reg, dir_home):
     
     # table summary
     i = df_naz['data'] == df_naz['data'].max()    
+    df_naz = df_naz.loc[i, :]
     df_naz['ult_aggiornamento'] = (100 + df_naz['data'].dt.day).astype(str).str.slice(1,3) + r'/' + (100 + df_naz['data'].dt.month).astype(str).str.slice(1,3) + r'/' + (df_naz['data'].dt.year).astype(str)    
-    table_summary = {'att_positivi': df_naz.loc[i, 'totale_positivi'].tolist()
-                    ,'tot_casi': df_naz.loc[i, 'totale_casi'].tolist()
-                    ,'tot_tamponi': df_naz.loc[i, 'tamponi'].tolist()
-                    ,'tot_deceduti': df_naz.loc[i, 'deceduti'].tolist()
-                    ,'tot_dimessi': df_naz.loc[i, 'dimessi_guariti'].tolist()
+    table_summary = {'att_positivi': df_naz['totale_positivi'].tolist()
+                    ,'tot_casi': df_naz['totale_casi'].tolist()
+                    ,'tot_tamponi': df_naz['tamponi'].tolist()
+                    ,'tot_decessi': df_naz['deceduti'].tolist()
+                    ,'tot_dimessi': df_naz['dimessi_guariti'].tolist()
                     ,'popolazione': pop['popolazione'].sum().tolist()
-                    ,'ult_aggiornamento': df_naz.loc[i, 'ult_aggiornamento'].tolist()
+                    ,'ult_aggiornamento': df_naz['ult_aggiornamento'].tolist()
                     }
-
-    # dictionary with all charts
-    charts_dict = {
-                 'chart_nuovi_positivi': chart_nuovi_positivi
-                ,'chart_nuovi_tamponi': chart_nuovi_tamponi
-                ,'chart_att_positivi': chart_att_positivi
-                ,'chart_var_att_positivi': chart_var_att_positivi
-                ,'chart_deceduti': chart_deceduti
-                ,'chart_dimessi': chart_dimessi
-                ,'chart_ter_intensiva': chart_ter_intensiva
-                ,'chart_ospedalizzati': chart_ospedalizzati
-                ,'table_summary': table_summary
-                ,'chart_att_positivi_reg': chart_att_positivi_reg
-                }
-
-    return(charts_dict)
     
-                
-# write dictionary to json file
-def write_charts_data(charts_dict, pathfilename):
+    # add index charts to dictionary
+    charts_dict['table_summary'] = table_summary
+    charts_dict['chart_att_positivi_reg'] = chart_att_positivi_reg
+    charts_dict['area'] = {'suffix': pd.Series('Italia').tolist()}
+    
+    return(charts_dict)    
+    
+    
+# build a dictionary with charts data    
+def build_charts_reg(df_reg, df_prov, dir_home):
+       
+    # dependecies
+    import pandas as pd
+    from palettable.colorbrewer.sequential import Reds_9 as palettable_pal_red
+    
+    # add new columns
+    df_reg = df_reg.groupby(['stato', 'codice_regione', 'data']).sum()
+    df_reg.reset_index(inplace = True)
+   
+    # retrieve last available data from province
+    i = df_prov['data'] == df_prov['data'].max()
+    df_prov = df_prov.loc[i, :].groupby(['codice_regione', 'codice_provincia']).sum()
+    df_prov.reset_index(inplace = True)
+    
+    # read populations csv
+    pop = pd.read_csv(filepath_or_buffer = dir_home + r'\data_raw\csv\popolazione_province_20190101_istat.csv'
+                      ,sep = ','
+                      ,header = 0)        
+    
+    df_prov = df_prov.merge(right = pop
+                          ,how = 'left'
+                          ,on = 'codice_provincia'
+                          ,suffixes = ('', '_pop')
+                          )    
+            
+    # calculated column
+    df_prov['totale_casi_perc'] = (df_prov['totale_casi'] / df_prov['popolazione'])*100.0
+    
+    # build charts for every region
+    reg_list = df_reg['codice_regione'].unique()
+    charts_dict = {}
+    
+    for reg in reg_list:
 
+        # filter a region
+        i = df_reg['codice_regione'] == reg
+        df_reg_temp = df_reg.loc[i, :]
+        
+        i = df_prov['codice_regione'] == reg
+        df_prov_temp = df_prov.loc[i, :]
+        
+        i = pop['codice_regione'] == reg
+        pop_temp = pop.loc[i, :]        
+        
+        # calculated columns
+        df_reg_temp = df_reg_temp.sort_values(by = ['stato', 'codice_regione', 'data'])    
+        df_reg_temp['nuovi_deceduti'] = df_reg_temp['deceduti'] - df_reg_temp['deceduti'].shift(+1)
+        df_reg_temp['nuovi_dimessi_guariti'] = df_reg_temp['dimessi_guariti'] - df_reg_temp['dimessi_guariti'].shift(+1)
+        df_reg_temp['nuovi_tamponi'] = df_reg_temp['tamponi'] - df_reg_temp['tamponi'].shift(+1)
+    
+        # filter dates
+        i = df_reg_temp['data'] > pd.to_datetime('2020-03-01')
+        df_reg_temp = df_reg_temp.loc[i, :]
+        
+        # shared charts
+        charts_dict_temp = build_charts_shared(df = df_reg_temp)
+        
+        # province        
+        df_prov_temp = df_prov_temp.sort_values(by = ['totale_casi'], ascending = False)
+    
+        # attualmente positivi per provincia
+        pds = df_prov_temp['totale_casi']
+        pds2 = df_prov_temp['totale_casi_perc']
+        
+        df_col = get_colors(
+                         pds = pds
+                        ,palettable_pal = {'main': palettable_pal_red}
+                        ,scale_logic = 'max perc'
+                        ,opacity = 0.8
+                        ,opacity_border = 1
+                        )
+        
+        df_col2 = get_colors(
+                         pds = pds2
+                        ,palettable_pal = {'main': palettable_pal_red}
+                        ,scale_logic = 'max perc'
+                        ,opacity = 0.8
+                        ,opacity_border = 1
+                        )    
+        
+        chart_tot_casi_prov = build_chart(
+                                        labels_pds = df_prov_temp['provincia']
+                                        ,labels_freq = 1
+                                        ,data_first_dict = {'data': pds.tolist()
+                                                        ,'label': 'Totale Casi (% Popolazione)'
+                                                        ,'backgroundcolor': df_col['rgba'].tolist()
+                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                        }
+                                        ,data_sec_dict = {'data': pds2.tolist()
+                                                        ,'label': 'Totale Casi'
+                                                        ,'backgroundcolor': df_col2['rgba'].tolist()
+                                                        ,'bordercolor': df_col2['rgba_border_fixed'].tolist()
+                                                        }
+                                    ) 
+        
+        # table summary
+        i = df_reg_temp['data'] == df_reg_temp['data'].max()    
+        df_reg_temp = df_reg_temp.loc[i, :]
+        df_reg_temp['ult_aggiornamento'] = (100 + df_reg_temp['data'].dt.day).astype(str).str.slice(1,3) + r'/' + (100 + df_reg_temp['data'].dt.month).astype(str).str.slice(1,3) + r'/' + (df_reg_temp['data'].dt.year).astype(str)    
+        table_summary = {'att_positivi': df_reg_temp['totale_positivi'].tolist()
+                        ,'tot_casi': df_reg_temp['totale_casi'].tolist()
+                        ,'tot_tamponi': df_reg_temp['tamponi'].tolist()
+                        ,'tot_decessi': df_reg_temp['deceduti'].tolist()
+                        ,'tot_dimessi': df_reg_temp['dimessi_guariti'].tolist()
+                        ,'popolazione': pop_temp['popolazione'].sum().tolist()
+                        ,'ult_aggiornamento': df_reg_temp['ult_aggiornamento'].tolist()                        
+                        }
+        
+        # add index charts to dictionary
+        charts_dict_temp['table_summary'] = table_summary
+        charts_dict_temp['chart_tot_casi_prov'] = chart_tot_casi_prov
+        charts_dict_temp['area'] = {'suffix': pop_temp['regione'].unique().tolist()}
+        
+        # add region dictionary to main dictionary
+        charts_dict[reg] = charts_dict_temp  
+
+    
+    return(charts_dict)    
+
+
+
+# return geo dataframe
+def build_geomap_reg(df, dir_home, col_value):
+
+    # dependecies
+    import pandas as pd
+    import geopandas as gpd
+    #from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal
+    from palettable.colorbrewer.sequential import Reds_9 as palettable_pal
+      
+    # retrieve last available data from regions
+    i = df['data'] == df['data'].max()
+    df = df.loc[i, :].groupby(['codice_regione']).sum()
+    df.reset_index(inplace = True)
+    
+    # read geojson
+    gdf = gpd.read_file(dir_home + r'\data_geo\geojson_leaflet\ita_regions.geojson')
+    
+    # read populations csv
+    pop = pd.read_csv(filepath_or_buffer = dir_home + r'\data_raw\csv\popolazione_regioni_20190101_istat.csv'
+                      ,sep = ','
+                      ,header = 0)
+    
+    # merge geojson and regions data
+    gdf = gdf.merge(right = df
+                    ,how = 'left'
+                    ,left_on = 'reg_istat_code_num'
+                    ,right_on = 'codice_regione'
+                    )
+    
+    gdf = gdf.merge(right = pop
+                    ,how = 'left'
+                    ,left_on = 'reg_istat_code_num'
+                    ,right_on = 'codice_regione'
+                    ,suffixes = ('', '_pop')
+                    )    
+        
+    # calculated column
+    gdf[col_value + '_perc'] = (gdf[col_value] / gdf['popolazione']) * 100.0
+
+    # series to display with clorophlet map
+    pds = gdf[col_value + '_perc']
+    
+    # get color palette
+    df_col = get_colors(pds = pds
+                        ,palettable_pal = {'main': palettable_pal}
+                        ,scale_logic = 'max perc'                                     
+                        )    
+    
+    # add hex colors
+    gdf['hex_color'] = df_col['hex']
+       
+    # reorder and rename geo dataframe columns   
+    col_names = [
+             'codice_regione'
+            ,'regione'            
+            ,'hex_color'
+            ,col_value
+            ,col_value + '_perc'
+            ,'popolazione'
+            ,'terapia_intensiva'
+            ,'totale_casi'
+            ,'tamponi'
+            ,'deceduti'
+            ,'dimessi_guariti'
+            ,'geometry'
+        ]
+        
+    gdf = gdf.loc[:,gdf.columns.intersection(col_names)]
+    gdf = gdf.loc[:, col_names]
+    gdf.rename(columns = {'deceduti': 'decessi'}, inplace = True)
+    
+    # return geo dataframe
+    return(gdf)
+
+
+# return geo dataframe
+def build_geomap_prov(df_prov, df_reg, dir_home, col_value):
+
+    # dependecies
+    import pandas as pd
+    import geopandas as gpd
+    #from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal
+    from palettable.colorbrewer.sequential import Reds_9 as palettable_pal
+      
+    # retrieve last available data from province
+    i = df_prov['data'] == df_prov['data'].max()
+    df_prov = df_prov.loc[i, :].groupby(['codice_regione', 'codice_provincia']).sum()
+    df_prov.reset_index(inplace = True)
+       
+    i = df_reg['data'] == df_reg['data'].max()
+    df_reg = df_reg.loc[i, :].groupby(['codice_regione']).mean()
+    df_reg.reset_index(inplace = True)
+   
+    # read geojson
+    gdf = gpd.read_file(dir_home + r'\data_geo\geojson_leaflet\ita_provinces.geojson')
+    
+    # read populations csv
+    pop = pd.read_csv(filepath_or_buffer = dir_home + r'\data_raw\csv\popolazione_province_20190101_istat.csv'
+                      ,sep = ','
+                      ,header = 0)
+    
+    # merge geojson and regions data
+    gdf = gdf.merge(right = df_prov
+                    ,how = 'left'
+                    ,left_on = 'prov_istat_code_num'
+                    ,right_on = 'codice_provincia'
+                    )
+    
+    gdf = gdf.merge(right = pop
+                    ,how = 'left'
+                    ,left_on = 'prov_istat_code_num'
+                    ,right_on = 'codice_provincia'
+                    ,suffixes = ('', '_pop')
+                    )    
+        
+    # calculated column
+    gdf[col_value + '_perc'] = (gdf[col_value] / gdf['popolazione']) * 100.0
+
+    # build charts for every region
+    reg_list = df_reg['codice_regione'].unique()
+    charts_dict = {}
+    
+    for reg in reg_list:
+
+        # filter a region
+        i = gdf['codice_regione'] == reg
+        gdf_temp = gdf.loc[i, :]   
+    
+        # get color palette
+        df_col = get_colors(pds = gdf.loc[i, col_value + '_perc']
+                            ,palettable_pal = {'main': palettable_pal}
+                            ,scale_logic = 'max perc'                                     
+                            )    
+        
+        # add hex colors
+        gdf_temp.loc[:,'hex_color'] = df_col['hex']
+           
+        # reorder and rename geo dataframe columns   
+        col_names = [
+                 'codice_regione'
+                ,'regione'          
+                ,'codice_provincia'
+                ,'provincia'
+                ,'hex_color'
+                ,col_value
+                ,col_value + '_perc'
+                ,'popolazione'
+                ,'geometry'
+            ]
+            
+        gdf_temp = gdf_temp.loc[:, gdf_temp.columns.intersection(col_names)]
+        gdf_temp = gdf_temp.loc[:, col_names]     
+        
+        charts_dict[reg] = gdf_temp
+    
+    # return geo dataframe
+    return(charts_dict)    
+    
+
+def write_geojson(gdf, pathfilename):
+    
+    # write geojson
+    gdf.to_file(pathfilename, driver='GeoJSON')
+    
+    
+# write geo dataframe    
+def write_geojson_data(obj, pathfilename, split_key):
+                    
+    if (split_key):
+        
+        for dict_key in obj:
+                        
+            write_geojson(obj[dict_key], pathfilename + '\\' + str(dict_key) + '.geojson')
+        
+    else:
+        
+      write_geojson(obj, pathfilename)
+        
+        
+
+# write dictionary to json file
+def write_json(charts_dict, pathfilename):
+    
     # dependecies
     import json
     
@@ -532,89 +845,19 @@ def write_charts_data(charts_dict, pathfilename):
         
     # fix nan or NaN
     with open(file = pathfilename, mode = 'w') as file_towrite:
-        file_towrite.write(file_json)
-        
+        file_towrite.write(file_json)  
 
-# return geo dataframe
-def build_geomap_reg(df, dir_home, col_value):
 
-    # dependecies
-    import pandas as pd
-    import geopandas as gpd
-    #from palettable.colorbrewer.sequential import YlOrRd_9 as palettable_pal
-    from palettable.colorbrewer.sequential import Reds_9 as palettable_pal
-      
-    # retrieve last available data from regions
-    i = df['data'] == df['data'].max()
-    df = df.loc[i, ].groupby(['codice_regione']).sum()
-    df['COD_REG'] = df.index
-    
-    # read geojson
-    gdf = gpd.read_file(dir_home + r'\data_geo\geojson_leaflet\ita_regions.geojson')
-    
-    # read populations csv
-    pop = pd.read_csv(filepath_or_buffer = dir_home + r'\data_raw\csv\popolazione_regioni_20190101_istat.csv'
-                      ,sep = ';'
-                      ,header = 0)
-    
-    # merge geojson and regions data
-    gdf = gdf.merge(right = df
-                    ,how = 'left'
-                    ,on = 'COD_REG'
-                    )
-    
-    gdf = gdf.merge(right = pop
-                    ,how = 'left'
-                    ,on = 'COD_REG'
-                    )    
+# write dictionary to json file
+def write_charts_data(charts_dict, pathfilename, split_key = False):
         
-    # calculated column
-    gdf[col_value + '_perc'] = (gdf[col_value] / gdf['popolazione']) * 100.0
-
-    # series to display with clorophlet map
-    pds = gdf[col_value + '_perc']
-    
-    # get color palette
-    df_col = get_colors(pds = pds
-                        ,palettable_pal = {'main': palettable_pal}
-                        ,scale_logic = 'max perc'                                     
-                        )    
-    
-    # add hex colors
-    gdf['hex_color'] = df_col['hex']
-       
-    # reorder and rename geo dataframe columns   
-    col_names = [
-            'regione'            
-            ,'hex_color'
-            ,col_value
-            ,col_value + '_perc'
-            ,'popolazione'
-            ,'terapia_intensiva'
-            ,'totale_casi'
-            ,'tamponi'
-            ,'deceduti'
-            ,'dimessi_guariti'
-            ,'geometry'
-        ]
+    if (split_key):
         
-    gdf = gdf[gdf.columns.intersection(col_names)]
-    gdf = gdf.loc[:, col_names]
-    
-    # return geo dataframe
-    return(gdf)
-    
-    
-# write geo dataframe    
-def write_geojson_data(gdf, pathfilename):
-    
-    # write geojson
-    gdf.to_file(pathfilename, driver="GeoJSON")
-    
+        for dict_key in charts_dict:
+            
+            write_json(charts_dict = charts_dict[dict_key], pathfilename = pathfilename + '\\' + str(dict_key) + '.json')
         
+    else:
+        
+      write_json(charts_dict = charts_dict, pathfilename = pathfilename)
            
-        
-
-
-
-    
