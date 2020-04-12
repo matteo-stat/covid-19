@@ -557,13 +557,13 @@ def build_charts_reg(df_reg, df_prov, dir_home):
 
         # filter a region
         i = df_reg['codice_regione'] == reg
-        df_reg_temp = df_reg.loc[i, :]
+        df_reg_temp = df_reg.loc[i, :].copy()
         
         i = df_prov['codice_regione'] == reg
-        df_prov_temp = df_prov.loc[i, :]
+        df_prov_temp = df_prov.loc[i, :].copy()
         
         i = pop['codice_regione'] == reg
-        pop_temp = pop.loc[i, :]        
+        pop_temp = pop.loc[i, :].copy()
         
         # calculated columns
         df_reg_temp = df_reg_temp.sort_values(by = ['stato', 'codice_regione', 'data'])    
@@ -767,18 +767,17 @@ def build_geomap_prov(df_prov, df_reg, dir_home, col_value):
     for reg in reg_list:
 
         # filter a region
-        i = gdf['codice_regione'] == reg
-        gdf_temp = gdf.loc[i, :]   
-    
+        i = gdf.loc[:,'codice_regione'] == reg
+        gdf_temp = gdf.loc[i, :].copy()
+        
         # get color palette
-        df_col = get_colors(pds = gdf.loc[i, col_value + '_perc']
+        df_col = get_colors(pds = gdf_temp[col_value + '_perc']
                             ,palettable_pal = {'main': palettable_pal}
                             ,scale_logic = 'max perc'                                     
-                            )    
+                            )
+                  
+        gdf_temp['hex_color'] = df_col['hex']
         
-        # add hex colors
-        gdf_temp.loc[:,'hex_color'] = df_col['hex']
-           
         # reorder and rename geo dataframe columns   
         col_names = [
                  'codice_regione'
@@ -793,8 +792,8 @@ def build_geomap_prov(df_prov, df_reg, dir_home, col_value):
             ]
             
         gdf_temp = gdf_temp.loc[:, gdf_temp.columns.intersection(col_names)]
-        gdf_temp = gdf_temp.loc[:, col_names]     
-        
+        gdf_temp = gdf_temp.loc[:, col_names]    
+                
         charts_dict[reg] = gdf_temp
     
     # return geo dataframe
