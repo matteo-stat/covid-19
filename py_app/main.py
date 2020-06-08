@@ -3,8 +3,8 @@ import sys
 
 # change this directory for local work
 #dir_home = r'C:\Users\Matteo\Documents\GitHub\covid-19\py_app'
-dir_home = r'C:\Users\Matteo\Documents\GitHub\covid-19\py_app'
-dir_output = r'C:\Users\Matteo\Documents\GitHub\covid-19\docs\json'
+dir_home = r'C:\Users\Nadia\Documents\GitHub\covid-19\py_app'
+dir_output = r'C:\Users\Nadia\Documents\GitHub\covid-19\docs\json'
 
 # download data
 download_data = True
