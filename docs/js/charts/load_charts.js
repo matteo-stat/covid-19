@@ -89,6 +89,15 @@ $.getJSON(chart_json, "", function(dati_json){
     }
            
     // create charts
+    var chart_perc_tamponi_positivi = new Chart(
+        document.getElementById("chart_perc_tamponi_positivi").getContext('2d'), 
+        {
+            type: 'bar',
+            data: getChartData(dati_json.chart_perc_tamponi_positivi),
+            options: getChartOptions(dati_json.chart_perc_tamponi_positivi)
+        }
+    );
+
     var chart_nuovi_positivi = new Chart(
         document.getElementById("chart_nuovi_positivi").getContext('2d'), 
         {
@@ -197,7 +206,6 @@ $.getJSON(chart_json, "", function(dati_json){
         
     );    
     chart_att_positivi_reg.canvas.parentNode.style.height = '665px';
-
 
 });
 

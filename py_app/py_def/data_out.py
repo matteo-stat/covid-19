@@ -234,7 +234,7 @@ def build_charts_shared(df):
     from palettable.colorbrewer.sequential import Purples_9 as palettable_pal_purple     
     
     # perc tamponi positivi
-    pds = df['nuovi_positivi'].divide(df['nuovi_tamponi']).replace(np.inf, 0)
+    pds = df['nuovi_positivi'].divide(df['nuovi_tamponi']).replace(np.inf, 0) * 100.0
     
     df_col = get_colors(
                      pds = pds
