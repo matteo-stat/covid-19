@@ -1,5 +1,5 @@
 # load data
-def load_data(path, get_last_year = True):
+def load_data(path, get_last_year = True, fix_reg = False):
 	
 	# dependecies
 	import pandas as pd
@@ -16,6 +16,10 @@ def load_data(path, get_last_year = True):
 	if(get_last_year):
 		# filter data to last avail year
 		i = df['data'].dt.year == df['data'].dt.year.max()
-		df = df.loc[i, ] 
+		df = df.loc[i, ]
+	
+	# fix regions code
+	if(fix_reg):
+		df['codice_regione'].replace(to_replace = [21,22], value = 4, inplace = True)        
 
 	return(df)
