@@ -54,7 +54,7 @@
       float: left; 
       margin-right: 8px; 
       opacity: 0.7; 
-    }
+    }    
   </style>
 <!-- leaflet style for map-->
 </head>
@@ -84,13 +84,11 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">Andamento Nazionale
-              <span class="sr-only">(current)</span>
-            </a>
+            <a class="nav-link" href="index.html">Andamento Nazionale <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" href="#basicExampleModal">Andamento Regionale </a>
-          </li>
+            <a class="nav-link" data-toggle="modal" href="#RegioniModal">Andamento Regionale</a>
+          </li>         
         </ul>
         <!-- Links -->
 
@@ -108,16 +106,18 @@
     <!--Container start-->
     <div class="container-fluid mt-5">                  
 
-      <!-- Modal -->
-      <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+      <!-- Modale regioni -->
+      <div class="modal fade" id="RegioniModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Seleziona una Regione</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <h5 class="modal-title" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Seleziona una RegioneSeleziona una Regione
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>              
             </div>
             <div class="modal-body">              
               <div class="flex-grow-1 justify-content-center">                   
@@ -262,8 +262,31 @@
           </div>
         </div>
       </div>
+
+      <!-- Modale test -->
+      <div class="modal fade" id="TestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Seleziona una Regione
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">                            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>      
       
-      <!--Grid row 0 start-->
+      <!--Grid row quadro generale-->
       <div class="row wow fadeIn">
         
         <!--Grid column 1 start-->
@@ -342,9 +365,34 @@
         <!--Grid column 1 end-->
 
       </div>
-      <!--Grid row 0 end-->  
 
-      <!--Grid row 1 start-->
+      <!--Grid row 1x1 grafici-->
+      <div class="row wow fadeIn">
+        
+        <!--Grid column 1 start-->
+        <div class="col-md-12 mb-4">
+
+          <!--Card-->
+          <div class="card mb-4">
+
+            <!-- Card header -->
+            <div class="card-header text-center p-2">              
+              My Title<i id="maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#TestModal"></i>        
+            </div>
+
+            <!--Card content-->
+            <div class="card-body p-2">
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column 1 end-->            
+        
+      </div>
+
+      <!--Grid row 2x2 grafici-->
       <div class="row wow fadeIn">
         
         <!--Grid column 1 start-->
@@ -432,9 +480,8 @@
         <!--Grid column 2 end-->
         
       </div>
-      <!--Grid row 1 end-->  
 
-      <!--Grid row 2 start-->
+      <!--Grid row 1x2 grafici-->
       <div class="row wow fadeIn">
         
         <!--Grid column 1 start-->
@@ -486,9 +533,8 @@
         <!--Grid column 2 end-->
         
       </div>
-      <!--Grid row 2 end-->
 
-      <!--Grid row 3 start-->
+      <!--Grid row 2x2 grafici-->
       <div class="row wow fadeIn">
         
         <!--Grid column 1 start-->
@@ -575,8 +621,7 @@
         </div>
         <!--Grid column 2 end-->
         
-      </div>
-      <!--Grid row 3 end-->      
+      </div>     
 
     </div>
     <!--Container end-->

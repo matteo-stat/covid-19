@@ -226,11 +226,34 @@ def build_chart(labels_pds, labels_freq, data_first_dict, data_sec_dict = {}):
 def build_charts_shared(df):
     
     # dependecies
+    import numpy as np
     from palettable.colorbrewer.sequential import Reds_9 as palettable_pal_red
     from palettable.colorbrewer.sequential import Greens_9 as palettable_pal_green
     from palettable.colorbrewer.sequential import Blues_9 as palettable_pal_blue
     from palettable.colorbrewer.sequential import RdPu_9 as palettable_pal_redpurple
     from palettable.colorbrewer.sequential import Purples_9 as palettable_pal_purple     
+    
+    # perc positivi tamponi
+    pds = df['nuovi_positivi'].divide(df['nuovi_tamponi']).replace(np.inf, 0)
+    
+    df_col = get_colors(
+                     pds = pds
+                    ,palettable_pal = {'main': palettable_pal_red}
+                    ,scale_logic = 'max perc'
+                    ,opacity = 0.8
+                    ,opacity_border = 1
+                    )
+    
+    chart_nuovi_positivi = build_chart(
+                                    labels_pds = df['data']
+                                    ,labels_freq = 1
+                                    ,data_first_dict = {'data': pds.tolist()
+                                                    ,'label': 'Percentuale Tamponi Positivi'
+                                                    ,'backgroundcolor': df_col['rgba'].tolist()
+                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                    }
+                                    
+                                )    
     
     # nuovi positivi
     pds = df['nuovi_positivi']
