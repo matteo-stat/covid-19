@@ -33,7 +33,7 @@ function updateTableSummary(div_id, label, delta_label="", format_number=true) {
             delta_color = "#009900";
             delta_symbol = "-";
         }        
-        text_tag = "<p>" + label + " <span style='color:" + delta_color + "'>(" + delta_symbol + Number(delta_label) + ")</span></p>";        
+        text_tag = "<p>" + label + " <span style='color:" + delta_color + "'>(" + delta_symbol + getNumberFormatted(delta_label) + ")</span></p>";        
     }
 
     document.getElementById(div_id).innerHTML = text_tag;    
