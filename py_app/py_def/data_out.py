@@ -233,7 +233,7 @@ def build_charts_shared(df):
     from palettable.colorbrewer.sequential import RdPu_9 as palettable_pal_redpurple
     from palettable.colorbrewer.sequential import Purples_9 as palettable_pal_purple     
     
-    # perc positivi tamponi
+    # perc tamponi positivi
     pds = df['nuovi_positivi'].divide(df['nuovi_tamponi']).replace(np.inf, 0)
     
     df_col = get_colors(
@@ -244,16 +244,16 @@ def build_charts_shared(df):
                     ,opacity_border = 1
                     )
     
-    chart_nuovi_positivi = build_chart(
-                                    labels_pds = df['data']
-                                    ,labels_freq = 1
-                                    ,data_first_dict = {'data': pds.tolist()
-                                                    ,'label': 'Percentuale Tamponi Positivi'
-                                                    ,'backgroundcolor': df_col['rgba'].tolist()
-                                                    ,'bordercolor': df_col['rgba_border_fixed'].tolist()
-                                                    }
+    chart_perc_tamponi_positivi = build_chart(
+                                        labels_pds = df['data']
+                                        ,labels_freq = 1
+                                        ,data_first_dict = {'data': pds.tolist()
+                                                        ,'label': 'Percentuale Tamponi Positivi'
+                                                        ,'backgroundcolor': df_col['rgba'].tolist()
+                                                        ,'bordercolor': df_col['rgba_border_fixed'].tolist()
+                                                        }
                                     
-                                )    
+                                    )    
     
     # nuovi positivi
     pds = df['nuovi_positivi']
@@ -433,7 +433,8 @@ def build_charts_shared(df):
 
     # dictionary with all shared charts
     charts_dict = {
-                 'chart_nuovi_positivi': chart_nuovi_positivi
+                 'chart_perc_tamponi_positivi': chart_perc_tamponi_positivi
+                ,'chart_nuovi_positivi': chart_nuovi_positivi
                 ,'chart_nuovi_tamponi': chart_nuovi_tamponi
                 ,'chart_att_positivi': chart_att_positivi
                 ,'chart_var_att_positivi': chart_var_att_positivi
