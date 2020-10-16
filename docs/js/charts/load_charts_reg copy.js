@@ -1,6 +1,6 @@
 
 $.getJSON(chart_json, "", function(dati_json){
-   
+
     // update card header
     cardHeaderUpdate("card_table_summary", dati_json.area.suffix, " - ");
        
@@ -33,8 +33,8 @@ $.getJSON(chart_json, "", function(dati_json){
     updateTableSummary("table_tot_decessi", dati_json.table_summary.tot_decessi, dati_json.table_summary.nuovi_decessi);
     updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi, dati_json.table_summary.nuovi_dimessi);   
     updateTableSummary("table_popolazione", dati_json.table_summary.popolazione);
-    updateTableSummary("table_ult_aggiornamento", dati_json.table_summary.ult_aggiornamento, "", false);
-
+    updateTableSummary("table_ult_aggiornamento", dati_json.table_summary.ult_aggiornamento, "", false);    
+   
     // return data for chart
     function getChartData(chart_json) {
 
@@ -272,13 +272,13 @@ $.getJSON(chart_json, "", function(dati_json){
             data: getChartData(dati_json.chart_ospedalizzati),
             options: getChartOptions(dati_json.chart_ospedalizzati)
         }
-    );    
+    ); 
 
-    var chart_att_positivi_reg = new Chart(
-        document.getElementById("chart_att_positivi_reg").getContext('2d'), 
+    var chart_tot_casi_prov = new Chart(
+        document.getElementById("chart_tot_casi_prov").getContext('2d'), 
         {
             type: 'horizontalBar',
-            data: getChartData(dati_json.chart_att_positivi_reg),
+            data: getChartData(dati_json.chart_tot_casi_prov),
             options: {
                 legend: {
                    display: false
@@ -309,7 +309,8 @@ $.getJSON(chart_json, "", function(dati_json){
         }
         
     );    
-    chart_att_positivi_reg.canvas.parentNode.style.height = '665px';
+    chart_tot_casi_prov.canvas.parentNode.style.height = '665px';
+
 
 });
 
