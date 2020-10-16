@@ -1,7 +1,8 @@
 $.getJSON(map_geojson, "", function(dati_geojson){
 
 	var map = L.map('map', {
-		zoomSnap: 0.1
+		zoomSnap: 0.1,
+		scrollWheelZoom: false
 	});
 	var map = map.setView([41.902782, 12.496366], 1);	
 

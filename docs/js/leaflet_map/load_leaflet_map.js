@@ -1,7 +1,8 @@
 $.getJSON(map_geojson, "", function(dati_geojson){
 
 	var map = L.map('map', {
-		zoomSnap: 0.1
+		zoomSnap: 0.1,
+		scrollWheelZoom: false
 	});
 	var map = map.setView([41.902782, 12.496366], 1);	
 
@@ -12,7 +13,7 @@ $.getJSON(map_geojson, "", function(dati_geojson){
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox/light-v9',
 		tileSize: 512,
-		zoomOffset: -1
+		zoomOffset: -1		
 	}).addTo(map);
 
 	// control that shows state info on hover

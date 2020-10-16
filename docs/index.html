@@ -261,32 +261,9 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Modale test -->
-      <div class="modal fade" id="TestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
-                &nbsp;&nbsp;
-                Seleziona una Regione
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </h5>
-              
-            </div>
-            <div class="modal-body">                            
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
-            </div>
-          </div>
-        </div>
-      </div>      
+      </div>   
       
-      <!--Grid row quadro generale-->
+      <!-- quadro generale -->
       <div class="row wow fadeIn">
         
         <!--Grid column 1 start-->
@@ -366,262 +343,404 @@
 
       </div>
 
-      <!--Grid row 1x1 grafici-->
-      <div class="row wow fadeIn">
-        
-        <!--Grid column 1 start-->
-        <div class="col-md-12 mb-4">
-
-          <!--Card-->
-          <div class="card mb-4">
-
-            <!-- Card header -->
-            <div class="card-header text-center p-2">              
-              My Title<i id="maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#TestModal"></i>        
-            </div>
-
-            <!--Card content-->
-            <div class="card-body p-2">
-            </div>
-
-          </div>
-          <!--/.Card-->
-
-        </div>
-        <!--Grid column 1 end-->            
-        
-      </div>
-
-      <!--Grid row 2x2 grafici-->
-      <div class="row wow fadeIn">
-        
+      <!-- card nuovi positivi e attualmente positivi-->
+      <div class="row wow fadeIn">        
         <!--Grid column 1 start-->
         <div class="col-md-6 mb-4">
-
           <!--Card-->
           <div class="card mb-4">
-
             <!-- Card header -->
             <div class="card-header text-center p-2" id="card_nuovi_positivi">
-              Nuovi Positivi
+              Nuovi Positivi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_nuovi_positivi"></i>
             </div>
-
             <!--Card content-->
             <div class="card-body p-2">
-
               <canvas id="chart_nuovi_positivi"></canvas>
-
             </div>
-
           </div>
-          <!--/.Card-->
-
-          <!--Card-->
-          <div class="card mb-4">
-
-            <!-- Card header -->
-            <div class="card-header text-center p-2" id="card_nuovi_tamponi">
-              Nuovi Tamponi
-            </div>
-
-            <!--Card content-->
-            <div class="card-body p-2">
-
-              <canvas id="chart_nuovi_tamponi"></canvas>
-
-            </div>            
-
-          </div>
-          <!--/.Card-->
-
         </div>
-        <!--Grid column 1 end-->
-        
         <!--Grid column 2 start-->
         <div class="col-md-6 mb-4">
-
           <!--Card-->
           <div class="card mb-4">
-
             <!-- Card header -->
             <div class="card-header text-center p-2" id="card_att_positivi">
-              Attualmente Positivi
+              Attualmente Positivi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_att_positivi"></i>
             </div>
-
             <!--Card content-->
             <div class="card-body p-2">
-
               <canvas id="chart_att_positivi"></canvas>
-
             </div>
-
           </div>
-          <!--/.Card-->
-
-          <!--Card-->
-          <div class="card mb-4">
-
-            <!-- Card header -->
-            <div class="card-header text-center p-2" id="card_var_att_positivi">
-              Variazione Attualmente Positivi
-            </div>
-
-            <!--Card content-->
-            <div class="card-body p-2">
-
-              <canvas id="chart_var_att_positivi"></canvas>
-
-            </div>            
-
-          </div>
-          <!--/.Card-->
-
         </div>
-        <!--Grid column 2 end-->
-        
+        <!--Grid column 2 end-->      
       </div>
 
-      <!--Grid row 1x2 grafici-->
-      <div class="row wow fadeIn">
-        
+      <!-- modale nuovi positivi -->
+      <div class="modal fade" id="modal_nuovi_positivi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_nuovi_positivi">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Nuovi Positivi###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_nuovi_positivi"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modale attualmente positivi -->
+      <div class="modal fade" id="modal_att_positivi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_att_positivi">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Attualmente Positivi###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_att_positivi"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>  
+      
+      <!-- card nuovi tamponi e variazione attualmente positivi-->
+      <div class="row wow fadeIn">        
         <!--Grid column 1 start-->
         <div class="col-md-6 mb-4">
-
           <!--Card-->
           <div class="card mb-4">
+            <!-- Card header -->
+            <div class="card-header text-center p-2" id="card_nuovi_tamponi">
+              Nuovi Tamponi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_nuovi_tamponi"></i>
+            </div>
+            <!--Card content-->
+            <div class="card-body p-2">
+              <canvas id="chart_nuovi_tamponi"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--Grid column 2 start-->
+        <div class="col-md-6 mb-4">
+          <!--Card-->
+          <div class="card mb-4">
+            <!-- Card header -->
+            <div class="card-header text-center p-2" id="card_var_att_positivi">
+              Variazione Attualmente Positivi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_var_att_positivi"></i>
+            </div>
+            <!--Card content-->
+            <div class="card-body p-2">
+              <canvas id="chart_var_att_positivi"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--Grid column 2 end-->      
+      </div>
 
+      <!-- modale nuovi tamponi -->
+      <div class="modal fade" id="modal_nuovi_tamponi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_nuovi_tamponi">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Nuovi Tamponi###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_nuovi_tamponi"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modale attualmente positivi -->
+      <div class="modal fade" id="modal_var_att_positivi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_var_att_positivi">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Variazione Attualmente Positivi###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_var_att_positivi"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>                 
+
+      <!-- card percentuale tamponi positivi -->
+      <div class="row wow fadeIn">        
+        <!--Grid column 1 start-->
+        <div class="col-md-12 mb-4">
+          <!--Card-->
+          <div class="card mb-4">
+            <!-- Card header -->
+            <div class="card-header text-center p-2" id="card_perc_tamponi_positivi">              
+              Percentuale Tamponi Positivi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_perc_tamponi_positivi"></i>        
+            </div>
+            <!-- Card body -->
+            <div class="card-body p-2">
+              <canvas id="chart_perc_tamponi_positivi" height="80px"></canvas>
+            </div>
+          </div>
+        </div>                  
+      </div>
+      
+      <!-- modale percentuale tamponi positivi -->
+      <div class="modal fade" id="modal_perc_tamponi_positivi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_perc_tamponi_positivi">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Percentuale Tamponi Positivi###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_perc_tamponi_positivi"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- card attualmente positivi per regioni e mappa per regioni -->
+      <div class="row wow fadeIn">
+        <!--Grid column 1 start-->
+        <div class="col-md-6 mb-4">
+          <!--Card-->
+          <div class="card mb-4">
             <!-- Card header -->
             <div class="card-header text-center p-2">
               Attualmente Positivi - Regioni
             </div>
-
             <!--Card content-->
             <div class="card-body p-2">
-
               <canvas id="chart_att_positivi_reg"></canvas>
-
             </div>
-
           </div>
-          <!--/.Card-->
-
         </div>
-        <!--Grid column 1 end-->
-        
         <!--Grid column 2 start-->
         <div class="col-md-6 mb-4">
-
           <!--Card-->
           <div class="card mb-4">
-
             <!-- Card header -->
             <div class="card-header text-center p-2">
               Attualmente Positivi (% Popolazione) - Regioni
             </div>
-
             <!--Card content-->
             <div class="card-body p-2">
-
               <div id='map'></div>
-
             </div>
-
           </div>
-          <!--/.Card-->
-
         </div>
-        <!--Grid column 2 end-->
-        
       </div>
 
-      <!--Grid row 2x2 grafici-->
-      <div class="row wow fadeIn">
-        
+      <!-- card decessi e terapia intensiva-->
+      <div class="row wow fadeIn">        
         <!--Grid column 1 start-->
         <div class="col-md-6 mb-4">
-
           <!--Card-->
           <div class="card mb-4">
-
             <!-- Card header -->
             <div class="card-header text-center p-2" id="card_decessi">
-              Decessi
+              Decessi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_decessi"></i>
             </div>
-
             <!--Card content-->
             <div class="card-body p-2">
-
               <canvas id="chart_decessi"></canvas>
-
             </div>
-
           </div>
-          <!--/.Card-->
-
-          <!--Card-->
-          <div class="card mb-4">
-
-            <!-- Card header -->
-            <div class="card-header text-center p-2" id="card_dimessi">
-              Dimessi Guariti
-            </div>
-
-            <!--Card content-->
-            <div class="card-body p-2">
-
-              <canvas id="chart_dimessi"></canvas>
-
-            </div>            
-
-          </div>
-          <!--/.Card-->
-
         </div>
-        <!--Grid column 1 end-->
-        
         <!--Grid column 2 start-->
         <div class="col-md-6 mb-4">
-
           <!--Card-->
           <div class="card mb-4">
-
             <!-- Card header -->
             <div class="card-header text-center p-2" id="card_ter_intensiva">
-              Terapia Intensiva
+              Terapia Intensiva<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_ter_intensiva"></i>
             </div>
-
             <!--Card content-->
             <div class="card-body p-2">
-
               <canvas id="chart_ter_intensiva"></canvas>
-
             </div>
-
           </div>
-          <!--/.Card-->
+        </div>
+        <!--Grid column 2 end-->      
+      </div>
 
+      <!-- modale decessi -->
+      <div class="modal fade" id="modal_decessi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_decessi">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Decessi###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_decessi"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modale terapia intensiva -->
+      <div class="modal fade" id="modal_ter_intensiva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_ter_intensiva">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Terapia Intensiva###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_ter_intensiva"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+    
+      <!-- card dimessi e ospedalizzati-->
+      <div class="row wow fadeIn">        
+        <!--Grid column 1 start-->
+        <div class="col-md-6 mb-4">
           <!--Card-->
           <div class="card mb-4">
-
             <!-- Card header -->
-            <div class="card-header text-center p-2" id="card_ospedalizzati">
-              Ospedalizzati
+            <div class="card-header text-center p-2" id="card_dimessi">
+              Dimessi Guariti<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_dimessi"></i>
             </div>
-
             <!--Card content-->
             <div class="card-body p-2">
-
-              <canvas id="chart_ospedalizzati"></canvas>
-
-            </div>            
-
+              <canvas id="chart_dimessi"></canvas>
+            </div>
           </div>
-          <!--/.Card-->
-
         </div>
-        <!--Grid column 2 end-->
-        
-      </div>     
+        <!--Grid column 2 start-->
+        <div class="col-md-6 mb-4">
+          <!--Card-->
+          <div class="card mb-4">
+            <!-- Card header -->
+            <div class="card-header text-center p-2" id="card_ospedalizzati">
+              Ospedalizzati<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_ospedalizzati"></i>
+            </div>
+            <!--Card content-->
+            <div class="card-body p-2">
+              <canvas id="chart_ospedalizzati"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--Grid column 2 end-->      
+      </div>
+
+      <!-- modale dimessi -->
+      <div class="modal fade" id="modal_dimessi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_dimessi">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Dimessi###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_dimessi"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modale terapia intensiva -->
+      <div class="modal fade" id="modal_ospedalizzati" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_ospedalizzati">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Ospedalizzati###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_ospedalizzati"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+
 
     </div>
     <!--Container end-->

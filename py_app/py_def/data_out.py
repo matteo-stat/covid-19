@@ -459,6 +459,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
     df_naz['nuovi_deceduti'] = df_naz['deceduti'] - df_naz['deceduti'].shift(+1)
     df_naz['nuovi_dimessi_guariti'] = df_naz['dimessi_guariti'] - df_naz['dimessi_guariti'].shift(+1)
     df_naz['nuovi_tamponi'] = df_naz['tamponi'] - df_naz['tamponi'].shift(+1)
+    df_naz['nuovi_totale_casi'] = df_naz['totale_casi'] - df_naz['totale_casi'].shift(+1)
     
     # filter dates
     i = df_naz['data'] > pd.to_datetime('2020-03-01')
@@ -527,10 +528,15 @@ def build_charts_index(df_naz, df_reg, dir_home):
     df_naz = df_naz.loc[i, :]
     df_naz['ult_aggiornamento'] = (100 + df_naz['data'].dt.day).astype(str).str.slice(1,3) + r'/' + (100 + df_naz['data'].dt.month).astype(str).str.slice(1,3) + r'/' + (df_naz['data'].dt.year).astype(str)    
     table_summary = {'att_positivi': df_naz['totale_positivi'].tolist()
+                    ,'nuovi_positivi': df_naz['nuovi_positivi'].tolist()
                     ,'tot_casi': df_naz['totale_casi'].tolist()
+                    ,'nuovi_tot_casi': df_naz['nuovi_totale_casi'].tolist()
                     ,'tot_tamponi': df_naz['tamponi'].tolist()
+                    ,'nuovi_tamponi': df_naz['nuovi_tamponi'].tolist()
                     ,'tot_decessi': df_naz['deceduti'].tolist()
+                    ,'nuovi_decessi': df_naz['nuovi_deceduti'].tolist()
                     ,'tot_dimessi': df_naz['dimessi_guariti'].tolist()
+                    ,'nuovi_dimessi': df_naz['nuovi_dimessi_guariti'].tolist()
                     ,'popolazione': pop['popolazione'].sum().tolist()
                     ,'ult_aggiornamento': df_naz['ult_aggiornamento'].tolist()
                     }
@@ -594,6 +600,7 @@ def build_charts_reg(df_reg, df_prov, dir_home):
         df_reg_temp['nuovi_deceduti'] = df_reg_temp['deceduti'] - df_reg_temp['deceduti'].shift(+1)
         df_reg_temp['nuovi_dimessi_guariti'] = df_reg_temp['dimessi_guariti'] - df_reg_temp['dimessi_guariti'].shift(+1)
         df_reg_temp['nuovi_tamponi'] = df_reg_temp['tamponi'] - df_reg_temp['tamponi'].shift(+1)
+        df_reg_temp['nuovi_totale_casi'] = df_reg_temp['totale_casi'] - df_reg_temp['totale_casi'].shift(+1)
     
         # filter dates
         i = df_reg_temp['data'] > pd.to_datetime('2020-03-01')
@@ -645,14 +652,19 @@ def build_charts_reg(df_reg, df_prov, dir_home):
         df_reg_temp = df_reg_temp.loc[i, :]
         df_reg_temp['ult_aggiornamento'] = (100 + df_reg_temp['data'].dt.day).astype(str).str.slice(1,3) + r'/' + (100 + df_reg_temp['data'].dt.month).astype(str).str.slice(1,3) + r'/' + (df_reg_temp['data'].dt.year).astype(str)    
         table_summary = {'att_positivi': df_reg_temp['totale_positivi'].tolist()
+                        ,'nuovi_positivi': df_reg_temp['nuovi_positivi'].tolist()
                         ,'tot_casi': df_reg_temp['totale_casi'].tolist()
+                        ,'nuovi_tot_casi': df_reg_temp['nuovi_totale_casi'].tolist()
                         ,'tot_tamponi': df_reg_temp['tamponi'].tolist()
+                        ,'nuovi_tamponi': df_reg_temp['nuovi_tamponi'].tolist()
                         ,'tot_decessi': df_reg_temp['deceduti'].tolist()
+                        ,'nuovi_decessi': df_reg_temp['nuovi_deceduti'].tolist()
                         ,'tot_dimessi': df_reg_temp['dimessi_guariti'].tolist()
+                        ,'nuovi_dimessi': df_reg_temp['nuovi_dimessi_guariti'].tolist()
                         ,'popolazione': pop_temp['popolazione'].sum().tolist()
                         ,'ult_aggiornamento': df_reg_temp['ult_aggiornamento'].tolist()                        
                         }
-        
+
         # add index charts to dictionary
         charts_dict_temp['table_summary'] = table_summary
         charts_dict_temp['chart_tot_casi_prov'] = chart_tot_casi_prov

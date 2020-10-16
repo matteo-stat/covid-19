@@ -1,7 +1,13 @@
-// function for updated card header
+// function for update card header
 function cardHeaderUpdate(div_id, header_suffix, sep){
 
     document.getElementById(div_id).innerHTML = document.getElementById(div_id).innerHTML + sep + header_suffix;
+};
+
+// function for update modal header
+function modalHeaderUpdate(div_id, header_suffix, sep){
+
+    document.getElementById(div_id).innerHTML = document.getElementById(div_id).innerHTML.replace("###", sep + header_suffix);
 };
 
 // function for update summary table
