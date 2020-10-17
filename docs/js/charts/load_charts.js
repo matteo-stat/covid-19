@@ -29,9 +29,10 @@ $.getJSON(chart_json, "", function(dati_json){
 
     // update summary table
     updateTableSummary("table_att_positivi", dati_json.table_summary.att_positivi, dati_json.table_summary.nuovi_positivi);
-    updateTableSummary("table_tot_casi", dati_json.table_summary.tot_casi);
+    updateTableSummary("table_ter_intensiva", dati_json.table_summary.ter_intensiva, dati_json.table_summary.nuovi_ter_intensiva);
     updateTableSummary("table_tot_decessi", dati_json.table_summary.tot_decessi, dati_json.table_summary.nuovi_decessi);
     updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi, dati_json.table_summary.nuovi_dimessi, true);   
+    updateTableSummary("table_tot_casi", dati_json.table_summary.tot_casi);
     updateTableSummary("table_popolazione", dati_json.table_summary.popolazione);
     updateTableSummary("table_ult_aggiornamento", dati_json.table_summary.ult_aggiornamento, "", false, false);
 

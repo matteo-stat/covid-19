@@ -454,6 +454,7 @@ def build_charts_index(df_naz, df_reg, dir_home):
        
     # dependecies
     import pandas as pd
+    import numpy as np
     from palettable.colorbrewer.sequential import Reds_9 as palettable_pal_red
     
     # add new columns
@@ -462,6 +463,11 @@ def build_charts_index(df_naz, df_reg, dir_home):
     df_naz['nuovi_dimessi_guariti'] = df_naz['dimessi_guariti'] - df_naz['dimessi_guariti'].shift(+1)
     df_naz['nuovi_tamponi'] = df_naz['tamponi'] - df_naz['tamponi'].shift(+1)
     df_naz['nuovi_ter_intensiva'] = df_naz['terapia_intensiva'] - df_naz['terapia_intensiva'].shift(+1)
+    
+    i = df_naz.loc[:,'nuovi_positivi'] > df_naz.loc[:,'nuovi_tamponi']
+    df_naz['perc_tamponi_positivi'] = df_naz.loc[:,'nuovi_positivi'].divide(df_naz.loc[:,'nuovi_tamponi']).replace(np.inf, 0) * 100.0
+    df_naz.loc[i,'perc_tamponi_positivi'] = 0
+    df_naz['nuovi_perc_tamponi_positivi'] = df_naz['perc_tamponi_positivi'] - df_naz['perc_tamponi_positivi'].shift(+1)
     
     # filter dates
     i = df_naz['data'] > pd.to_datetime('2020-03-01')
@@ -530,6 +536,9 @@ def build_charts_index(df_naz, df_reg, dir_home):
     df_naz = df_naz.loc[i, :]
     df_naz['ult_aggiornamento'] = (100 + df_naz['data'].dt.day).astype(str).str.slice(1,3) + r'/' + (100 + df_naz['data'].dt.month).astype(str).str.slice(1,3) + r'/' + (df_naz['data'].dt.year).astype(str)    
     table_summary = {'att_positivi': df_naz['totale_positivi'].tolist()
+                    ,'nuovi_positivi': df_naz['nuovi_positivi'].tolist()
+                    ,'perc_tamponi_positivi': df_naz['perc_tamponi_positivi'].tolist()
+                    ,'nuovi_perc_tamponi_positivi': df_naz['nuovi_perc_tamponi_positivi'].tolist()
                     ,'ter_intensiva': df_naz['terapia_intensiva'].tolist()
                     ,'nuovi_ter_intensiva': df_naz['nuovi_ter_intensiva'].tolist()
                     ,'tot_tamponi': df_naz['tamponi'].tolist()
@@ -556,6 +565,7 @@ def build_charts_reg(df_reg, df_prov, dir_home):
        
     # dependecies
     import pandas as pd
+    import numpy as np
     from palettable.colorbrewer.sequential import Reds_9 as palettable_pal_red
     
     # add new columns
@@ -604,7 +614,11 @@ def build_charts_reg(df_reg, df_prov, dir_home):
         df_reg_temp['nuovi_tamponi'] = df_reg_temp['tamponi'] - df_reg_temp['tamponi'].shift(+1)
         df_reg_temp['nuovi_ter_intensiva'] = df_reg_temp['terapia_intensiva'] - df_reg_temp['terapia_intensiva'].shift(+1)
         
-    
+        i = df_reg_temp.loc[:,'nuovi_positivi'] > df_reg_temp.loc[:,'nuovi_tamponi']
+        df_reg_temp['perc_tamponi_positivi'] = df_reg_temp.loc[:,'nuovi_positivi'].divide(df_reg_temp.loc[:,'nuovi_tamponi']).replace(np.inf, 0) * 100.0
+        df_reg_temp.loc[i,'perc_tamponi_positivi'] = 0
+        df_reg_temp['nuovi_perc_tamponi_positivi'] = df_reg_temp['perc_tamponi_positivi'] - df_reg_temp['perc_tamponi_positivi'].shift(+1)        
+        
         # filter dates
         i = df_reg_temp['data'] > pd.to_datetime('2020-03-01')
         df_reg_temp = df_reg_temp.loc[i, :]
@@ -656,6 +670,8 @@ def build_charts_reg(df_reg, df_prov, dir_home):
         df_reg_temp['ult_aggiornamento'] = (100 + df_reg_temp['data'].dt.day).astype(str).str.slice(1,3) + r'/' + (100 + df_reg_temp['data'].dt.month).astype(str).str.slice(1,3) + r'/' + (df_reg_temp['data'].dt.year).astype(str)    
         table_summary = {'att_positivi': df_reg_temp['totale_positivi'].tolist()
                         ,'nuovi_positivi': df_reg_temp['nuovi_positivi'].tolist()
+                        ,'perc_tamponi_positivi': df_reg_temp['perc_tamponi_positivi'].tolist()
+                        ,'nuovi_perc_tamponi_positivi': df_reg_temp['nuovi_perc_tamponi_positivi'].tolist()
                         ,'ter_intensiva': df_reg_temp['terapia_intensiva'].tolist()
                         ,'nuovi_ter_intensiva': df_reg_temp['nuovi_ter_intensiva'].tolist()
                         ,'tot_tamponi': df_reg_temp['tamponi'].tolist()
