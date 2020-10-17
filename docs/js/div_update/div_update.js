@@ -11,7 +11,7 @@ function modalHeaderUpdate(div_id, header_suffix, sep){
 };
 
 // function for update summary table
-function updateTableSummary(div_id, label, delta_label="", format_number=true) {
+function updateTableSummary(div_id, label, delta_label="", delta_invert=false, format_number=true) {
     var tag = document.createElement("p");
     var tag_span = document.createElement("span");
 
@@ -24,15 +24,24 @@ function updateTableSummary(div_id, label, delta_label="", format_number=true) {
     delta_color = "#000000";
     delta_symbol = "";
 
+    delta_invert_factor = 1;    
+    if(delta_invert){
+        delta_invert_factor = -1;
+    }
+
     if(delta_label!=""){        
-        if(Number(delta_label > 0)){
-            delta_color = "#990000";   
+        if(Number(delta_label)*delta_invert_factor > 0){
+            delta_color = "#990000";
+        }
+        if(Number(delta_label)*delta_invert_factor < 0) {
+            delta_color = "#009900";
+        }    
+        if(Number(delta_label) > 0){  
             delta_symbol = "+";     
         }
-        if(Number(delta_label < 0)) {
-            delta_color = "#009900";
+        if(Number(delta_label) < 0) {
             delta_symbol = "-";
-        }        
+        }              
         text_tag = "<p>" + label + " <span style='color:" + delta_color + "'>(" + delta_symbol + getNumberFormatted(delta_label) + ")</span></p>";        
     }
 
