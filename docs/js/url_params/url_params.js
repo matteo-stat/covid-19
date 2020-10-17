@@ -5,10 +5,10 @@ var pagename = window.location.pathname.split("/").pop();
 var defaultpage = 'https://matteo-stat.github.io/covid-19/'
 
 // dev
-var defaultrepo = 'https://raw.githubusercontent.com/matteo-stat/covid-19/master/docs/json/';
+//var defaultrepo = 'https://raw.githubusercontent.com/matteo-stat/covid-19/master/docs/json/';
 
 // prod
-//var defaultrepo = 'json/';
+var defaultrepo = 'json/';
 
 chart_json = defaultrepo + 'italia/charts_ita.json';
 map_geojson = defaultrepo + 'italia/map_ita.geojson';
