@@ -269,42 +269,37 @@
               <!-- First row-->
               <div class="row">
                 <!--Column 1-->
-                <div class="col-md">
-                  <h6 class="text-center mb-3">Tamponi Positivi %</h6> 
-                  <div class="text-center" id="table_perc_tamponi_positivi">              
+                <div class="col-md-2">
+                  <h6 class="text-center mb-3">Attualmente Positivi</h6> 
+                  <div class="text-center" id="table_att_positivi">              
                   </div>
-                </div>                  
-                <div class="col-md">
-                  <h6 class="text-center mb-3">Terapia Intensiva</h6> 
-                  <div class="text-center" id="table_ter_intensiva">              
+                </div>
+                <!--Column 2-->
+                <div class="col-md-2">
+                  <h6 class="text-center mb-3">Totale Casi</h6>                  
+                  <div class="text-center" id ="table_tot_casi">                 
                   </div>
-                </div>     
-                <div class="col-md">
-                  <h6 class="text-center mb-3">Totale Dimessi Guariti</h6>                  
-                  <div class="text-center" id="table_tot_dimessi">                
-                  </div>
-                </div>                                    
-                <div class="col-md">
+                </div>
+                <!--Column 3-->
+                <div class="col-md-2">
                   <h6 class="text-center mb-3">Totale Decessi</h6>                  
                   <div class="text-center" id="table_tot_decessi">                 
                   </div>
                 </div>
-                <div class="col-md">
-                  <h6 class="text-center mb-3">Attualmente Positivi</h6> 
-                  <div class="text-center" id="table_att_positivi">              
+                <!--Column 4-->
+                <div class="col-md-2">
+                  <h6 class="text-center mb-3">Totale Dimessi Guariti</h6>                  
+                  <div class="text-center" id="table_tot_dimessi">                
                   </div>
-                </div>                 
-                <div class="col-md">
-                  <h6 class="text-center mb-3">Totale Casi</h6>                  
-                  <div class="text-center" id ="table_tot_casi">                 
-                  </div>
-                </div>                
-                <div class="col-md">
+                </div>
+                <!--Column 5-->
+                <div class="col-md-2">
                   <h6 class="text-center mb-3">Popolazione</h6>                  
                   <div class="text-center" id ="table_popolazione">                 
                   </div>
                 </div>
-                <div class="col-md">
+                <!--Column 6-->
+                <div class="col-md-2">
                   <h6 class="text-center mb-3">Ultimo Aggiornamento</h6>                  
                   <div class="text-center" id="table_ult_aggiornamento">                
                   </div>
@@ -314,129 +309,6 @@
           </div>
         </div>
       </div>
-
-      <!-- card percentuale tamponi positivi -->
-      <div class="row wow fadeIn">        
-        <!--Grid column 1 start-->
-        <div class="col-md-12 mb-4">
-          <!--Card-->
-          <div class="card mb-4">
-            <!-- Card header -->
-            <div class="card-header text-center p-2" id="card_perc_tamponi_positivi">              
-              Percentuale Tamponi Positivi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_perc_tamponi_positivi"></i>        
-            </div>
-            <!-- Card body -->
-            <div class="card-body p-2">
-              <canvas id="chart_perc_tamponi_positivi" height="80px"></canvas>
-            </div>
-          </div>
-        </div>                  
-      </div>
-      
-      <!-- modale percentuale tamponi positivi -->
-      <div class="modal fade" id="modal_perc_tamponi_positivi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-          <div class="modal-content">
-            <div class="modal-header" id="modalheader_perc_tamponi_positivi">
-              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
-                &nbsp;&nbsp;
-                Percentuale Tamponi Positivi###
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </h5>
-              
-            </div>
-            <div class="modal-body">     
-              <canvas id="chartmodal_perc_tamponi_positivi"></canvas>                       
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
-            </div>
-          </div>
-        </div>
-      </div>      
-
-      <!-- card terapia intensiva e ospedalizzati -->
-      <div class="row wow fadeIn">        
-        <!--Grid column 1 start-->
-        <div class="col-md-6 mb-4">
-          <!--Card-->
-          <div class="card mb-4">
-            <!-- Card header -->
-            <div class="card-header text-center p-2" id="card_ter_intensiva">
-              Terapia Intensiva<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_ter_intensiva"></i>
-            </div>
-            <!--Card content-->
-            <div class="card-body p-2">
-              <canvas id="chart_ter_intensiva"></canvas>
-            </div>
-          </div>
-        </div>
-        <!--Grid column 2 start-->
-        <div class="col-md-6 mb-4">
-          <!--Card-->
-          <div class="card mb-4">
-            <!-- Card header -->
-            <div class="card-header text-center p-2" id="card_ospedalizzati">
-              Ospedalizzati<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_ospedalizzati"></i>
-            </div>
-            <!--Card content-->
-            <div class="card-body p-2">
-              <canvas id="chart_ospedalizzati"></canvas>
-            </div>
-          </div>
-        </div>        
-        <!--Grid column 2 end-->      
-      </div>
-
-      <!-- modale terapia intensiva -->
-      <div class="modal fade" id="modal_ter_intensiva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-          <div class="modal-content">
-            <div class="modal-header" id="modalheader_ter_intensiva">
-              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
-                &nbsp;&nbsp;
-                Terapia Intensiva###
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </h5>
-              
-            </div>
-            <div class="modal-body">     
-              <canvas id="chartmodal_ter_intensiva"></canvas>                       
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
-            </div>
-          </div>
-        </div>
-      </div> 
-
-      <!-- modale ospedalizzati -->
-      <div class="modal fade" id="modal_ospedalizzati" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-          <div class="modal-content">
-            <div class="modal-header" id="modalheader_ospedalizzati">
-              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
-                &nbsp;&nbsp;
-                Ospedalizzati###
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </h5>
-              
-            </div>
-            <div class="modal-body">     
-              <canvas id="chartmodal_ospedalizzati"></canvas>                       
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
-            </div>
-          </div>
-        </div>
-      </div>      
 
       <!-- card nuovi positivi e attualmente positivi-->
       <div class="row wow fadeIn">        
@@ -600,7 +472,49 @@
         </div>
       </div>                 
 
-      <!-- card attualmente positivi per province e mappa per province -->
+      <!-- card percentuale tamponi positivi -->
+      <div class="row wow fadeIn">        
+        <!--Grid column 1 start-->
+        <div class="col-md-12 mb-4">
+          <!--Card-->
+          <div class="card mb-4">
+            <!-- Card header -->
+            <div class="card-header text-center p-2" id="card_perc_tamponi_positivi">              
+              Percentuale Tamponi Positivi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_perc_tamponi_positivi"></i>        
+            </div>
+            <!-- Card body -->
+            <div class="card-body p-2">
+              <canvas id="chart_perc_tamponi_positivi" height="80px"></canvas>
+            </div>
+          </div>
+        </div>                  
+      </div>
+      
+      <!-- modale percentuale tamponi positivi -->
+      <div class="modal fade" id="modal_perc_tamponi_positivi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_perc_tamponi_positivi">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Percentuale Tamponi Positivi###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_perc_tamponi_positivi"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- card attualmente positivi per regioni e mappa per regioni -->
       <div class="row wow fadeIn">
         <!--Grid column 1 start-->
         <div class="col-md-6 mb-4">
@@ -631,8 +545,89 @@
           </div>
         </div>
       </div>
+
+      <!-- card decessi e terapia intensiva-->
+      <div class="row wow fadeIn">        
+        <!--Grid column 1 start-->
+        <div class="col-md-6 mb-4">
+          <!--Card-->
+          <div class="card mb-4">
+            <!-- Card header -->
+            <div class="card-header text-center p-2" id="card_decessi">
+              Decessi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_decessi"></i>
+            </div>
+            <!--Card content-->
+            <div class="card-body p-2">
+              <canvas id="chart_decessi"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--Grid column 2 start-->
+        <div class="col-md-6 mb-4">
+          <!--Card-->
+          <div class="card mb-4">
+            <!-- Card header -->
+            <div class="card-header text-center p-2" id="card_ter_intensiva">
+              Terapia Intensiva<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_ter_intensiva"></i>
+            </div>
+            <!--Card content-->
+            <div class="card-body p-2">
+              <canvas id="chart_ter_intensiva"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--Grid column 2 end-->      
+      </div>
+
+      <!-- modale decessi -->
+      <div class="modal fade" id="modal_decessi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_decessi">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Decessi###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_decessi"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modale terapia intensiva -->
+      <div class="modal fade" id="modal_ter_intensiva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header" id="modalheader_ter_intensiva">
+              <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
+                &nbsp;&nbsp;
+                Terapia Intensiva###
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </h5>
+              
+            </div>
+            <div class="modal-body">     
+              <canvas id="chartmodal_ter_intensiva"></canvas>                       
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
+            </div>
+          </div>
+        </div>
+      </div> 
     
-      <!-- card dimessi e decessi -->
+      <!-- card dimessi e ospedalizzati-->
       <div class="row wow fadeIn">        
         <!--Grid column 1 start-->
         <div class="col-md-6 mb-4">
@@ -653,17 +648,15 @@
           <!--Card-->
           <div class="card mb-4">
             <!-- Card header -->
-            <div class="card-header text-center p-2" id="card_decessi">
-              Decessi<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_decessi"></i>
+            <div class="card-header text-center p-2" id="card_ospedalizzati">
+              Ospedalizzati<i id="icon_maximize" class="fas fa-sm fa-pull-right fa-expand-arrows-alt fa-border" data-toggle="modal" href="#modal_ospedalizzati"></i>
             </div>
             <!--Card content-->
             <div class="card-body p-2">
-              <canvas id="chart_decessi"></canvas>
+              <canvas id="chart_ospedalizzati"></canvas>
             </div>
           </div>
         </div>
-
-
         <!--Grid column 2 end-->      
       </div>
 
@@ -691,14 +684,14 @@
         </div>
       </div>
 
-      <!-- modale decessi -->
-      <div class="modal fade" id="modal_decessi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- modale terapia intensiva -->
+      <div class="modal fade" id="modal_ospedalizzati" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
           <div class="modal-content">
-            <div class="modal-header" id="modalheader_decessi">
+            <div class="modal-header" id="modalheader_ospedalizzati">
               <h5 class="col-12 modal-title text-center" id="exampleModalLabel">
                 &nbsp;&nbsp;
-                Decessi###
+                Ospedalizzati###
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -706,14 +699,14 @@
               
             </div>
             <div class="modal-body">     
-              <canvas id="chartmodal_decessi"></canvas>                       
+              <canvas id="chartmodal_ospedalizzati"></canvas>                       
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal">Indietro</button>
             </div>
           </div>
         </div>
-      </div>      
+      </div> 
 
     </div>
     <!--Container end-->

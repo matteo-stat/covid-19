@@ -1,44 +1,47 @@
 
 $.getJSON(chart_json, "", function(dati_json){
    
-    // update card header
-    cardHeaderUpdate("card_table_summary", dati_json.area.suffix, " - ");
-       
-    cardHeaderUpdate("card_nuovi_positivi", dati_json.area.suffix, " - ");    
-    modalHeaderUpdate("modalheader_nuovi_positivi", dati_json.area.suffix, " - ");
-    cardHeaderUpdate("card_att_positivi", dati_json.area.suffix, " - ");
-    modalHeaderUpdate("modalheader_att_positivi", dati_json.area.suffix, " - ");
+        // update card header
+        cardHeaderUpdate("card_table_summary", dati_json.area.suffix, " - ");
 
-    cardHeaderUpdate("card_nuovi_tamponi", dati_json.area.suffix, " - ");
-    modalHeaderUpdate("modalheader_nuovi_tamponi", dati_json.area.suffix, " - ");
-    cardHeaderUpdate("card_var_att_positivi", dati_json.area.suffix, " - ");
-    modalHeaderUpdate("modalheader_var_att_positivi", dati_json.area.suffix, " - ");
-
-    cardHeaderUpdate("card_perc_tamponi_positivi", dati_json.area.suffix, " - ");
-    modalHeaderUpdate("modalheader_perc_tamponi_positivi", dati_json.area.suffix, " - ");
-
-    cardHeaderUpdate("card_decessi", dati_json.area.suffix, " - ");
-    modalHeaderUpdate("modalheader_decessi", dati_json.area.suffix, " - ");
-    cardHeaderUpdate("card_ter_intensiva", dati_json.area.suffix, " - ");
-    modalHeaderUpdate("modalheader_ter_intensiva", dati_json.area.suffix, " - ");
-
-    cardHeaderUpdate("card_dimessi", dati_json.area.suffix, " - ");
-    modalHeaderUpdate("modalheader_dimessi", dati_json.area.suffix, " - ");
-    cardHeaderUpdate("card_ospedalizzati", dati_json.area.suffix, " - ");
-    modalHeaderUpdate("modalheader_ospedalizzati", dati_json.area.suffix, " - ");
-
-    // update summary table
-    updateTableSummary("table_att_positivi", dati_json.table_summary.att_positivi, dati_json.table_summary.nuovi_positivi);
-    updateTableSummary("table_tot_casi", dati_json.table_summary.tot_casi, dati_json.table_summary.nuovi_tot_casi);
-    updateTableSummary("table_tot_decessi", dati_json.table_summary.tot_decessi, dati_json.table_summary.nuovi_decessi);
-    updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi, dati_json.table_summary.nuovi_dimessi);   
-    updateTableSummary("table_popolazione", dati_json.table_summary.popolazione);
-    updateTableSummary("table_ult_aggiornamento", dati_json.table_summary.ult_aggiornamento, "", false);
+        cardHeaderUpdate("card_perc_tamponi_positivi", dati_json.area.suffix, " - ");
+        modalHeaderUpdate("modalheader_perc_tamponi_positivi", dati_json.area.suffix, " - ");
+    
+        cardHeaderUpdate("card_ter_intensiva", dati_json.area.suffix, " - ");
+        modalHeaderUpdate("modalheader_ter_intensiva", dati_json.area.suffix, " - ");
+        cardHeaderUpdate("card_ospedalizzati", dati_json.area.suffix, " - ");
+        modalHeaderUpdate("modalheader_ospedalizzati", dati_json.area.suffix, " - ");    
+           
+        cardHeaderUpdate("card_nuovi_positivi", dati_json.area.suffix, " - ");    
+        modalHeaderUpdate("modalheader_nuovi_positivi", dati_json.area.suffix, " - ");
+        cardHeaderUpdate("card_att_positivi", dati_json.area.suffix, " - ");
+        modalHeaderUpdate("modalheader_att_positivi", dati_json.area.suffix, " - ");
+    
+        cardHeaderUpdate("card_nuovi_tamponi", dati_json.area.suffix, " - ");
+        modalHeaderUpdate("modalheader_nuovi_tamponi", dati_json.area.suffix, " - ");
+        cardHeaderUpdate("card_var_att_positivi", dati_json.area.suffix, " - ");
+        modalHeaderUpdate("modalheader_var_att_positivi", dati_json.area.suffix, " - ");
+    
+        cardHeaderUpdate("card_dimessi", dati_json.area.suffix, " - ");
+        modalHeaderUpdate("modalheader_dimessi", dati_json.area.suffix, " - ");
+        cardHeaderUpdate("card_decessi", dati_json.area.suffix, " - ");
+        modalHeaderUpdate("modalheader_decessi", dati_json.area.suffix, " - ");
+    
+    
+        // update summary table
+        updateTableSummary("table_perc_tamponi_positivi", dati_json.table_summary.perc_tamponi_positivi, dati_json.table_summary.nuovi_perc_tamponi_positivi, false, true, true);
+        updateTableSummary("table_ter_intensiva", dati_json.table_summary.ter_intensiva, dati_json.table_summary.nuovi_ter_intensiva);
+        updateTableSummary("table_tot_decessi", dati_json.table_summary.tot_decessi, dati_json.table_summary.nuovi_decessi);
+        updateTableSummary("table_tot_dimessi", dati_json.table_summary.tot_dimessi, dati_json.table_summary.nuovi_dimessi, true);  
+        updateTableSummary("table_att_positivi", dati_json.table_summary.att_positivi, dati_json.table_summary.nuovi_positivi);
+        updateTableSummary("table_tot_casi", dati_json.table_summary.tot_casi);
+        updateTableSummary("table_popolazione", dati_json.table_summary.popolazione);
+        updateTableSummary("table_ult_aggiornamento", dati_json.table_summary.ult_aggiornamento, "", false, false, false);
 
 
     
-    // return data for chart
-    function getChartData(chart_json) {
+     // return data for chart
+     function getChartData(chart_json) {
 
         var data = {
             labels: chart_json.labels,
@@ -114,6 +117,60 @@ $.getJSON(chart_json, "", function(dati_json){
     }
            
     // create charts
+    var chart_perc_tamponi_positivi = new Chart(
+        document.getElementById("chart_perc_tamponi_positivi").getContext('2d'), 
+        {
+            type: 'bar',
+            data: getChartData(dati_json.chart_perc_tamponi_positivi),
+            options: getChartOptions(dati_json.chart_perc_tamponi_positivi, perc = true)
+        }
+    );
+
+    var chartmodal_perc_tamponi_positivi = new Chart(
+        document.getElementById("chartmodal_perc_tamponi_positivi").getContext('2d'), 
+        {
+            type: 'bar',
+            data: getChartData(dati_json.chart_perc_tamponi_positivi),
+            options: getChartOptions(dati_json.chart_perc_tamponi_positivi, perc = true)
+        }
+    ); 
+
+    var chart_ter_intensiva = new Chart(
+        document.getElementById("chart_ter_intensiva").getContext('2d'), 
+        {
+            type: 'bar',
+            data: getChartData(dati_json.chart_ter_intensiva),
+            options: getChartOptions(dati_json.chart_ter_intensiva)
+        }
+    );
+    
+    var chartmodal_ter_intensiva = new Chart(
+        document.getElementById("chartmodal_ter_intensiva").getContext('2d'), 
+        {
+            type: 'bar',
+            data: getChartData(dati_json.chart_ter_intensiva),
+            options: getChartOptions(dati_json.chart_ter_intensiva)
+        }
+    );
+
+    var chart_ospedalizzati = new Chart(
+        document.getElementById("chart_ospedalizzati").getContext('2d'), 
+        {
+            type: 'bar',
+            data: getChartData(dati_json.chart_ospedalizzati),
+            options: getChartOptions(dati_json.chart_ospedalizzati)
+        }
+    );
+
+    var chartmodal_ospedalizzati = new Chart(
+        document.getElementById("chartmodal_ospedalizzati").getContext('2d'), 
+        {
+            type: 'bar',
+            data: getChartData(dati_json.chart_ospedalizzati),
+            options: getChartOptions(dati_json.chart_ospedalizzati)
+        }
+    );      
+
     var chart_nuovi_positivi = new Chart(
         document.getElementById("chart_nuovi_positivi").getContext('2d'), 
         {
@@ -186,23 +243,23 @@ $.getJSON(chart_json, "", function(dati_json){
         }
     );
            
-    var chart_perc_tamponi_positivi = new Chart(
-        document.getElementById("chart_perc_tamponi_positivi").getContext('2d'), 
+    var chart_dimessi = new Chart(
+        document.getElementById("chart_dimessi").getContext('2d'), 
         {
             type: 'bar',
-            data: getChartData(dati_json.chart_perc_tamponi_positivi),
-            options: getChartOptions(dati_json.chart_perc_tamponi_positivi, perc = true)
+            data: getChartData(dati_json.chart_dimessi),
+            options: getChartOptions(dati_json.chart_dimessi)
         }
     );
 
-    var chartmodal_perc_tamponi_positivi = new Chart(
-        document.getElementById("chartmodal_perc_tamponi_positivi").getContext('2d'), 
+    var chartmodal_dimessi = new Chart(
+        document.getElementById("chartmodal_dimessi").getContext('2d'), 
         {
             type: 'bar',
-            data: getChartData(dati_json.chart_perc_tamponi_positivi),
-            options: getChartOptions(dati_json.chart_perc_tamponi_positivi, perc = true)
+            data: getChartData(dati_json.chart_dimessi),
+            options: getChartOptions(dati_json.chart_dimessi)
         }
-    ); 
+    );        
 
     var chart_decessi = new Chart(
         document.getElementById("chart_decessi").getContext('2d'), 
@@ -213,68 +270,14 @@ $.getJSON(chart_json, "", function(dati_json){
         }
     );
 
-    var chart_decessi = new Chart(
+    var chartmodal_decessi = new Chart(
         document.getElementById("chartmodal_decessi").getContext('2d'), 
         {
             type: 'bar',
             data: getChartData(dati_json.chart_decessi),
             options: getChartOptions(dati_json.chart_decessi)
         }
-    );    
-       
-    var chart_ter_intensiva = new Chart(
-        document.getElementById("chart_ter_intensiva").getContext('2d'), 
-        {
-            type: 'bar',
-            data: getChartData(dati_json.chart_ter_intensiva),
-            options: getChartOptions(dati_json.chart_ter_intensiva)
-        }
-    );
-    
-    var chart_ter_intensiva = new Chart(
-        document.getElementById("chartmodal_ter_intensiva").getContext('2d'), 
-        {
-            type: 'bar',
-            data: getChartData(dati_json.chart_ter_intensiva),
-            options: getChartOptions(dati_json.chart_ter_intensiva)
-        }
-    );
-
-    var chart_dimessi = new Chart(
-        document.getElementById("chart_dimessi").getContext('2d'), 
-        {
-            type: 'bar',
-            data: getChartData(dati_json.chart_dimessi),
-            options: getChartOptions(dati_json.chart_dimessi)
-        }
-    );
-
-    var chart_dimessi = new Chart(
-        document.getElementById("chartmodal_dimessi").getContext('2d'), 
-        {
-            type: 'bar',
-            data: getChartData(dati_json.chart_dimessi),
-            options: getChartOptions(dati_json.chart_dimessi)
-        }
-    );    
-
-    var chart_ospedalizzati = new Chart(
-        document.getElementById("chart_ospedalizzati").getContext('2d'), 
-        {
-            type: 'bar',
-            data: getChartData(dati_json.chart_ospedalizzati),
-            options: getChartOptions(dati_json.chart_ospedalizzati)
-        }
-    );
-
-    var chart_ospedalizzati = new Chart(
-        document.getElementById("chartmodal_ospedalizzati").getContext('2d'), 
-        {
-            type: 'bar',
-            data: getChartData(dati_json.chart_ospedalizzati),
-            options: getChartOptions(dati_json.chart_ospedalizzati)
-        }
-    );    
+    ); 
 
     var chart_tot_casi_prov = new Chart(
         document.getElementById("chart_tot_casi_prov").getContext('2d'), 
