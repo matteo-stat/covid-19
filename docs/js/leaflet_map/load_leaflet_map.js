@@ -50,7 +50,7 @@ $.getJSON(map_geojson, "", function(dati_geojson){
 						<td style="text-align: right">Terapia Intensiva:</td>
 						<td>
 							<div>
-								<div>` + getNumberFormatted(props.terapia_intensiva) + ' (' + getNumberRoundedFormatted(Number(props.terapia_intensiva)/props.popolazione, 2) + `%)</div>
+								<div>` + getNumberFormatted(props.terapia_intensiva) + `</div>
 							</div>
 						</td>
 					</tr>
