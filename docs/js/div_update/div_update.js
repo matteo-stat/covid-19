@@ -45,7 +45,7 @@ function updateTableSummary(div_id, label, delta_label="", delta_invert=false, f
             delta_symbol = "+";     
         }
         if(Number(delta_label) < 0) {
-            delta_symbol = "-";
+            delta_symbol = "";
         }              
         text_tag = "<p>" + label + " <span style='color:" + delta_color + "'>(" + delta_symbol + delta_label_new + ")</span></p>";        
     }
